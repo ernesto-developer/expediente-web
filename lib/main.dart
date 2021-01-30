@@ -1,5 +1,6 @@
 import 'package:aplicacion_web/src/pages/Datos_Generales.dart';
 import 'package:aplicacion_web/src/pages/homePage.dart';
+import 'package:aplicacion_web/src/pages/login_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,9 +14,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      initialRoute: 'homePage',
+      initialRoute: 'loginPage',
       routes: {
 
+        'loginPage'         : (BuildContext context) => LoginPage(),
         'homePage'          : (BuildContext context) => HomePage(),
         'datosGeneralesPage': (BuildContext context) => DatosGeneralesPage(),
 
