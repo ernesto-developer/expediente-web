@@ -1,5 +1,6 @@
-import 'package:aplicacion_web/src/bloc/login_bloc.dart';
 import 'package:flutter/material.dart';
+
+import 'package:aplicacion_web/src/bloc/login_bloc.dart';
 import 'package:aplicacion_web/src/bloc/provider.dart';
 
 class LoginPage extends StatelessWidget {
@@ -201,7 +202,7 @@ class LoginPage extends StatelessWidget {
     print('password: ${bloc.password} ');
     print('==============');
 
-    Navigator.pushNamed(context, 'homePage');
+    Navigator.pushReplacementNamed(context, 'escritorioPage');
 
 
   }

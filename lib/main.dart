@@ -1,5 +1,6 @@
 import 'package:aplicacion_web/src/bloc/provider.dart';
 import 'package:aplicacion_web/src/pages/Datos_Generales.dart';
+import 'package:aplicacion_web/src/pages/escritorio_page.dart';
 import 'package:aplicacion_web/src/pages/homePage.dart';
 import 'package:aplicacion_web/src/pages/login_page.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
 
           'loginPage'         : (BuildContext context) => LoginPage(),
           'homePage'          : (BuildContext context) => HomePage(),
+          'escritorioPage'    : (BuildContext context) => EscritorioPage(),
           'datosGeneralesPage': (BuildContext context) => DatosGeneralesPage(),
         },
         theme: ThemeData(primaryColor: Colors.deepPurple),

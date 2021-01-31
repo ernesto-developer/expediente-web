@@ -22,14 +22,14 @@ class MenuLateral extends StatelessWidget {
           ),
 
           ListTile(
-            leading: Icon( Icons.pages, color: Colors.blue ),
+            leading: Icon( Icons.pages, color: Colors.deepPurple ),
             title: Text('Expediente'),
             onTap: (){
               Navigator.pushReplacementNamed(context, 'homePage');
             }
           ),
           ListTile(
-            leading: Icon( Icons.pages, color: Colors.blue ),
+            leading: Icon( Icons.pages, color: Colors.deepPurple ),
             title: Text('Datos Generales 2021'),
             onTap: (){
               Navigator.pushReplacementNamed(context, 'datosGeneralesPage');
@@ -37,68 +37,68 @@ class MenuLateral extends StatelessWidget {
           ),
 
           ListTile(
-            leading: Icon( Icons.party_mode, color: Colors.blue ),
+            leading: Icon( Icons.party_mode, color: Colors.deepPurple ),
             title: Text('Antropometrías'),
             onTap: (){ },
           ),
 
           ListTile(
-            leading: Icon( Icons.people, color: Colors.blue ),
+            leading: Icon( Icons.people, color: Colors.deepPurple ),
             title: Text('Laboratorios'),
             onTap: (){ },
           ),
 
           ListTile(
-            leading: Icon( Icons.settings, color: Colors.blue ),
+            leading: Icon( Icons.settings, color: Colors.deepPurple ),
             title: Text('Antecedentes Patologicos Generales'),
             onTap: (){
               // Navigator.pop(context)
             }
           ),
           ListTile(
-            leading: Icon( Icons.settings, color: Colors.blue ),
+            leading: Icon( Icons.settings, color: Colors.deepPurple ),
             title: Text('Antecedentes Patologicos Familiares'),
             onTap: (){
               // Navigator.pop(context)
             }
           ),
           ListTile(
-            leading: Icon( Icons.settings, color: Colors.blue ),
+            leading: Icon( Icons.settings, color: Colors.deepPurple ),
             title: Text('Antecedentes Personales No Patologicos'),
             onTap: (){
               // Navigator.pop(context)
             }
           ),
           ListTile(
-            leading: Icon( Icons.settings, color: Colors.blue ),
+            leading: Icon( Icons.settings, color: Colors.deepPurple ),
             title: Text('Frecuencia Alimentaria'),
             onTap: (){
               // Navigator.pop(context)
             }
           ),
           ListTile(
-            leading: Icon( Icons.settings, color: Colors.blue ),
+            leading: Icon( Icons.settings, color: Colors.deepPurple ),
             title: Text('Raciones Habituales'),
             onTap: (){
               // Navigator.pop(context)
             }
           ),
           ListTile(
-            leading: Icon( Icons.settings, color: Colors.blue ),
+            leading: Icon( Icons.settings, color: Colors.deepPurple ),
             title: Text('Calculo de la ingesta habitual'),
             onTap: (){
               // Navigator.pop(context)
             }
           ),
           ListTile(
-            leading: Icon( Icons.settings, color: Colors.blue ),
+            leading: Icon( Icons.settings, color: Colors.deepPurple ),
             title: Text('Plan nutricional'),
             onTap: (){
               // Navigator.pop(context)
             }
           ),
           ListTile(
-            leading: Icon( Icons.settings, color: Colors.blue ),
+            leading: Icon( Icons.settings, color: Colors.deepPurple ),
             title: Text('Nota de evolucion'),
             onTap: (){
               // Navigator.pop(context)

@@ -38,11 +38,6 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
     );
   }
 
-  // formItemsDesing(icon, item){
-
-  //   return Container(width: 400,height: 400, child: ListTile(leading: Icon(icon), title: item,),
-  //   );
-  // }
 
   formUI(context) {
     // Size size = MediaQuery.of(context).size;
