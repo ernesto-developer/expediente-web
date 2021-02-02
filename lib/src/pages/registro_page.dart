@@ -1,9 +1,13 @@
+import 'package:aplicacion_web/src/providers/usuarioProvider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:aplicacion_web/src/bloc/login_bloc.dart';
 import 'package:aplicacion_web/src/bloc/provider.dart';
 
-class LoginPage extends StatelessWidget {
+class RegistroPage extends StatelessWidget {
+
+  final ususarioProvider = new UsusarioProvider();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,7 +99,7 @@ class LoginPage extends StatelessWidget {
             ),
             child: Column(
               children: [
-               Text('Ingreso',style: TextStyle(fontSize: 20.0),),
+               Text('Crear cuenta',style: TextStyle(fontSize: 20.0),),
                 SizedBox(height: 60.0,),
                _crearEmail(bloc),
                 SizedBox(height: 30.0,),
@@ -106,8 +110,8 @@ class LoginPage extends StatelessWidget {
             ),
           ),
             FlatButton(
-              child: Text("Crear una nueva cuenta"),
-              onPressed: () => Navigator.pushReplacementNamed(context, "registroPage"), 
+              child: Text("¿Ya tienes cuenta? Login"),
+              onPressed: () => Navigator.pushReplacementNamed(context, "loginPage"), 
           ),
 
           SizedBox(height: 100,)
@@ -165,7 +169,7 @@ class LoginPage extends StatelessWidget {
                 Icons.lock_outline,
                 color: Colors.deepPurple,
                 ),
-              labelText: 'Contrasenia',
+              labelText: 'Contraseña',
               counterText: snapshot.data,
                errorText: snapshot.error
             ),
@@ -190,25 +194,22 @@ class LoginPage extends StatelessWidget {
        return RaisedButton(
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 80.0 , vertical: 15.0),
-          child: Text('Ingresar'),
+          child: Text('Registrar'),
         ),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
         color: Colors.deepPurple,
         textColor: Colors.white,
-        onPressed: snapshot.hasData ? () =>_loginBloc(bloc, context) : null,
+        onPressed: snapshot.hasData ? () =>_register(bloc, context) : null,
         
         );
       },
     ); 
   }
-  _loginBloc(LoginBloc bloc,  context){
+  _register(LoginBloc bloc,  context){
 
-    print('==============');
-    print('email: ${bloc.email}');
-    print('password: ${bloc.password} ');
-    print('==============');
+    ususarioProvider.nuevoUsuario(bloc.email, bloc.password);
 
-    Navigator.pushReplacementNamed(context, 'escritorioPage');
+   // Navigator.pushReplacementNamed(context, 'escritorioPage');
 
 
   }

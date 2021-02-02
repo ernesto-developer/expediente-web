@@ -3,6 +3,7 @@ import 'package:aplicacion_web/src/pages/Datos_Generales.dart';
 import 'package:aplicacion_web/src/pages/escritorio_page.dart';
 import 'package:aplicacion_web/src/pages/homePage.dart';
 import 'package:aplicacion_web/src/pages/login_page.dart';
+import 'package:aplicacion_web/src/pages/registro_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
         routes: {
 
           'loginPage'         : (BuildContext context) => LoginPage(),
+          'registroPage'      : (BuildContext context) => RegistroPage(),
           'homePage'          : (BuildContext context) => HomePage(),
           'escritorioPage'    : (BuildContext context) => EscritorioPage(),
           'datosGeneralesPage': (BuildContext context) => DatosGeneralesPage(),
