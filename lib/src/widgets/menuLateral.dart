@@ -1,10 +1,17 @@
 
+import 'package:aplicacion_web/src/source/expediente.model.dart';
 import 'package:flutter/material.dart';
 
 
 
-class MenuLateral extends StatelessWidget {
-  
+class MenuLateral extends StatefulWidget {
+  @override
+  _MenuLateralState createState() => _MenuLateralState();
+}
+
+class _MenuLateralState extends State<MenuLateral> {
+
+  ExpedienteModel expediente = new ExpedienteModel();
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -28,13 +35,15 @@ class MenuLateral extends StatelessWidget {
               Navigator.pushReplacementNamed(context, 'homePage');
             }
           ),
-          ListTile(
-            leading: Icon( Icons.pages, color: Colors.deepPurple ),
-            title: Text('Datos Generales 2021'),
-            onTap: (){
-              Navigator.pushReplacementNamed(context, 'datosGeneralesPage');
-            }
-          ),
+        
+              ListTile(
+                leading: Icon( Icons.pages, color: Colors.deepPurple ),
+                trailing:  Checkbox( activeColor: Colors.deepPurple ,value: expediente.checkDatosGN, onChanged: (value) => setState((){expediente.checkDatosGN = value;} )) ,
+                title: Text('Datos Generales 2021'),
+                onTap: (){
+                  Navigator.pushReplacementNamed(context, 'datosGeneralesPage');
+                }
+              ),
 
           ListTile(
             leading: Icon( Icons.party_mode, color: Colors.deepPurple ),

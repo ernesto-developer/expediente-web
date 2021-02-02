@@ -1,28 +1,30 @@
+// import 'package:aplicacion_web/src/pages/Datos_Generales.dart'; ########### esto para usar el snackbar
+import 'package:aplicacion_web/src/providers/expedientes_provider.dart';
+import 'package:aplicacion_web/src/source/expediente.model.dart';
+import 'package:aplicacion_web/src/utils/validacciones.dart';
 import 'package:flutter/material.dart';
 
 class RegistroPageDG extends StatefulWidget {
-  @override
+  
   _RegistroPageDGState createState() => _RegistroPageDGState();
 }
 
 class _RegistroPageDGState extends State<RegistroPageDG> {
 
-  GlobalKey<FormState> keyForm = new GlobalKey();
-  TextEditingController nombreCtrl = new TextEditingController();
-  TextEditingController edadCtrl = new TextEditingController();
-  TextEditingController fnCtrl = new TextEditingController();
-  TextEditingController direccionCtrl = new TextEditingController();
-  TextEditingController telCtrl = new TextEditingController();
-  TextEditingController emailCtrl = new TextEditingController();
-  TextEditingController escolaridadCtrl = new TextEditingController();//se puede poner con opciones en vez de escrito
-  TextEditingController ocupacionCtrl = new TextEditingController();
-  TextEditingController generoCtrl = new TextEditingController();
-
-
-
-
+  final expedienteProvider = new ExpedientesProvider();
+  final keyForm            = new GlobalKey<FormState>();
+  
+  ExpedienteModel expediente     = new ExpedienteModel();
+  bool _guardando = false;
+ 
   @override
   Widget build(BuildContext context) {
+    
+    final ExpedienteModel expeData = ModalRoute.of(context).settings.arguments;
+    if (expeData != null){
+      expediente =expeData;
+    }
+
     Size size = MediaQuery.of(context).size;
    
     return SingleChildScrollView(
@@ -37,14 +39,11 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
       ),
     );
   }
-
-
+   
   formUI(context) {
-    // Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
        scrollDirection: Axis.horizontal,
-          child: Column(
-        
+          child: Column(   
         children: [
               
                 Row(
@@ -57,11 +56,12 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
                           leading: Icon(Icons.person),
                            title: 
                             TextFormField(
-                              controller: nombreCtrl,
+                              initialValue: expediente.nombre,
                                 decoration: InputDecoration(
                                   labelText: 'Nombre:',
                               ),
-                                  //validator: validateNombre,
+                                  onSaved: (value) => expediente.nombre = value,
+                                  validator: validacionStrings,
                             )
                         )
                   ),
@@ -74,7 +74,6 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
                           leading: Icon(Icons.person),
                            title: 
                             TextFormField(
-                              controller: edadCtrl,
                                 decoration: InputDecoration(
                                   labelText: 'Edad:',
                               ),
@@ -91,7 +90,6 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
                           leading: Icon(Icons.person),
                            title: 
                             TextFormField(
-                              controller: fnCtrl,
                                 decoration: InputDecoration(
                                   labelText: 'FN:',
                               ),
@@ -108,7 +106,6 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
                           leading: Icon(Icons.person),
                            title: 
                             TextFormField(
-                              controller: generoCtrl,
                                 decoration: InputDecoration(
                                   labelText: 'Genero:',
                               ),
@@ -120,25 +117,25 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
                  Padding(
                    padding: const EdgeInsets.only(right: 50),
                    child: Container(
-                      width: 200 ,height:100,
+                      width: 250 ,height:100,
                         child: ListTile(
                           leading: Icon(Icons.person),
                            title: 
                             TextFormField(
-                              controller: telCtrl,
+                               initialValue: expediente.telefono.toString(),
                                 decoration: InputDecoration(
                                   labelText: 'Tel:',
                               ),
-                                  //validator: validateNombre,
+                                  onSaved: (value) => expediente.telefono = int.parse(value),
+                                  validator: validacionTelefono,
                             )
                       ),
                    ),
-                 ),
-                
+                 ),     
               ],
             ),
          
-               Row(
+                Row(
                  children: [
                    Padding(
                      padding: const EdgeInsets.only(right: 50),
@@ -148,7 +145,6 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
                           leading: Icon(Icons.person),
                            title: 
                             TextFormField(
-                              controller: direccionCtrl,
                                 decoration: InputDecoration(
                                   labelText: 'Direccion',
                               ),
@@ -165,11 +161,12 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
                           leading: Icon(Icons.person),
                            title: 
                             TextFormField(
-                              controller:emailCtrl ,
+                               initialValue: expediente.correo,
                                 decoration: InputDecoration(
                                   labelText: 'Correo Electronico',
                               ),
-                                  //validator: validateNombre,
+                                  onSaved: (value) => expediente.correo = value,
+                                  validator: validarEmail,
                             )
                         )
                      ),
@@ -182,7 +179,6 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
                           leading: Icon(Icons.person),
                            title: 
                             TextFormField(
-                              controller: escolaridadCtrl ,
                                 decoration: InputDecoration(
                                   labelText: 'Escolaridad',
                               ),
@@ -192,10 +188,56 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
                      ),
                  ),       
               ]         
-             )
-           
+             ),
+
+                Row(
+                  children: [
+                    Center(
+                      child: Container(
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),color: Colors.deepPurple),
+                          width: 100,
+                          height: 50,
+                            child: FlatButton(
+                              onPressed: (_guardando) ? null : submit,
+                              child: Icon(Icons.save_sharp,color: Colors.white,),            
+                          ) 
+                      ),
+                    ),
+                  ],
+                ),   
         ],
       ),
     );
   }
+ 
+submit(){
+   if (!keyForm.currentState.validate()) return;
+   keyForm.currentState.save();
+   
+    
+    setState(() { _guardando = true; });
+  
+
+   if (expediente.id == null){
+     expedienteProvider.crearExpedinete(expediente);
+  }else{
+    expedienteProvider.editarExpedinete(expediente);
+  }
+
+  // setState(() { _guardando = false; }); ##### por si necesitamos activarlo otravez
+ 
+  // mostrarSnackbar('Expediente Guardado'); ########### esto para usar el snackbar
+  
+ }
+//  void mostrarSnackbar(String mensaje){   ########### esto para usar el snackbar
+  
+   
+//     final datosGeneralesPage = DatosGeneralesPage();
+
+//      datosGeneralesPage.scaffoldKey.currentState.showSnackBar( SnackBar(content: Text(mensaje),duration: Duration(milliseconds: 1500),
+//      )
+//   );
+    
+
+//  }  ########### esto para usar el snackbar
 }

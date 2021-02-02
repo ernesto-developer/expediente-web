@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 
+
 Widget botonDeHome(BuildContext context){
   return RaisedButton(
     color: Colors.deepPurple,
@@ -13,15 +14,4 @@ Widget botonDeHome(BuildContext context){
     
     
 }
-Widget botonDeGuardar(BuildContext context){
-  return RaisedButton(
-    color: Colors.deepPurple,
-    onPressed: (){
-      //TODO: DEBE DE GUARDAR TODA LA INFORAMACION O ACTUALIZARLA
-    },
-    child: Icon(Icons.save_sharp,color: Colors.white,),  
-  
-  );
-    
-    
-}
+ 
