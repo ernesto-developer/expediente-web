@@ -14,6 +14,12 @@ class _MenuLateralState extends State<MenuLateral> {
   ExpedienteModel expediente = new ExpedienteModel();
   @override
   Widget build(BuildContext context) {
+
+     final ExpedienteModel expeData = ModalRoute.of(context).settings.arguments;
+    if (expeData != null){
+      expediente = expeData;
+    }
+
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -32,7 +38,7 @@ class _MenuLateralState extends State<MenuLateral> {
             leading: Icon( Icons.pages, color: Colors.deepPurple ),
             title: Text('Expediente'),
             onTap: (){
-              Navigator.pushReplacementNamed(context, 'homePage');
+              Navigator.pushReplacementNamed(context, 'homePage',arguments: expediente);
             }
           ),
         
@@ -41,7 +47,7 @@ class _MenuLateralState extends State<MenuLateral> {
                 trailing:  Checkbox( activeColor: Colors.deepPurple ,value: expediente.checkDatosGN, onChanged: (value) => setState((){expediente.checkDatosGN = value;} )) ,
                 title: Text('Datos Generales 2021'),
                 onTap: (){
-                  Navigator.pushReplacementNamed(context, 'datosGeneralesPage');
+                  Navigator.pushReplacementNamed(context, 'datosGeneralesPage',arguments: expediente);
                 }
               ),
 

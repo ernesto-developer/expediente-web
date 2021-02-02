@@ -14,7 +14,8 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
   final expedienteProvider = new ExpedientesProvider();
   final keyForm            = new GlobalKey<FormState>();
   
-  ExpedienteModel expediente     = new ExpedienteModel();
+  ExpedienteModel expediente = new ExpedienteModel();
+  
   bool _guardando = false;
  
   @override
@@ -22,7 +23,7 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
     
     final ExpedienteModel expeData = ModalRoute.of(context).settings.arguments;
     if (expeData != null){
-      expediente =expeData;
+      expediente = expeData;
     }
 
     Size size = MediaQuery.of(context).size;

@@ -2,8 +2,13 @@ import 'package:aplicacion_web/src/providers/expedientes_provider.dart';
 import 'package:aplicacion_web/src/source/expediente.model.dart';
 import 'package:flutter/material.dart';
 
-class EscritorioPage extends StatelessWidget {
+class EscritorioPage extends StatefulWidget {
 
+  @override
+  _EscritorioPageState createState() => _EscritorioPageState();
+}
+
+class _EscritorioPageState extends State<EscritorioPage> {
   final expedientesProvider = new ExpedientesProvider();
 
   @override
@@ -22,6 +27,7 @@ class EscritorioPage extends StatelessWidget {
      );
     
   }
+
   Widget _crearListadoDeExp(){
 
     return FutureBuilder(
@@ -41,6 +47,7 @@ class EscritorioPage extends StatelessWidget {
     );
 
   }
+
   Widget _crearItem(BuildContext context,ExpedienteModel expediente){
     return Dismissible(
         key: UniqueKey(),
@@ -51,8 +58,8 @@ class EscritorioPage extends StatelessWidget {
           expedientesProvider.borrarExpediente(expediente.id);
         },
           child: ListTile(
-        title: Text('${expediente.nombre} - ${expediente.correo}- ${expediente.telefono}'),
-        subtitle: Text(expediente.id),
+        title: Text(expediente.nombre),
+       
         onTap: () => Navigator.pushNamed(context, "datosGeneralesPage",arguments: expediente),
       ),
     );
