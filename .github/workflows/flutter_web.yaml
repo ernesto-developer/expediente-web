@@ -1,0 +1,32 @@
+name: Expedientes web
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+
+    - name: Setup flutter
+      uses: subosito/Flutter-action@v1
+      with:
+        chanel: 'beta'
+
+    - name: Enable Flutter web
+      run:  Flutter config --enable-web
+
+    - name: Install dependencies
+      run: flutter build web
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.token }}
+        plublish_ditrt: ./build/web
+
