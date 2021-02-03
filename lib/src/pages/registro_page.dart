@@ -1,4 +1,5 @@
 import 'package:aplicacion_web/src/providers/usuarioProvider.dart';
+import 'package:aplicacion_web/src/utils/validacciones.dart';
 import 'package:flutter/material.dart';
 
 import 'package:aplicacion_web/src/bloc/login_bloc.dart';
@@ -205,9 +206,15 @@ class RegistroPage extends StatelessWidget {
       },
     ); 
   }
-  _register(LoginBloc bloc,  context){
+  _register(LoginBloc bloc,  context)async{
 
-    ususarioProvider.nuevoUsuario(bloc.email, bloc.password);
+    final info = await ususarioProvider.nuevoUsuario(bloc.email, bloc.password);
+
+     if (info['ok']){
+      Navigator.pushReplacementNamed(context, 'escritorioPage');
+    }else{
+      mostrarAlerta(context, info['mensaje']);
+    }
 
    // Navigator.pushReplacementNamed(context, 'escritorioPage');
 

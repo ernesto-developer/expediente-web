@@ -200,7 +200,7 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
                           height: 50,
                             child: FlatButton(
                               onPressed: (_guardando) ? null : submit,
-                              child: Icon(Icons.save_sharp,color: Colors.white,),            
+                              child: Text(_textoDelBoton(),style: TextStyle(color: Colors.white),)           
                           ) 
                       ),
                     ),
@@ -210,7 +210,17 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
       ),
     );
   }
- 
+  
+  _textoDelBoton(){
+    if (expediente.id == null){
+      return 'Guardar';
+    }else{
+      return 'Actualizar';
+    }
+  }
+
+
+
 submit(){
    if (!keyForm.currentState.validate()) return;
    keyForm.currentState.save();

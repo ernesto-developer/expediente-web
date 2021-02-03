@@ -1,9 +1,15 @@
+import 'package:aplicacion_web/src/providers/usuarioProvider.dart';
+import 'package:aplicacion_web/src/utils/validacciones.dart';
 import 'package:flutter/material.dart';
 
 import 'package:aplicacion_web/src/bloc/login_bloc.dart';
 import 'package:aplicacion_web/src/bloc/provider.dart';
 
 class LoginPage extends StatelessWidget {
+
+  final ususarioProvider = new UsusarioProvider();
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -201,14 +207,17 @@ class LoginPage extends StatelessWidget {
       },
     ); 
   }
-  _loginBloc(LoginBloc bloc,  context){
+  _loginBloc(LoginBloc bloc,  context)async{
 
-    print('==============');
-    print('email: ${bloc.email}');
-    print('password: ${bloc.password} ');
-    print('==============');
+   Map info = await ususarioProvider.login(bloc.email, bloc.password);
 
-    Navigator.pushReplacementNamed(context, 'escritorioPage');
+    if (info['ok']){
+      Navigator.pushReplacementNamed(context, 'escritorioPage');
+    }else{
+      mostrarAlerta(context, info['mensaje']);
+    }
+
+    // Navigator.pushReplacementNamed(context, 'escritorioPage');
 
 
   }
