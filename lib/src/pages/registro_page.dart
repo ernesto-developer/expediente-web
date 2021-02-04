@@ -62,7 +62,7 @@ class RegistroPage extends StatelessWidget {
           child: Container(
             padding: EdgeInsets.only(top: 20.0),
             child: Column(children: [
-              Icon(Icons.person_pin_circle,color: Colors.white,size: 150.0,),
+              Icon(Icons.person_pin_circle,color: Colors.white,size: 100.0,),
               SizedBox(height: 10.0,),
               Text('Nuevo Usuario',style: TextStyle(color: Colors.white,fontSize: 45.0),), 
             ],),
@@ -85,10 +85,10 @@ class RegistroPage extends StatelessWidget {
       child: Column(
         children: [
 
-          SafeArea(child: Container(height: 250,)),
+          SafeArea(child: Container(height: 180,)),
 
           Container(
-            width: 600,
+            width: 500,
             margin: EdgeInsets.symmetric(vertical: 30.0),
             padding: EdgeInsets.symmetric(vertical: 50.0),
             decoration: BoxDecoration(
