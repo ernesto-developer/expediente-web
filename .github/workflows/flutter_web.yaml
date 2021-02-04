@@ -1,4 +1,4 @@
-name: Flutter Web
+name: Expedientes Web
 
 on:
   push:
