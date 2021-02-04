@@ -64,7 +64,7 @@ class RegistroPage extends StatelessWidget {
             child: Column(children: [
               Icon(Icons.person_pin_circle,color: Colors.white,size: 150.0,),
               SizedBox(height: 10.0,),
-              Text('Carola Williams',style: TextStyle(color: Colors.white,fontSize: 45.0),), 
+              Text('Nuevo Usuario',style: TextStyle(color: Colors.white,fontSize: 45.0),), 
             ],),
 
           ),
