@@ -33083,9 +33083,9 @@ G:function(a,b){var s,r=null,q=b.T(t.w).f,p=E.uO(M.aW(r,r,C.k,r,r,new S.cs(r,r,r
 q=K.hX(100)
 s=M.aW(r,r,C.k,r,r,new S.cs(P.qQ(255,255,255,0.05),r,r,q,r,r,C.O),r,200,r,r,r,r,200)
 q=t.a
-return M.DW(r,T.hw(C.bi,H.d([T.hw(C.bi,H.d([p,T.d1(r,s,r,r,30,r,100,r),T.d1(r,s,r,r,350,r,-80,r),T.d1(r,s,r,r,300,r,200,r),T.d1(r,s,r,r,600,r,50,r),T.d1(r,s,r,r,1000,r,120,r),T.d1(r,s,r,r,850,r,-80,r),T.d1(r,s,r,r,1300,r,50,r),T.d1(r,s,r,r,1600,r,200,r),T.jr(M.aW(r,T.jt(H.d([L.bM(C.qG,C.j,150),T.dd(r,10,r),L.b5("Carola Williams",r,r,r,A.hB(r,r,C.j,r,r,r,r,r,r,r,r,45,r,r,r,r,!0,r,r,r,r,r,r),r)],q),C.aN,C.bn,C.aO),C.k,r,r,r,r,r,r,new V.al(0,20,0,0),r,r,r),r,r)],q),C.be),this.W9(b)],q),C.be),r)},
-W9:function(a){var s=null,r=a.T(t.tm).f,q=Q.DU(!0,M.aW(s,s,C.k,s,s,s,s,250,s,s,s,s,s),C.as,!0),p=K.hX(5),o=H.d([new O.fd(3,C.q6,new P.m(0,5),3)],t.ec),n=t.a
-return E.uO(T.jt(H.d([q,M.aW(s,T.jt(H.d([L.b5("Ingreso",s,s,s,A.hB(s,s,s,s,s,s,s,s,s,s,s,20,s,s,s,s,!0,s,s,s,s,s,s),s),T.dd(s,60,s),this.W7(r),T.dd(s,30,s),this.W8(r),T.dd(s,30,s),this.W6(r)],n),C.aN,C.bn,C.aO),C.k,s,s,new S.cs(C.j,s,s,p,o,s,C.O),s,s,new V.al(0,30,0,30),new V.al(0,50,0,50),s,s,600),N.B_(L.b5("Crear una nueva cuenta",s,s,s,s,s),new K.SM(a)),T.dd(s,100,s)],n),C.aN,C.bn,C.aO),C.n)},
+return M.DW(r,T.hw(C.bi,H.d([T.hw(C.bi,H.d([p,T.d1(r,s,r,r,30,r,100,r),T.d1(r,s,r,r,350,r,-80,r),T.d1(r,s,r,r,300,r,200,r),T.d1(r,s,r,r,600,r,50,r),T.d1(r,s,r,r,1000,r,120,r),T.d1(r,s,r,r,850,r,-80,r),T.d1(r,s,r,r,1300,r,50,r),T.d1(r,s,r,r,1600,r,200,r),T.jr(M.aW(r,T.jt(H.d([L.bM(C.qG,C.j,100),T.dd(r,10,r),L.b5("Usuario",r,r,r,A.hB(r,r,C.j,r,r,r,r,r,r,r,r,45,r,r,r,r,!0,r,r,r,r,r,r),r)],q),C.aN,C.bn,C.aO),C.k,r,r,r,r,r,r,new V.al(0,20,0,0),r,r,r),r,r)],q),C.be),this.W9(b)],q),C.be),r)},
+W9:function(a){var s=null,r=a.T(t.tm).f,q=Q.DU(!0,M.aW(s,s,C.k,s,s,s,s,180,s,s,s,s,s),C.as,!0),p=K.hX(5),o=H.d([new O.fd(3,C.q6,new P.m(0,5),3)],t.ec),n=t.a
+return E.uO(T.jt(H.d([q,M.aW(s,T.jt(H.d([L.b5("Ingreso",s,s,s,A.hB(s,s,s,s,s,s,s,s,s,s,s,20,s,s,s,s,!0,s,s,s,s,s,s),s),T.dd(s,60,s),this.W7(r),T.dd(s,30,s),this.W8(r),T.dd(s,30,s),this.W6(r)],n),C.aN,C.bn,C.aO),C.k,s,s,new S.cs(C.j,s,s,p,o,s,C.O),s,s,new V.al(0,30,0,30),new V.al(0,50,0,50),s,s,500),N.B_(L.b5("Crear una nueva cuenta",s,s,s,s,s),new K.SM(a)),T.dd(s,100,s)],n),C.aN,C.bn,C.aO),C.n)},
 W7:function(a){var s=t.X
 return B.v2(new K.SK(a),a.a.mP(0,a.zo$,s),s)},
 W8:function(a){var s=t.X
@@ -33132,9 +33132,9 @@ G:function(a,b){var s,r=null,q=b.T(t.w).f,p=E.uO(M.aW(r,r,C.k,r,r,new S.cs(r,r,r
 q=K.hX(100)
 s=M.aW(r,r,C.k,r,r,new S.cs(P.qQ(255,255,255,0.05),r,r,q,r,r,C.O),r,200,r,r,r,r,200)
 q=t.a
-return M.DW(r,T.hw(C.bi,H.d([T.hw(C.bi,H.d([p,T.d1(r,s,r,r,30,r,100,r),T.d1(r,s,r,r,350,r,-80,r),T.d1(r,s,r,r,300,r,200,r),T.d1(r,s,r,r,600,r,50,r),T.d1(r,s,r,r,1000,r,120,r),T.d1(r,s,r,r,850,r,-80,r),T.d1(r,s,r,r,1300,r,50,r),T.d1(r,s,r,r,1600,r,200,r),T.jr(M.aW(r,T.jt(H.d([L.bM(C.qG,C.j,150),T.dd(r,10,r),L.b5("Nuevo Usuario",r,r,r,A.hB(r,r,C.j,r,r,r,r,r,r,r,r,45,r,r,r,r,!0,r,r,r,r,r,r),r)],q),C.aN,C.bn,C.aO),C.k,r,r,r,r,r,r,new V.al(0,20,0,0),r,r,r),r,r)],q),C.be),this.W5(b)],q),C.be),r)},
-W5:function(a){var s=null,r=a.T(t.tm).f,q=Q.DU(!0,M.aW(s,s,C.k,s,s,s,s,250,s,s,s,s,s),C.as,!0),p=K.hX(5),o=H.d([new O.fd(3,C.q6,new P.m(0,5),3)],t.ec),n=t.a
-return E.uO(T.jt(H.d([q,M.aW(s,T.jt(H.d([L.b5("Crear cuenta",s,s,s,A.hB(s,s,s,s,s,s,s,s,s,s,s,20,s,s,s,s,!0,s,s,s,s,s,s),s),T.dd(s,60,s),this.RH(r),T.dd(s,30,s),this.RK(r),T.dd(s,30,s),this.RG(r)],n),C.aN,C.bn,C.aO),C.k,s,s,new S.cs(C.j,s,s,p,o,s,C.O),s,s,new V.al(0,30,0,30),new V.al(0,50,0,50),s,s,600),N.B_(L.b5("\xbfYa tienes cuenta? Login",s,s,s,s,s),new O.V1(a)),T.dd(s,100,s)],n),C.aN,C.bn,C.aO),C.n)},
+return M.DW(r,T.hw(C.bi,H.d([T.hw(C.bi,H.d([p,T.d1(r,s,r,r,30,r,100,r),T.d1(r,s,r,r,350,r,-80,r),T.d1(r,s,r,r,300,r,200,r),T.d1(r,s,r,r,600,r,50,r),T.d1(r,s,r,r,1000,r,120,r),T.d1(r,s,r,r,850,r,-80,r),T.d1(r,s,r,r,1300,r,50,r),T.d1(r,s,r,r,1600,r,200,r),T.jr(M.aW(r,T.jt(H.d([L.bM(C.qG,C.j,100),T.dd(r,10,r),L.b5("Nuevo Usuario",r,r,r,A.hB(r,r,C.j,r,r,r,r,r,r,r,r,45,r,r,r,r,!0,r,r,r,r,r,r),r)],q),C.aN,C.bn,C.aO),C.k,r,r,r,r,r,r,new V.al(0,20,0,0),r,r,r),r,r)],q),C.be),this.W5(b)],q),C.be),r)},
+W5:function(a){var s=null,r=a.T(t.tm).f,q=Q.DU(!0,M.aW(s,s,C.k,s,s,s,s,180,s,s,s,s,s),C.as,!0),p=K.hX(5),o=H.d([new O.fd(3,C.q6,new P.m(0,5),3)],t.ec),n=t.a
+return E.uO(T.jt(H.d([q,M.aW(s,T.jt(H.d([L.b5("Crear cuenta",s,s,s,A.hB(s,s,s,s,s,s,s,s,s,s,s,20,s,s,s,s,!0,s,s,s,s,s,s),s),T.dd(s,60,s),this.RH(r),T.dd(s,30,s),this.RK(r),T.dd(s,30,s),this.RG(r)],n),C.aN,C.bn,C.aO),C.k,s,s,new S.cs(C.j,s,s,p,o,s,C.O),s,s,new V.al(0,30,0,30),new V.al(0,50,0,50),s,s,500),N.B_(L.b5("\xbfYa tienes cuenta? Login",s,s,s,s,s),new O.V1(a)),T.dd(s,100,s)],n),C.aN,C.bn,C.aO),C.n)},
 RH:function(a){var s=t.X
 return B.v2(new O.V_(a),a.a.mP(0,a.zo$,s),s)},
 RK:function(a){var s=t.X
