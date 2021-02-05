@@ -24,14 +24,14 @@ class RegistroPage extends StatelessWidget {
 
   _crearFondo(BuildContext context) {
     
-    final size = MediaQuery.of(context).size;
-    
+     final data = MediaQuery.of(context);
+     final escala = data.size.longestSide;
     
     final fondoMorado =  SingleChildScrollView(
       
     child: Container(
-      height: size.height * 0.4,
-      width: double.infinity,
+      height: data.size.longestSide * .25,
+      width: data.size.longestSide * 1,
       decoration: BoxDecoration(gradient: LinearGradient(colors: [
         Color.fromRGBO(63, 63, 156, 1.0),
         Color.fromRGBO(90, 70, 178, 1.0)
@@ -39,8 +39,8 @@ class RegistroPage extends StatelessWidget {
     ));
     
     final circulo = Container(
-      width: 200.0,
-      height: 200.0,
+      width: data.size.longestSide * .15,
+      height: data.size.longestSide * .15,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(100.0),
       color: Color.fromRGBO(255, 255, 255, 0.05)),
     );
@@ -62,9 +62,9 @@ class RegistroPage extends StatelessWidget {
           child: Container(
             padding: EdgeInsets.only(top: 20.0),
             child: Column(children: [
-              Icon(Icons.person_pin_circle,color: Colors.white,size: 100.0,),
-              SizedBox(height: 10.0,),
-              Text('Nuevo Usuario',style: TextStyle(color: Colors.white,fontSize: 45.0),), 
+              Icon(Icons.person_pin_circle,color: Colors.white,size: data.size.longestSide * .1,),
+            
+              Text('Nuevo usuario',style: TextStyle(color: Colors.white,fontSize: escala * .03),), 
             ],),
 
           ),
@@ -78,6 +78,8 @@ class RegistroPage extends StatelessWidget {
   _loginForm(BuildContext context) {
     
     final bloc = Provider.of(context);
+     final data = MediaQuery.of(context);
+     final escala = data.size.longestSide;
    
    
     
@@ -85,12 +87,13 @@ class RegistroPage extends StatelessWidget {
       child: Column(
         children: [
 
-          SafeArea(child: Container(height: 180,)),
+          SafeArea(child: Container(height: escala * .15,)),
 
           Container(
-            width: 500,
+          width: escala * .3,
+          
             margin: EdgeInsets.symmetric(vertical: 30.0),
-            padding: EdgeInsets.symmetric(vertical: 50.0),
+            padding: EdgeInsets.symmetric(vertical: 30.0),
             decoration: BoxDecoration(
               color: Colors.white,
                borderRadius: BorderRadius.circular(5.0),
@@ -100,18 +103,18 @@ class RegistroPage extends StatelessWidget {
             ),
             child: Column(
               children: [
-               Text('Crear cuenta',style: TextStyle(fontSize: 20.0),),
-                SizedBox(height: 60.0,),
-               _crearEmail(bloc),
-                SizedBox(height: 30.0,),
-               _crearPassword(bloc),
-                 SizedBox(height: 30.0,),
-                 _crearBoton(bloc)
+               Text('Crear cuenta',style: TextStyle(fontSize: escala * .02),),
+                SizedBox(height: escala * .015,),
+               _crearEmail(bloc, context),
+               
+               _crearPassword(bloc,context),
+                //SizedBox(height: 30.0,),
+              _crearBoton(bloc,context)
              ],
             ),
           ),
             FlatButton(
-              child: Text("¿Ya tienes cuenta? Login"),
+              child: Text("¿Ya tienes cuenta? Login",style: TextStyle(fontSize: escala * .015,),),
               onPressed: () => Navigator.pushReplacementNamed(context, "loginPage"), 
           ),
 
@@ -122,19 +125,32 @@ class RegistroPage extends StatelessWidget {
     );
   }
 
-  _crearEmail(LoginBloc bloc) {
+ _crearEmail(LoginBloc bloc, context) {
 
+    final data = MediaQuery.of(context);
+    final escala = data.size.longestSide;
 
     return StreamBuilder(
       stream: bloc.emailStream ,
       builder: (BuildContext context, AsyncSnapshot snapshot){
        return Container(
-          padding: EdgeInsets.symmetric(horizontal: 100.0),
+         
+          width: escala * 0.2,
+          height: escala * 0.06,
           child: TextField(
+            
+            style: TextStyle(fontSize: escala * .011),
+            
+            
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
+             
+               hintStyle: TextStyle(fontSize: escala * .01),
+              labelStyle: TextStyle(fontSize: escala * .015),
+              errorStyle: TextStyle(fontSize: escala * .01),
               icon: Icon(
                 Icons.alternate_email,
+                size: escala * 0.02,
                 color: Colors.deepPurple,
                 ),
               hintText: 'ejemplo@hotmail.com',
@@ -148,26 +164,30 @@ class RegistroPage extends StatelessWidget {
           ),
         );
       },
-    );
-
-
-
-
-
-   
+    );   
   }
-  _crearPassword(LoginBloc bloc) {
+ _crearPassword(LoginBloc bloc, context) {
+
+    final data = MediaQuery.of(context);
+    final escala = data.size.longestSide;
     
     return StreamBuilder(
     stream: bloc.passwordStream,
       builder: (BuildContext context, AsyncSnapshot snapshot){
          return Container(
-          padding: EdgeInsets.symmetric(horizontal: 100.0),
+           width: escala * 0.2,
+          height: escala * 0.06,
+         
           child: TextField(
+             style: TextStyle(fontSize: escala * .012),
             obscureText: true,
             decoration: InputDecoration(
+              
+              labelStyle: TextStyle(fontSize: escala * .015),
+              errorStyle: TextStyle(fontSize: escala * .01),
               icon: Icon(
                 Icons.lock_outline,
+                size: escala * 0.02,
                 color: Colors.deepPurple,
                 ),
               labelText: 'Contraseña',
@@ -180,13 +200,12 @@ class RegistroPage extends StatelessWidget {
         );
       },
     );
-    
-    
-    
-    
    
   }
-  _crearBoton(LoginBloc bloc){
+   _crearBoton(LoginBloc bloc, context){
+
+    final data = MediaQuery.of(context);
+    final escala = data.size.longestSide;
 
 
     return StreamBuilder(
@@ -194,10 +213,11 @@ class RegistroPage extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot snapshot){
        return RaisedButton(
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 80.0 , vertical: 15.0),
-          child: Text('Registrar'),
+          width: escala * .13,
+          height: escala * .04,
+          child: Center(child: Text('Registrar',style: TextStyle(fontSize: escala * .015),)),
         ),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
         color: Colors.deepPurple,
         textColor: Colors.white,
         onPressed: snapshot.hasData ? () =>_register(bloc, context) : null,
