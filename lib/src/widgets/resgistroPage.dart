@@ -38,7 +38,7 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
           decoration: BoxDecoration(
              image: DecorationImage(
                fit: BoxFit.fill,
-                  image: AssetImage('madera_escritorio.jpg'),
+                  image: AssetImage('assets/madera_escritorio.jpg'),
           ),
           
         )
