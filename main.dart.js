@@ -36650,7 +36650,7 @@ U.KL.prototype={
 H:function(a,b){var s,r,q,p,o,n=this,m=null,l=T.ko(b,t._).b.b
 if(l!=null)n.d=l
 s=M.bh(m,m,C.k,m,m,m,m,m,m,m,m,m,m)
-r=X.afT(C.pX,new L.nM("menu-img.jpg"))
+r=X.afT(C.pX,new L.nM("assets/menu-img.jpg"))
 q=Q.fc(L.d4(C.qL,C.a1,m),new U.a5U(n,b),L.b6("Expediente",m,m,m,m,m,m),m)
 p=L.d4(C.qL,C.a1,m)
 o=n.d.e
@@ -36710,7 +36710,7 @@ if(d!=null)f.f=d
 s=b.R(t.w).f.a
 r=s.a
 q=s.b
-p=M.bh(e,e,C.k,e,e,new S.cp(e,X.afT(C.pW,new L.nM("madera_escritorio.jpg")),e,e,e,e,C.N),e,q,e,e,e,e,r)
+p=M.bh(e,e,C.k,e,e,new S.cp(e,X.afT(C.pW,new L.nM("assets/madera_escritorio.jpg")),e,e,e,e,C.N),e,q,e,e,e,e,r)
 o=P.o1(62,66,107,0.6)
 n=H.c([new O.f2(3,C.mD,new P.n(0,5),3)],t.Sx)
 m=C.aS.h(0,300)
