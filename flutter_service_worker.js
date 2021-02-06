@@ -3,7 +3,8 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
-  "assets/AssetManifest.json": "64742ff6e00ca9d1a17fd56b727934b1",
+  "assets/AssetManifest.json": "11e42b6ed69e5e3cf9f6b0ca4b18f365",
+"assets/assets/madera_escritorio.jpg": "3ddd87f9af641ae2f541c4b29af0a34e",
 "assets/assets/menu-img.jpg": "9ab1f01a102007ad42631afc45a7b55c",
 "assets/FontManifest.json": "dc3d03800ccca4601324923c0b1d6d57",
 "assets/fonts/MaterialIcons-Regular.otf": "1288c9e28052e028aba623321f7826ac",
@@ -12,9 +13,9 @@ const RESOURCES = {
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
-"index.html": "0e24804e5055aa4cb484fb3c9aaa3a02",
-"/": "0e24804e5055aa4cb484fb3c9aaa3a02",
-"main.dart.js": "8d22ed0c17db0d9ad77f2e6155325058",
+"index.html": "d43c2d366a5af2abec88dcc02ac421c9",
+"/": "d43c2d366a5af2abec88dcc02ac421c9",
+"main.dart.js": "71ae252e6b4e415eaef04d0d4149352e",
 "manifest.json": "6502c21aaac66fa680ae3f64729b1a75",
 "version.json": "e8313ade52df1b42b46667694010ddd9"
 };
