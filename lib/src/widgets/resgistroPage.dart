@@ -28,8 +28,115 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
 
     Size size = MediaQuery.of(context).size;
    
-    return SingleChildScrollView(
+    return Stack(
+      children: [
+
+         Container(
+          
+          width: size.width,
+          height: size.height,
+          decoration: BoxDecoration(
+             image: DecorationImage(
+               fit: BoxFit.fill,
+                  image: AssetImage('madera_escritorio.jpg'),
+          ),
+          
+        )
+        ),
+        
+        Row(children: [
+
+        Container(
+          color: Color.fromRGBO(62, 66, 107, 0.6,),
+          width: size.width * .25,
+          height: size.height,
+          child: Column(
+            children: [
+
+              Container(
+              decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(bottomLeft: Radius.circular(30),bottomRight: Radius.circular(30)),
+               boxShadow: [
+                   BoxShadow(color: Colors.black26,blurRadius: 3.0,offset: Offset(0.0, 5.0),spreadRadius: 3.0)
+                 ]
+              ),
+              
+              width: size.width * .245,
+              height: size.height * .25,
+              child:   Padding(
+                padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
+                child: Container(
+                        padding: EdgeInsets.all(6),
+                       decoration: BoxDecoration(
+                         
+                        color: Colors.blue[300],
+                        borderRadius: BorderRadius.only(bottomLeft: Radius.circular(30),bottomRight: Radius.circular(30))
+                      ),
+                        width: 1,
+                        height: 1,
+                        child: Column(
+                          children: [
+                            Row( mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Text("Expediente",style: TextStyle(color: Colors.white,fontSize: size.longestSide * .015))
+                            ],
+                            ),
+                            SizedBox(height: size.longestSide *.01,),
+                            Row(
+                              children: [
+                                Container(
+                                  color: Colors.transparent,
+                                  width: size.longestSide * .17,
+                                  height: size.longestSide * .070,
+                                  child: Column(
+                                    
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [ 
+                                      Text('Nombre: ${expediente.nombre}',style: TextStyle(fontSize: size.longestSide * .010)  ,),
+                                      Divider(),
+                                      Text('Telefono: ${expediente.telefono}'.toString(),style: TextStyle(fontSize: size.longestSide * .010)  ,),
+                                      Divider(),
+                                      Text('Correo: ${expediente.correo}',style: TextStyle(fontSize: size.longestSide * .010)  ,)
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  width: size.longestSide *  .050,
+                                  height: size.longestSide * .050,
+                                  
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.all(Radius.circular(50))),
+                                )
+                              ],
+                            )
+                          ],
+                        ),
+                  ),
+                ) 
+              ),
+            
+
+            ],
+          ),
+        ),
+
+        Container(
+          
+          width: size.width * .75,
+          height: size.height,
+          color: Colors.transparent,
+        )
+
+
+      ],
+  ),
+      ]
+    );
+    /*SingleChildScrollView(
       child: Container(
+        color: Colors.green[300],
         width: size.width,
         height: size.height,
         margin: EdgeInsets.all(40.0),
@@ -38,7 +145,7 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
           child: formUI(context),
         ),
       ),
-    );
+    );*/
   }
    
   formUI(context) {

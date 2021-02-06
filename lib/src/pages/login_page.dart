@@ -68,8 +68,8 @@ class LoginPage extends StatelessWidget {
             padding: EdgeInsets.only(top: 20.0),
             child: Column(children: [
               Icon(Icons.person_pin_circle,color: Colors.white,size: data.size.longestSide * .1,),
-            //  SizedBox(height: escala * .002),
-              Text('Usuario',style: TextStyle(color: Colors.white,fontSize: escala * .03),), 
+            
+              Text('Carola Williams',style: TextStyle(color: Colors.white,fontSize: escala * .03),), 
             ],),
 
           ),
@@ -169,13 +169,7 @@ class LoginPage extends StatelessWidget {
           ),
         );
       },
-    );
-
-
-
-
-
-   
+    ); 
   }
   _crearPassword(LoginBloc bloc, context) {
 
@@ -211,10 +205,6 @@ class LoginPage extends StatelessWidget {
         );
       },
     );
-    
-    
-    
-    
    
   }
   _crearBoton(LoginBloc bloc, context){

@@ -28,7 +28,7 @@ class _MenuLateralState extends State<MenuLateral> {
             child: Container(),
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/menu-img.jpg'),
+                image: AssetImage('menu-img.jpg'),
                 fit: BoxFit.cover
               )
             ),
