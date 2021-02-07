@@ -31,7 +31,7 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
    
     return Stack(
       children: [
-
+    //########################################################################################## Container fondo de madera ####################    
          Container(
           
           width: size.width,
@@ -46,86 +46,98 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
         ),
         
         Row(children: [
-
-        
+    //################################################################################# Container morado lateral #################
         Container(
           color: Color.fromRGBO(62, 66, 107, 0.6,),
           width: size.width * .25,
           height: size.height,
-          child: Column(
-            children: [
-
-             BounceInDown(
-              duration: Duration(seconds: 2) ,
-              child:  Container(
-              decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(bottomLeft: Radius.circular(30),bottomRight: Radius.circular(30)),
-               boxShadow: [
-                   BoxShadow(color: Colors.black26,blurRadius: 3.0,offset: Offset(0.0, 5.0),spreadRadius: 3.0)
-                 ]
-              ),
-              
-              width: size.width * .245,
-              height: size.height * .25,
-              child:   Padding(
-                padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
-                child: Container(
-                        padding: EdgeInsets.all(6),
-                       decoration: BoxDecoration(
-                         
-                        color: Colors.blue[300],
-                        borderRadius: BorderRadius.only(bottomLeft: Radius.circular(30),bottomRight: Radius.circular(30))
-                      ),
-                        width: 1,
-                        height: 1,
-                        child: Column(
-                          children: [
-                            Row( mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Text("Expediente",style: TextStyle(color: Colors.white,fontSize: size.longestSide * .015))
-                            ],
-                            ),
-                            SizedBox(height: size.longestSide *.01,),
-                            Row(
-                              children: [
-                                Container(
-                                  color: Colors.transparent,
-                                  width: size.longestSide * .17,
-                                  height: size.longestSide * .070,
-                                  child: Column(
-                                    
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [ 
-                                      Text('Nombre: ${expediente.nombre}',style: TextStyle(fontSize: size.longestSide * .010)  ,),
-                                      Divider(),
-                                      Text('Telefono: ${expediente.telefono}'.toString(),style: TextStyle(fontSize: size.longestSide * .010)  ,),
-                                      Divider(),
-                                      Text('Correo: ${expediente.correo}',style: TextStyle(fontSize: size.longestSide * .010)  ,)
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  width: size.longestSide *  .050,
-                                  height: size.longestSide * .050,
-                                  
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.all(Radius.circular(50))),
-                                )
-                              ],
-                            )
-                          ],
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              children: [
+                                          //########################## Container blanco con azul superior ###########
+                Container(
+                decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(30),bottomRight: Radius.circular(30)),
+                 boxShadow: [
+                     BoxShadow(color: Colors.black26,blurRadius: 3.0,offset: Offset(0.0, 5.0),spreadRadius: 3.0)
+                   ]
+                ),
+                
+                width: size.width * .245,
+                height: size.height * .25,
+                child:   Padding(
+                  padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
+                  child: Container(
+                          padding: EdgeInsets.all(6),
+                         decoration: BoxDecoration(
+                           
+                          color: Colors.blue[300],
+                          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(30),bottomRight: Radius.circular(30))
                         ),
-                  ),
-                ) 
-              ),
-            
-             )
-            ],
+                          width: 1,
+                          height: 1,
+                          child: Column(
+                            children: [
+                              Row( mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Text("Expediente",style: TextStyle(color: Colors.white,fontSize: size.longestSide * .015))
+                              ],
+                              ),
+                              SizedBox(height: size.longestSide *.01,),
+                              Row(
+                                children: [
+                                  Container(
+                                    color: Colors.transparent,
+                                    width: size.longestSide * .17,
+                                    height: size.longestSide * .070,
+                                    child: Column(
+                                      
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [ 
+                                        Text('Nombre: ${expediente.nombre}',style: TextStyle(fontSize: size.longestSide * .010)  ,),
+                                        Divider(),
+                                        Text('Telefono: ${expediente.telefono}'.toString(),style: TextStyle(fontSize: size.longestSide * .010)  ,),
+                                        Divider(),
+                                        Text('Correo: ${expediente.correo}',style: TextStyle(fontSize: size.longestSide * .010)  ,)
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    width: size.longestSide *  .050,
+                                    height: size.longestSide * .050,
+                                    
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.all(Radius.circular(50))),
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
+                    ),
+                  ) 
+                ),
+                                          //########################## Containers de campos de seleccion  ###########
+               camposDeSeleccion(context, 'Datos Generales'),
+               camposDeSeleccion(context, 'Antropometrias'),
+               camposDeSeleccion(context, 'Laboratorios'),
+               camposDeSeleccion(context, 'Antecedentes Patologicos Generales'),
+               camposDeSeleccion(context, 'Antecedentes PAtologicos Familiares'),
+               camposDeSeleccion(context, 'Antecedentes Personales no PAtologicos'),
+               camposDeSeleccion(context, 'Frecuencia alimentaria'),
+               camposDeSeleccion(context,'Raciones Habituales'),
+               camposDeSeleccion(context, 'Calculo de la ingesta habitual'),
+               camposDeSeleccion(context, 'Plan nutricional'),
+               camposDeSeleccion(context, 'Nota de evolucion'),
+              
+
+              ],
+            ),
           ),
         ),
-
+    //################################################################################### Container del escritorio ################
         Container(
           
           width: size.width * .75,
@@ -362,4 +374,35 @@ submit(){
     
 
 //  }  ########### esto para usar el snackbar
+
+//######################################################################### Widget de Campos de seleccion   ##############
+camposDeSeleccion(BuildContext context,String texto){
+  
+  final  size = MediaQuery.of(context).size;
+  
+  return  Row(
+    children: [  Container(
+                    color: Colors.transparent,
+                    width: size.longestSide * .245,
+                    height: size.longestSide * .03,
+                    child: ListTile(
+                    leading: Icon( Icons.accessibility , color: Colors.deepPurple ),
+                    trailing:  Checkbox( activeColor: Colors.deepPurple ,value: expediente.checkDatosGN, onChanged: (value) => setState((){expediente.checkDatosGN = value;} )) ,
+                    title: Text(texto),
+                    onTap: (){
+                      Navigator.pushReplacementNamed(context, 'datosGeneralesPage',arguments: expediente);
+                    }
+                  ),
+),
+    ],
+  );
+
+
 }
+
+
+
+}
+
+
+
