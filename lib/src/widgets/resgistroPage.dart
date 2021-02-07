@@ -1,8 +1,9 @@
 // import 'package:aplicacion_web/src/pages/Datos_Generales.dart'; ########### esto para usar el snackbar
+import 'package:flutter/material.dart';
+import 'package:animate_do/animate_do.dart';
 import 'package:aplicacion_web/src/providers/expedientes_provider.dart';
 import 'package:aplicacion_web/src/source/expediente.model.dart';
 import 'package:aplicacion_web/src/utils/validacciones.dart';
-import 'package:flutter/material.dart';
 
 class RegistroPageDG extends StatefulWidget {
   
@@ -46,6 +47,7 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
         
         Row(children: [
 
+        
         Container(
           color: Color.fromRGBO(62, 66, 107, 0.6,),
           width: size.width * .25,
@@ -53,7 +55,9 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
           child: Column(
             children: [
 
-              Container(
+             BounceInDown(
+              duration: Duration(seconds: 2) ,
+              child:  Container(
               decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(bottomLeft: Radius.circular(30),bottomRight: Radius.circular(30)),
@@ -117,7 +121,7 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
                 ) 
               ),
             
-
+             )
             ],
           ),
         ),
