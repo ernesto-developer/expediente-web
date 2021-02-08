@@ -44,7 +44,7 @@ class _MenuLateralState extends State<MenuLateral> {
         
               ListTile(
                 leading: Icon( Icons.pages, color: Colors.deepPurple ),
-                trailing:  Checkbox( activeColor: Colors.deepPurple ,value: expediente.checkDatosGN, onChanged: (value) => setState((){expediente.checkDatosGN = value;} )) ,
+                trailing:  Checkbox( activeColor: Colors.deepPurple ,value: expediente.checkDatosGn, onChanged: (value) => setState((){expediente.checkDatosGn = value;} )) ,
                 title: Text('Datos Generales 2021'),
                 onTap: (){
                   Navigator.pushReplacementNamed(context, 'datosGeneralesPage',arguments: expediente);

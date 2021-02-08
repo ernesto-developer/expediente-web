@@ -18,7 +18,7 @@ class _EscritorioPageState extends State<EscritorioPage> {
 
     return Scaffold(
       appBar: AppBar(
-        actions: [FlatButton(onPressed: (){ Navigator.pushNamed(context, 'homePage');}, child: Text('Nuevo Registro',style: TextStyle(color: Colors.white),))],
+        actions: [FlatButton(onPressed: (){ Navigator.pushNamed(context, 'datosGeneralesPage');}, child: Text('Nuevo Registro',style: TextStyle(color: Colors.white),))],
         centerTitle: true,
         title: Text('Escritorio')
       ),

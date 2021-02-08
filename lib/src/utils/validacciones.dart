@@ -36,6 +36,18 @@ String validarEmail(String value){
    }
 }
 
+String validacionTextos(String value){
+  String pattern = r'(^[a-zA-Z ]*$)';
+  RegExp regExp = new RegExp(pattern);
+  if (value.length == 0){
+    return "El campo es necesario";
+  }else if (!regExp.hasMatch(value)){
+    return "El campo nombre debe de ser de a-z y A-Z";
+  }else{
+    return null;
+  }
+}
+
 
 void mostrarAlerta(BuildContext context, String mensaje){
 
