@@ -14,20 +14,21 @@ class ExpedienteModel {
         this.nombre = '',
         this.correo = '',
         this.telefono = 0,
-        this.edad,
-        this.genero,
+        this.edad = 0,
+        this.genero = 'Masculino',
         this.direccion = '',
         this.escolaridad = '',
         this.ocupacion = '',
-        this.personasQueComen,
-        this.menoresDeEdad,
-        this.mayoresDeEdad,
-        this.gastosDeComida,
-        this.ganaPor,
-        this.cantidad,
-        this.cocinaCon,
-        this.tomaAguaDe,
+        this.personasQueComen = 0,
+        this.menoresDeEdad = 0,
+        this.mayoresDeEdad = 0,
+        this.gastosDeComida = 0,
+        this.ganaPor = '',
+        this.cantidad = 0,
+        this.cocinaCon = '',
+        this.tomaAguaDe = '',
         this.checkDatosGn = false,
+        this.fn = 0,
     });
 
     String id;
@@ -48,6 +49,7 @@ class ExpedienteModel {
     String cocinaCon;
     String tomaAguaDe;
     bool checkDatosGn;
+    int fn;
 
     factory ExpedienteModel.fromJson(Map<String, dynamic> json) => ExpedienteModel(
         id: json["id"],
@@ -68,6 +70,7 @@ class ExpedienteModel {
         cocinaCon: json["cocinaCon"],
         tomaAguaDe: json["tomaAguaDe"],
         checkDatosGn: json["checkDatosGN"],
+        fn: json["fn"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -89,5 +92,6 @@ class ExpedienteModel {
         "cocinaCon": cocinaCon,
         "tomaAguaDe": tomaAguaDe,
         "checkDatosGN": checkDatosGn,
+        "fn": fn,
     };
 }

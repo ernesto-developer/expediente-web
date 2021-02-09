@@ -1,9 +1,11 @@
 // import 'package:aplicacion_web/src/pages/Datos_Generales.dart'; ########### esto para usar el snackbar
+
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:aplicacion_web/src/providers/expedientes_provider.dart';
 import 'package:aplicacion_web/src/source/expediente.model.dart';
-import 'package:aplicacion_web/src/utils/validacciones.dart';
+
+import 'CamposDelFormulario.dart';
 
 class RegistroPageDG extends StatefulWidget {
   
@@ -12,7 +14,6 @@ class RegistroPageDG extends StatefulWidget {
 
 class _RegistroPageDGState extends State<RegistroPageDG> {
  
-  String opcionSeleccionada = 'Masculino';
   List genero = ['Masculino', 'Femenino'];
    
   final expedienteProvider = new ExpedientesProvider();
@@ -20,9 +21,6 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
   
   ExpedienteModel expediente = new ExpedienteModel();
    
-  
-  bool _guardando = false;
- 
   @override
   Widget build(BuildContext context) {
     
@@ -120,7 +118,7 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
                                         color: Colors.deepPurple,
                                         borderRadius: BorderRadius.all(Radius.circular(50))),
                                       child: FlatButton(
-                                       onPressed: (_guardando) ? null : submit,
+                                       onPressed: (){ submit();},
                                        child: Text(_textoDelBoton(),style: TextStyle(color: Colors.white,fontSize: size.longestSide * .01),)           
                                       ) ,
 
@@ -145,8 +143,6 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
                camposDeSeleccion(context, 'Calculo de la ingesta habitual'),
                camposDeSeleccion(context, 'Plan nutricional'),
                camposDeSeleccion(context, 'Nota de evolucion'),
-              
-
               ],
             ),
           ),
@@ -169,288 +165,26 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
              Column(
                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-        /*Nombre*/  Container(
-                      width: size.longestSide * .25,
-                      height: size.longestSide * .041,                  
-                      decoration: BoxDecoration(color: Colors.blue[300], borderRadius: BorderRadius.only(topRight: Radius.circular(50),bottomRight: Radius.circular(50))),
-                      child:  Padding(
-                          padding:  EdgeInsets.fromLTRB(6, 4, 6, 6),
-                          child: Container(
-                              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.only(topRight: Radius.circular(50),bottomRight: Radius.circular(50)), boxShadow: [
-                                BoxShadow(color: Colors.black45,blurRadius: 3.0,offset: Offset(0.0, 5.0),spreadRadius: 2.0)
-                              ]
-                            ),
-                              child: ListTile(
-                               trailing:  Container( 
-                                  width: size.longestSide * .01,
-                                  height: size.longestSide * .01,
-                                  decoration: BoxDecoration(
-                                    color: Colors.brown,
-                                      boxShadow: [
-                                      BoxShadow(color: Colors.black45,blurRadius: 2.0,offset: Offset(0.0, 2.0),spreadRadius: 1.0)
-                                    ],
-                                      borderRadius: BorderRadius.circular(50),
-                                  ),
-                                ),
-       
-                                  minVerticalPadding: 0,
-                                  leading: Icon(Icons.person),
-                                  title: 
-                                    TextFormField(  
-                                      initialValue: expediente.nombre,
-                                    decoration: InputDecoration(
-                                    labelText: 'Nombre',
-                                  ),
-                                    onSaved: (value) => expediente.nombre = value,
-                                    //  validator: validacion, 
-                                )
-                            )
-                          ),
-                       )
-                  ),
-        // /*Nombre*/  Container(
-        //               width: size.longestSide * .25,
-        //               height: size.longestSide * .041,                  
-        //               decoration: BoxDecoration(color: Colors.blue[300], borderRadius: BorderRadius.only(topRight: Radius.circular(50),bottomRight: Radius.circular(50))),
-        //               child:  Padding(
-        //                   padding:  EdgeInsets.fromLTRB(6, 4, 6, 6),
-        //                   child: Container(
-        //                       decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.only(topRight: Radius.circular(50),bottomRight: Radius.circular(50)), boxShadow: [
-        //                         BoxShadow(color: Colors.black45,blurRadius: 3.0,offset: Offset(0.0, 5.0),spreadRadius: 2.0)
-        //                       ]
-        //                     ),
-        //                       child: ListTile(
-        //                        trailing:  Container( 
-        //                           width: size.longestSide * .01,
-        //                           height: size.longestSide * .01,
-        //                           decoration: BoxDecoration(
-        //                             color: Colors.brown,
-        //                               boxShadow: [
-        //                               BoxShadow(color: Colors.black45,blurRadius: 2.0,offset: Offset(0.0, 2.0),spreadRadius: 1.0)
-        //                             ],
-        //                               borderRadius: BorderRadius.circular(50),
-        //                           ),
-        //                         ),
-       
-        //                           minVerticalPadding: 0,
-        //                           leading: Icon(Icons.person),
-        //                           title: 
-        //                             TextFormField(  
-        //                               initialValue: expediente.nombre,
-        //                             decoration: InputDecoration(
-        //                             labelText: 'Nombre',
-        //                           ),
-        //                             onSaved: (value) => expediente.nombre = value,
-        //                             //  validator: validacion, 
-        //                         )
-        //                     )
-        //                   ),
-        //                )
-        //           ),
-        // /*Nombre*/  Container(
-        //               width: size.longestSide * .25,
-        //               height: size.longestSide * .041,                  
-        //               decoration: BoxDecoration(color: Colors.blue[300], borderRadius: BorderRadius.only(topRight: Radius.circular(50),bottomRight: Radius.circular(50))),
-        //               child:  Padding(
-        //                   padding:  EdgeInsets.fromLTRB(6, 4, 6, 6),
-        //                   child: Container(
-        //                       decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.only(topRight: Radius.circular(50),bottomRight: Radius.circular(50)), boxShadow: [
-        //                         BoxShadow(color: Colors.black45,blurRadius: 3.0,offset: Offset(0.0, 5.0),spreadRadius: 2.0)
-        //                       ]
-        //                     ),
-        //                       child: ListTile(
-        //                        trailing:  Container( 
-        //                           width: size.longestSide * .01,
-        //                           height: size.longestSide * .01,
-        //                           decoration: BoxDecoration(
-        //                             color: Colors.brown,
-        //                               boxShadow: [
-        //                               BoxShadow(color: Colors.black45,blurRadius: 2.0,offset: Offset(0.0, 2.0),spreadRadius: 1.0)
-        //                             ],
-        //                               borderRadius: BorderRadius.circular(50),
-        //                           ),
-        //                         ),
-       
-        //                           minVerticalPadding: 0,
-        //                           leading: Icon(Icons.person),
-        //                           title: 
-        //                             TextFormField(  
-        //                               initialValue: expediente.nombre,
-        //                             decoration: InputDecoration(
-        //                             labelText: 'Nombre',
-        //                           ),
-        //                             onSaved: (value) => expediente.nombre = value,
-        //                             //  validator: validacion, 
-        //                         )
-        //                     )
-        //                   ),
-        //                )
-        //           ),
-        // /*Nombre*/  Container(
-        //               width: size.longestSide * .25,
-        //               height: size.longestSide * .041,                  
-        //               decoration: BoxDecoration(color: Colors.blue[300], borderRadius: BorderRadius.only(topRight: Radius.circular(50),bottomRight: Radius.circular(50))),
-        //               child:  Padding(
-        //                   padding:  EdgeInsets.fromLTRB(6, 4, 6, 6),
-        //                   child: Container(
-        //                       decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.only(topRight: Radius.circular(50),bottomRight: Radius.circular(50)), boxShadow: [
-        //                         BoxShadow(color: Colors.black45,blurRadius: 3.0,offset: Offset(0.0, 5.0),spreadRadius: 2.0)
-        //                       ]
-        //                     ),
-        //                       child: ListTile(
-        //                        trailing:  Container( 
-        //                           width: size.longestSide * .01,
-        //                           height: size.longestSide * .01,
-        //                           decoration: BoxDecoration(
-        //                             color: Colors.brown,
-        //                               boxShadow: [
-        //                               BoxShadow(color: Colors.black45,blurRadius: 2.0,offset: Offset(0.0, 2.0),spreadRadius: 1.0)
-        //                             ],
-        //                               borderRadius: BorderRadius.circular(50),
-        //                           ),
-        //                         ),
-       
-        //                           minVerticalPadding: 0,
-        //                           leading: Icon(Icons.person),
-        //                           title: 
-        //                             TextFormField(  
-        //                               initialValue: expediente.nombre,
-        //                             decoration: InputDecoration(
-        //                             labelText: 'Nombre',
-        //                           ),
-        //                             onSaved: (value) => expediente.nombre = value,
-        //                             //  validator: validacion, 
-        //                         )
-        //                     )
-        //                   ),
-        //                )
-        //           ),
-        // /*Nombre*/  Container(
-        //               width: size.longestSide * .25,
-        //               height: size.longestSide * .041,                  
-        //               decoration: BoxDecoration(color: Colors.blue[300], borderRadius: BorderRadius.only(topRight: Radius.circular(50),bottomRight: Radius.circular(50))),
-        //               child:  Padding(
-        //                   padding:  EdgeInsets.fromLTRB(6, 4, 6, 6),
-        //                   child: Container(
-        //                       decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.only(topRight: Radius.circular(50),bottomRight: Radius.circular(50)), boxShadow: [
-        //                         BoxShadow(color: Colors.black45,blurRadius: 3.0,offset: Offset(0.0, 5.0),spreadRadius: 2.0)
-        //                       ]
-        //                     ),
-        //                       child: ListTile(
-        //                        trailing:  Container( 
-        //                           width: size.longestSide * .01,
-        //                           height: size.longestSide * .01,
-        //                           decoration: BoxDecoration(
-        //                             color: Colors.brown,
-        //                               boxShadow: [
-        //                               BoxShadow(color: Colors.black45,blurRadius: 2.0,offset: Offset(0.0, 2.0),spreadRadius: 1.0)
-        //                             ],
-        //                               borderRadius: BorderRadius.circular(50),
-        //                           ),
-        //                         ),
-       
-        //                           minVerticalPadding: 0,
-        //                           leading: Icon(Icons.person),
-        //                           title: 
-        //                             TextFormField(  
-        //                               initialValue: expediente.nombre,
-        //                             decoration: InputDecoration(
-        //                             labelText: 'Nombre',
-        //                           ),
-        //                             onSaved: (value) => expediente.nombre = value,
-        //                             //  validator: validacion, 
-        //                         )
-        //                     )
-        //                   ),
-        //                )
-        //           ),
-        // /*Nombre*/  Container(
-        //               width: size.longestSide * .25,
-        //               height: size.longestSide * .041,                  
-        //               decoration: BoxDecoration(color: Colors.blue[300], borderRadius: BorderRadius.only(topRight: Radius.circular(50),bottomRight: Radius.circular(50))),
-        //               child:  Padding(
-        //                   padding:  EdgeInsets.fromLTRB(6, 4, 6, 6),
-        //                   child: Container(
-        //                       decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.only(topRight: Radius.circular(50),bottomRight: Radius.circular(50)), boxShadow: [
-        //                         BoxShadow(color: Colors.black45,blurRadius: 3.0,offset: Offset(0.0, 5.0),spreadRadius: 2.0)
-        //                       ]
-        //                     ),
-        //                       child: ListTile(
-        //                        trailing:  Container( 
-        //                           width: size.longestSide * .01,
-        //                           height: size.longestSide * .01,
-        //                           decoration: BoxDecoration(
-        //                             color: Colors.brown,
-        //                               boxShadow: [
-        //                               BoxShadow(color: Colors.black45,blurRadius: 2.0,offset: Offset(0.0, 2.0),spreadRadius: 1.0)
-        //                             ],
-        //                               borderRadius: BorderRadius.circular(50),
-        //                           ),
-        //                         ),
-       
-        //                           minVerticalPadding: 0,
-        //                           leading: Icon(Icons.person),
-        //                           title: 
-        //                             TextFormField(  
-        //                               initialValue: expediente.nombre,
-        //                             decoration: InputDecoration(
-        //                             labelText: 'Nombre',
-        //                           ),
-        //                             onSaved: (value) => expediente.nombre = value,
-        //                             //  validator: validacion, 
-        //                         )
-        //                     )
-        //                   ),
-        //                )
-        //           ),
-        // /*Nombre*/  Container(
-        //               width: size.longestSide * .25,
-        //               height: size.longestSide * .041,                  
-        //               decoration: BoxDecoration(color: Colors.blue[300], borderRadius: BorderRadius.only(topRight: Radius.circular(50),bottomRight: Radius.circular(50))),
-        //               child:  Padding(
-        //                   padding:  EdgeInsets.fromLTRB(6, 4, 6, 6),
-        //                   child: Container(
-        //                       decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.only(topRight: Radius.circular(50),bottomRight: Radius.circular(50)), boxShadow: [
-        //                         BoxShadow(color: Colors.black45,blurRadius: 3.0,offset: Offset(0.0, 5.0),spreadRadius: 2.0)
-        //                       ]
-        //                     ),
-        //                       child: ListTile(
-        //                        trailing:  Container( 
-        //                           width: size.longestSide * .01,
-        //                           height: size.longestSide * .01,
-        //                           decoration: BoxDecoration(
-        //                             color: Colors.brown,
-        //                               boxShadow: [
-        //                               BoxShadow(color: Colors.black45,blurRadius: 2.0,offset: Offset(0.0, 2.0),spreadRadius: 1.0)
-        //                             ],
-        //                               borderRadius: BorderRadius.circular(50),
-        //                           ),
-        //                         ),
-       
-        //                           minVerticalPadding: 0,
-        //                           leading: Icon(Icons.person),
-        //                           title: 
-        //                             TextFormField(  
-        //                               initialValue: expediente.nombre,
-        //                             decoration: InputDecoration(
-        //                             labelText: 'Nombre',
-        //                           ),
-        //                             onSaved: (value) => expediente.nombre = value,
-        //                             //  validator: validacion, 
-        //                         )
-        //                     )
-        //                   ),
-        //                )
-        //           ),
-                   //etiquetaCuerpoGrande(context, contenidoDeEtiquetasTexto(context, Icon(Icons.person), 'Nombre', expediente.nombre)),
-                  // etiquetaCuerpoGrande(context, contenidoDeEtiquetasTexto(context, Icon(Icons.person), 'Nombre', expediente.nombre,)),
-                  //  Row(mainAxisAlignment: MainAxisAlignment.spaceAround,children: [etiquetaCuerpoCorto(context, menuOpt(),.08),
-                  //     etiquetaCuerpoCorto(context, contenidoDeEtiquetasNumeros(context, null, 'Telefono', expediente.telefono.toString(),expediente.telefono,validacionTelefono),.14), 
-                  // ],),
-                  //  etiquetaCuerpoGrande(context, contenidoDeEtiquetasTexto(context, Icon(Icons.home), 'Direccion', expediente.direccion,validacionTextos)),
-                  //  etiquetaCuerpoGrande(context, contenidoDeEtiquetasTexto(context, Icon(Icons.alternate_email), 'Email', expediente.correo, validarEmail)),
-                  //  etiquetaCuerpoGrande(context, contenidoDeEtiquetasTexto(context, Icon(Icons.book_outlined), 'Escolaridad', expediente.escolaridad,validacionTextos)),
-                  //  etiquetaCuerpoGrande(context, contenidoDeEtiquetasTexto(context, Icon(Icons.build_outlined), 'Ocupacion', expediente.ocupacion,validacionTextos)), 
+      
+                  CamposDelFormulario(ancho: .25, icono: Icon(Icons.person), campoformulario:  TextFormField(initialValue: expediente.nombre,decoration: InputDecoration(labelText: 'Nombre'),
+                   onSaved: (value) => expediente.nombre = value, /* validator: validacion,*/ )),
+
+                Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [CamposDelFormulario(ancho: .13, campoformulario: TextFormField(initialValue: expediente.edad.toString(),decoration: InputDecoration(labelText: 'Edad'),
+                   onSaved: (value) => expediente.edad = int.parse(value) ),), CamposDelFormulario(ancho: .13,campoformulario:  TextFormField(initialValue: expediente.fn.toString(),decoration: InputDecoration(labelText: 'Fn'),
+                   onSaved: (value) => expediente.fn = int.parse(value) ))],),
+                                      
+                 Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [CamposDelFormulario(ancho: .13, campoformulario:  menuOpt(),), CamposDelFormulario(ancho: .13,campoformulario: Padding(padding: const EdgeInsets.only(bottom: 3.0), 
+                   child: TextFormField(initialValue: expediente.telefono.toString(),style: TextStyle(fontSize:  size.longestSide * .01),decoration: InputDecoration(labelText: 'Telefono'),
+                     onSaved: (value) => expediente.telefono= int.parse(value), /* validator: validacion,*/ )))]),
+
+                  CamposDelFormulario(ancho: .25, icono: Icon(Icons.alternate_email_sharp), campoformulario:  TextFormField(initialValue: expediente.correo,decoration: InputDecoration(labelText: 'Email'),
+                   onSaved: (value) => expediente.correo = value, /* validator: validacion,*/ )),
+
+                  CamposDelFormulario(ancho: .25, icono: Icon(Icons.school_sharp),campoformulario:  TextFormField(initialValue: expediente.escolaridad,decoration: InputDecoration(labelText: 'Escolaridad'),
+                   onSaved: (value) => expediente.escolaridad = value, /* validator: validacion,*/ )),
+
+                  CamposDelFormulario(ancho: .25, icono: Icon(Icons.work), campoformulario:  TextFormField(initialValue: expediente.ocupacion,decoration: InputDecoration(labelText: 'Ocupacion'),
+                   onSaved: (value) => expediente.ocupacion = value, /* validator: validacion,*/ )),             
               ],
             ),
            ),  
@@ -459,14 +193,29 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
                Column(
                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                      // etiquetaCuerpoGrande(context, contenidoDeEtiquetasTexto(context, Icon(Icons.person), 'Nombre', expediente.nombre)),
-                      // etiquetaCuerpoGrande(context, contenidoDeEtiquetasTexto(context, Icon(Icons.person), 'Nombre', expediente.nombre)),
-                      // etiquetaCuerpoGrande(context, contenidoDeEtiquetasTexto(context, Icon(Icons.person), 'Nombre', expediente.nombre)),
-                      // etiquetaCuerpoGrande(context, contenidoDeEtiquetasTexto(context, Icon(Icons.person), 'Nombre', expediente.nombre)),
-                      // etiquetaCuerpoGrande(context, contenidoDeEtiquetasTexto(context, Icon(Icons.person), 'Nombre', expediente.nombre)),
-                      // etiquetaCuerpoGrande(context, contenidoDeEtiquetasTexto(context, Icon(Icons.person), 'Nombre', expediente.nombre)),
-                      // etiquetaCuerpoGrande(context, contenidoDeEtiquetasTexto(context, Icon(Icons.person), 'Nombre', expediente.nombre)),
-                      // etiquetaCuerpoGrande(context, contenidoDeEtiquetasTexto(context, Icon(Icons.person), 'Nombre', expediente.nombre)),
+                     CamposDelFormulario(ancho: .25, icono: Icon(Icons.api), campoformulario:  TextFormField(initialValue: expediente.personasQueComen.toString(),decoration: InputDecoration(labelText: 'No. de personas que comen en casa'),
+                   onSaved: (value) => expediente.personasQueComen = int.parse(value), /* validator: validacion,*/ )),
+
+                     CamposDelFormulario(ancho: .25, icono: Icon(Icons.api), campoformulario:  TextFormField(initialValue: expediente.menoresDeEdad.toString(),decoration: InputDecoration(labelText: 'Menores de edad en casa'),
+                   onSaved: (value) => expediente.menoresDeEdad = int.parse(value), /* validator: validacion,*/ )),
+
+                     CamposDelFormulario(ancho: .25, icono: Icon(Icons.api), campoformulario:  TextFormField(initialValue: expediente.mayoresDeEdad.toString(),decoration: InputDecoration(labelText: 'Mayores de edad en casa'),
+                   onSaved: (value) => expediente.mayoresDeEdad = int.parse(value), /* validator: validacion,*/ )),
+
+                     CamposDelFormulario(ancho: .25, icono: Icon(Icons.api), campoformulario:  TextFormField(initialValue: expediente.gastosDeComida.toString(),decoration: InputDecoration(labelText: 'Gastos de comida en \$'),
+                   onSaved: (value) => expediente.gastosDeComida = int.parse(value), /* validator: validacion,*/ )),
+
+                     CamposDelFormulario(ancho: .25, icono: Icon(Icons.api), campoformulario:  TextFormField(initialValue: expediente.ganaPor,decoration: InputDecoration(labelText: 'Gana por ....?'),
+                   onSaved: (value) => expediente.ganaPor = value, /* validator: validacion,*/ )),
+
+                     CamposDelFormulario(ancho: .25, icono: Icon(Icons.api), campoformulario:  TextFormField(initialValue: expediente.cantidad.toString(),decoration: InputDecoration(labelText: 'Sueldo en \$'),
+                   onSaved: (value) => expediente.cantidad = int.parse(value), /* validator: validacion,*/ )),
+
+                     CamposDelFormulario(ancho: .25, icono: Icon(Icons.api), campoformulario:  TextFormField(initialValue: expediente.cocinaCon,decoration: InputDecoration(labelText: 'cocina con...?'),
+                   onSaved: (value) => expediente.cocinaCon = value, /* validator: validacion,*/ )),
+                   
+                     CamposDelFormulario(ancho: .25, icono: Icon(Icons.api), campoformulario:  TextFormField(initialValue: expediente.tomaAguaDe,decoration: InputDecoration(labelText: 'Toma agua de ...?'),
+                   onSaved: (value) => expediente.tomaAguaDe = value, /* validator: validacion,*/ )),
                   ],
                 ),
               )
@@ -474,18 +223,11 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
           ),
         ),
         ),
-        
-       
-
-
       ],
-  ),
+    ),
       ]
     );
-   
   }
- 
-
 //######################################################################### Widget de Campos de seleccion   ##############
  Widget camposDeSeleccion(BuildContext context,String texto){
   final  size = MediaQuery.of(context).size;
@@ -536,158 +278,32 @@ Widget hojaDeTrabajo(BuildContext context,contenido){
   );
 }
 
-//###################################################################### Widget de cuerpo de etiquetas grandes ##################
-  Widget etiquetaCuerpoGrande(BuildContext context, contenido){
-    final  size = MediaQuery.of(context).size;
-    return Container(
-                      width: size.longestSide * .25,
-                      height: size.longestSide * .041,                  
-                      decoration: BoxDecoration(color: Colors.blue[300], borderRadius: BorderRadius.only(topRight: Radius.circular(50),bottomRight: Radius.circular(50))),
-                      child:  Padding(
-                          padding:  EdgeInsets.fromLTRB(6, 4, 6, 6),
-                          child: Container(
-                              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.only(topRight: Radius.circular(50),bottomRight: Radius.circular(50)), boxShadow: [
-                                BoxShadow(color: Colors.black45,blurRadius: 3.0,offset: Offset(0.0, 5.0),spreadRadius: 2.0)
-                              ]
-                            ),
-                            child: contenido
-                        ),
-                      )
-                    );
-  }
-// #################################################################### Widget de cuerpo de etiquetas pequenio ##################
-Widget etiquetaCuerpoCorto(BuildContext context,contenido,double ancho){
-  final  size = MediaQuery.of(context).size;
-    return Container(
-                      width: size.longestSide * ancho,
-                      height: size.longestSide * .041,                  
-                      decoration: BoxDecoration(color: Colors.blue[300], borderRadius: BorderRadius.only(topRight: Radius.circular(50),bottomRight: Radius.circular(50))),
-                      child:  Padding(
-                          padding:  EdgeInsets.fromLTRB(6, 4, 6, 6),
-                          child: Container(
-                              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.only(topRight: Radius.circular(50),bottomRight: Radius.circular(50)), boxShadow: [
-                                BoxShadow(color: Colors.black45,blurRadius: 3.0,offset: Offset(0.0, 5.0),spreadRadius: 2.0)
-                              ]
-                            ),
-                            child: contenido
-                        ),
-                      )
-                    );
-}
-
-//##################################################################### Widget de contenido de las etiquetas ########
-  Widget contenidoDeEtiquetasTexto(BuildContext context,Widget icono,String labeltext, exp){
-    
-    final size = MediaQuery.of(context).size;
-    return ListTile(
-     trailing:  Container( 
-       width: size.longestSide * .01,
-       height: size.longestSide * .01,
-       decoration: BoxDecoration(
-         color: Colors.brown,
-         boxShadow: [
-             BoxShadow(color: Colors.black45,blurRadius: 2.0,offset: Offset(0.0, 2.0),spreadRadius: 1.0)
-           ],
-         borderRadius: BorderRadius.circular(50),
-          
-        ),
-       ),
-       
-     minVerticalPadding: 0,
-     leading: icono,
-     title: 
-      TextFormField(
-        initialValue: exp,
-        decoration: InputDecoration(
-         labelText: labeltext,
-        ),
-           onSaved: (value) => exp = value,
-     //  validator: validacion,
-      )
-   );
-  }
-
-//##################################################################### Widget de contenido de las etiquetas numericas ########
-  Widget contenidoDeEtiquetasNumeros(BuildContext context,Widget icono,String labeltext, exp ){
-    final size = MediaQuery.of(context).size;
-    return ListTile(
-     trailing:  Container( 
-       width: size.longestSide * .01,
-       height: size.longestSide * .01,
-       decoration: BoxDecoration(
-         color: Colors.brown,
-         boxShadow: [
-             BoxShadow(color: Colors.black45,blurRadius: 2.0,offset: Offset(0.0, 2.0),spreadRadius: 1.0)
-           ],
-         borderRadius: BorderRadius.circular(50),
-          
-        ),
-       ),
-       
-     minVerticalPadding: 0,
-     leading: icono,
-     title: 
-      TextFormField(
-        initialValue: exp,
-        decoration: InputDecoration(
-         labelText: labeltext,
-        ),
-           onSaved: (value) => exp = int.parse(value),
-       //validator: validacion, 
-      )
-   );
-  }
 //##################################################################### Widgets de menu de opciones ###################  
 menuOpt(){
   final size = MediaQuery.of(context).size;
   return  Padding(
     padding: const EdgeInsets.all(4.0),
-    child: DropdownButton(
-              style: TextStyle( fontSize: size.longestSide * .01),
-               value: opcionSeleccionada,
-                items: getOpcionesDropdown(),
-                onChanged: (opt) {
-                  setState(() {
-                    opcionSeleccionada = opt;
-                    expediente.genero = opcionSeleccionada;
-                  });
-                },
-                  
-              ),
-    );
-  
+    child: DropdownButton(style: TextStyle( fontSize: size.longestSide * .01),value: expediente.genero,items: getOpcionesDropdown(),onChanged: (opt) {setState(() {expediente.genero = opt;});},),); 
 }
  List<DropdownMenuItem<String>> getOpcionesDropdown() {
     List<DropdownMenuItem<String>> lista = [];
-    genero.forEach((tipo) {
-      lista.add(DropdownMenuItem(
-        child: Text(tipo),
-        value: tipo,
-      ));
-    });
+    genero.forEach((tipo) {lista.add(DropdownMenuItem(child: Text(tipo),value: tipo,));});
     return lista;
   }
-
-
-
-   _textoDelBoton(){
+   
+ //################################################################## Widgets del boton de guardar ################### 
+_textoDelBoton(){
     if (expediente.id == null){
       return 'Guardar';
     }else{
       return 'Renovar';
     }
   }
-
-
-
 submit(){
    if (!keyForm.currentState.validate()) return;
-   keyForm.currentState.save();
    
-    
-    setState(() { _guardando = true; });
+   keyForm.currentState.save();
   
-
    if (expediente.id == null){
      expedienteProvider.crearExpedinete(expediente);
   }else{
@@ -702,214 +318,3 @@ submit(){
 
 
 }
-
-
-
-
-
-
-
-
-
- /*SingleChildScrollView(
-      child: Container(
-        color: Colors.green[300],
-        width: size.width,
-        height: size.height,
-        margin: EdgeInsets.all(40.0),
-        child: Form(
-          key: keyForm,
-          child: formUI(context),
-        ),
-      ),
-    );*/
-
-
-
-  
-  // formUI(context) {
-  //   final size = MediaQuery.of(context).size;
-  //   return SingleChildScrollView(
-  //      scrollDirection: Axis.horizontal,
-  //         child: Column(   
-  //       children: [
-              
-  //               Row(
-  //                children: [
-  //                  Padding(
-  //                    padding: const EdgeInsets.only(right: 50),
-  //                    child: Container(
-  //                      width:300 ,height: 100,
-  //                       child: ListTile(
-  //                         leading: Icon(Icons.person),
-  //                          title: 
-  //                           TextFormField(
-  //                             initialValue: expediente.nombre,
-  //                               decoration: InputDecoration(
-  //                                 labelText: 'Nombre:',
-  //                             ),
-  //                                 onSaved: (value) => expediente.nombre = value,
-  //                                 validator: validacionStrings,
-  //                           )
-  //                       )
-  //                 ),
-  //                  ),             
-  //                Padding(
-  //                  padding: const EdgeInsets.only(right: 50),
-  //                  child: Container(
-  //                     width: 200 ,height:100,
-  //                       child: ListTile(
-  //                         leading: Icon(Icons.person),
-  //                          title: 
-  //                           TextFormField(
-  //                               decoration: InputDecoration(
-  //                                 labelText: 'Edad:',
-  //                             ),
-  //                                 //validator: validateNombre,
-  //                           )
-  //                     ),
-  //                  ),
-  //                ),
-  //                Padding(
-  //                  padding: const EdgeInsets.only(right: 50),
-  //                  child: Container(
-  //                     width: 200 ,height:100,
-  //                       child: ListTile(
-  //                         leading: Icon(Icons.person),
-  //                          title: 
-  //                           TextFormField(
-  //                               decoration: InputDecoration(
-  //                                 labelText: 'FN:',
-  //                             ),
-  //                                 //validator: validateNombre,
-  //                           )
-  //                     ),
-  //                  ),
-  //                ),
-  //                Padding(
-  //                   padding: const EdgeInsets.only(right: 50),
-  //                  child: Container(
-  //                     width: 200 ,height:100,
-  //                       child: ListTile(
-  //                         leading: Icon(Icons.person),
-  //                          title: 
-  //                           TextFormField(
-  //                               decoration: InputDecoration(
-  //                                 labelText: 'Genero:',
-  //                             ),
-  //                                 //validator: validateNombre,
-  //                           )
-  //                     ),
-  //                  ),
-  //                ),
-  //                Padding(
-  //                  padding: const EdgeInsets.only(right: 50),
-  //                  child: Container(
-  //                     width: 250 ,height:100,
-  //                       child: ListTile(
-  //                         leading: Icon(Icons.person),
-  //                          title: 
-  //                           TextFormField(
-  //                              initialValue: expediente.telefono.toString(),
-  //                               decoration: InputDecoration(
-  //                                 labelText: 'Tel:',
-  //                             ),
-  //                                 onSaved: (value) => expediente.telefono = int.parse(value),
-  //                                 validator: validacionTelefono,
-  //                           )
-  //                     ),
-  //                  ),
-  //                ),     
-  //             ],
-  //           ),
-         
-  //               Row(
-  //                children: [
-  //                  Padding(
-  //                    padding: const EdgeInsets.only(right: 50),
-  //                    child: Container(
-  //                      width:400 ,height: 100,
-  //                       child: ListTile(
-  //                         leading: Icon(Icons.person),
-  //                          title: 
-  //                           TextFormField(
-  //                               decoration: InputDecoration(
-  //                                 labelText: 'Direccion',
-  //                             ),
-  //                                 //validator: validateNombre,
-  //                           )
-  //                       )
-  //                    ),
-  //                ),       
-  //                  Padding(
-  //                    padding: const EdgeInsets.only(right: 50),
-  //                    child: Container(
-  //                      width:400 ,height: 100,
-  //                       child: ListTile(
-  //                         leading: Icon(Icons.person),
-  //                          title: 
-  //                           TextFormField(
-  //                              initialValue: expediente.correo,
-  //                               decoration: InputDecoration(
-  //                                 labelText: 'Correo Electronico',
-  //                             ),
-  //                                 onSaved: (value) => expediente.correo = value,
-  //                                 validator: validarEmail,
-  //                           )
-  //                       )
-  //                    ),
-  //                ),       
-  //                  Padding(
-  //                    padding: const EdgeInsets.only(right: 50),
-  //                    child: Container(
-  //                      width:400 ,height: 100,
-  //                       child: ListTile(
-  //                         leading: Icon(Icons.person),
-  //                          title: 
-  //                           TextFormField(
-  //                               decoration: InputDecoration(
-  //                                 labelText: 'Escolaridad',
-  //                             ),
-  //                                 //validator: validateNombre,
-  //                           )
-  //                       )
-  //                    ),
-  //                ),       
-  //             ]         
-  //            ),
-
-  //               // Row(
-  //               //   children: [
-  //               //     Center(
-  //               //       child: Container(
-  //               //         decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),color: Colors.deepPurple),
-  //               //           width: 100,
-  //               //           height: 50,
-  //               //             child: FlatButton(
-  //               //               onPressed: (_guardando) ? null : submit,
-  //               //               child: Text('Guardar',style: TextStyle(color: Colors.black,fontSize: size.longestSide * .2),)           
-  //               //           ) 
-  //               //       ),
-  //               //     ),
-  //               //   ],
-  //               // ),   
-  //       ],
-  //     ),
-  //   );
-  // }
-  
- 
-//  void mostrarSnackbar(String mensaje){   ########### esto para usar el snackbar
-  
-   
-//     final datosGeneralesPage = DatosGeneralesPage();
-
-//      datosGeneralesPage.scaffoldKey.currentState.showSnackBar( SnackBar(content: Text(mensaje),duration: Duration(milliseconds: 1500),
-//      )
-//   );
-    
-
-//  }  ########### esto para usar el snackbar
-
-
-
