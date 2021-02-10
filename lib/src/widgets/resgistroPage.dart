@@ -132,17 +132,17 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
                   ),
                 ),
                                           //########################## Containers de campos de seleccion  ###########
-               camposDeSeleccion(context, 'Datos Generales'),
-               camposDeSeleccion(context, 'Antropometrias'),
-               camposDeSeleccion(context, 'Laboratorios'),
-               camposDeSeleccion(context, 'Antecedentes Patologicos Generales'),
-               camposDeSeleccion(context, 'Antecedentes Patologicos Familiares'),
-               camposDeSeleccion(context, 'Antecedentes Personales no Patologicos'),
-               camposDeSeleccion(context, 'Frecuencia alimentaria'),
-               camposDeSeleccion(context,'Raciones Habituales'),
-               camposDeSeleccion(context, 'Calculo de la ingesta habitual'),
-               camposDeSeleccion(context, 'Plan nutricional'),
-               camposDeSeleccion(context, 'Nota de evolucion'),
+               camposDeSeleccion(context, 'Datos Generales','datosGeneralesPage'),
+               camposDeSeleccion(context, 'Antropometrias','antropometriasPage'),
+               camposDeSeleccion(context, 'Laboratorios','datosGeneralesPage'),
+               camposDeSeleccion(context, 'Antecedentes Patologicos Generales','datosGeneralesPage'),
+               camposDeSeleccion(context, 'Antecedentes Patologicos Familiares','datosGeneralesPage'),
+               camposDeSeleccion(context, 'Antecedentes Personales no Patologicos','datosGeneralesPage'),
+               camposDeSeleccion(context, 'Frecuencia alimentaria','datosGeneralesPage'),
+               camposDeSeleccion(context,'Raciones Habituales','datosGeneralesPage'),
+               camposDeSeleccion(context, 'Calculo de la ingesta habitual','datosGeneralesPage'),
+               camposDeSeleccion(context, 'Plan nutricional','datosGeneralesPage'),
+               camposDeSeleccion(context, 'Nota de evolucion','datosGeneralesPage'),
               ],
             ),
           ),
@@ -229,7 +229,7 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
     );
   }
 //######################################################################### Widget de Campos de seleccion   ##############
- Widget camposDeSeleccion(BuildContext context,String texto){
+ Widget camposDeSeleccion(BuildContext context,String texto,String ruta){
   final  size = MediaQuery.of(context).size;
   return  Row(
     children: [  
@@ -242,7 +242,7 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
            trailing:  Checkbox( activeColor: Colors.deepPurple ,value: expediente.checkDatosGn, onChanged: (value) => setState((){expediente.checkDatosGn = value;} )) ,
             title: Text(texto,style: TextStyle(fontWeight: FontWeight.bold,fontStyle: FontStyle.italic, decoration: TextDecoration.underline, decorationStyle: TextDecorationStyle.wavy,  )),
             onTap: (){
-              Navigator.pushReplacementNamed(context, 'datosGeneralesPage',arguments: expediente);
+              Navigator.pushReplacementNamed(context, ruta,arguments: expediente);
           }
         ),
       ),

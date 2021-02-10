@@ -1,3 +1,4 @@
+import 'package:aplicacion_web/src/pages/antropometrias_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:aplicacion_web/src/bloc/provider.dart';
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
           'homePage'          : (BuildContext context) => HomePage(),
           'escritorioPage'    : (BuildContext context) => EscritorioPage(),
           'datosGeneralesPage': (BuildContext context) => DatosGeneralesPage(),
+          'antropometriasPage': (BuildContext context) => AntropomatriasPage(),
         },
         theme: ThemeData(primaryColor: Colors.deepPurple),
       ),
