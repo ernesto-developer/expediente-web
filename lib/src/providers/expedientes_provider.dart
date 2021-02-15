@@ -36,7 +36,7 @@ Future<List<ExpedienteModel>> cargarExpedientes() async {
   final Map<String, dynamic>decodeData = json.decode(resp.body);
   final List<ExpedienteModel> expedientes = [];
 
-  if (decodeData == null) return [];
+   if (decodeData == null) return [];
 
   decodeData.forEach((id, exp){
 

@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
  
   @override
   Widget build(BuildContext context) {
-
+      
       // final prefs = new PreferenciasUsuario();  //Solo es para ver el token en pantalla
       // print(prefs.token);
     

@@ -11,10 +11,10 @@ class EscritorioPage extends StatefulWidget {
 class _EscritorioPageState extends State<EscritorioPage> {
   final expedientesProvider = new ExpedientesProvider();
 
+
   @override
   Widget build(BuildContext context) {
 
-    Size size = MediaQuery.of(context).size;
 
     return Scaffold(
       appBar: AppBar(

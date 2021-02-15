@@ -118,7 +118,9 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
                                         color: Colors.deepPurple,
                                         borderRadius: BorderRadius.all(Radius.circular(50))),
                                       child: FlatButton(
-                                       onPressed: (){ submit();},
+                                       onPressed: (){setState(() {
+                                         submit();
+                                       });},
                                        child: Text(_textoDelBoton(),style: TextStyle(color: Colors.white,fontSize: size.longestSide * .01),)           
                                       ) ,
 
@@ -171,7 +173,7 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
 
                 Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [CamposDelFormulario(ancho: .13, campoformulario: TextFormField(initialValue: expediente.edad.toString(),decoration: InputDecoration(labelText: 'Edad'),
                    onSaved: (value) => expediente.edad = int.parse(value) ),), CamposDelFormulario(ancho: .13,campoformulario:  TextFormField(initialValue: expediente.fn.toString(),decoration: InputDecoration(labelText: 'Fn'),
-                   onSaved: (value) => expediente.fn = int.parse(value) ))],),
+                   onSaved: (value) => expediente.fn = value ))],),
                                       
                  Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [CamposDelFormulario(ancho: .13, campoformulario:  menuOpt(),), CamposDelFormulario(ancho: .13,campoformulario: Padding(padding: const EdgeInsets.only(bottom: 3.0), 
                    child: TextFormField(initialValue: expediente.telefono.toString(),style: TextStyle(fontSize:  size.longestSide * .01),decoration: InputDecoration(labelText: 'Telefono'),
@@ -239,7 +241,7 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
         height: size.longestSide * .03,
          child: ListTile(
           leading: Icon( Icons.accessibility , color: Colors.deepPurple ),
-           trailing:  Checkbox( activeColor: Colors.deepPurple ,value: expediente.checkDatosGn, onChanged: (value) => setState((){expediente.checkDatosGn = value;} )) ,
+          //  trailing:  Checkbox( activeColor: Colors.deepPurple ,value: expediente.checkDatosGn, onChanged: (value) => setState((){expediente.checkDatosGn = value;} )) ,
             title: Text(texto,style: TextStyle(fontWeight: FontWeight.bold,fontStyle: FontStyle.italic, decoration: TextDecoration.underline, decorationStyle: TextDecorationStyle.wavy,  )),
             onTap: (){
               Navigator.pushReplacementNamed(context, ruta,arguments: expediente);
@@ -293,9 +295,10 @@ menuOpt(){
    
  //################################################################## Widgets del boton de guardar ################### 
 _textoDelBoton(){
-    if (expediente.id == null){
+    if (expediente.id == null ){
       return 'Guardar';
     }else{
+      
       return 'Renovar';
     }
   }
@@ -304,11 +307,13 @@ submit(){
    
    keyForm.currentState.save();
   
-   if (expediente.id == null){
+   if (expediente.id == null ){
      expedienteProvider.crearExpedinete(expediente);
   }else{
     expedienteProvider.editarExpedinete(expediente);
   }
+
+   Navigator.pushNamed(context, 'escritorioPage');
 
   // setState(() { _guardando = false; }); ##### por si necesitamos activarlo otravez
  
