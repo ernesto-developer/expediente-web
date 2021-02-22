@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:aplicacion_web/src/providers/expedientes_provider.dart';
@@ -17,16 +15,28 @@ class AntropomatriasPage extends StatefulWidget {
 class _AntropomatriasPageState extends State<AntropomatriasPage> {
       
 
-  List<String> elementos = ['fecha','estatura','peso','imc','grasa','cintura','cadera','pecho','edadMuscular','musculo','edadCorporal','metabolismoBasal'];
+  List<String> elementos = ['fecha','peso','estatura','imc','grasa','cintura','cadera','pecho','edadMuscular','musculo','edadCorporal','metabolismoBasal'];
   final expedienteProvider = new ExpedientesProvider();
   final keyForm            = new GlobalKey<FormState>();
-  
+  // ############################################################ instancias de las clases #####################
   ExpedienteModel expediente = new ExpedienteModel();
+  Estatura estaturaClase = new Estatura();
+  Peso pesoClase = new Peso();
+  Imc imcClase = new Imc();
+  Grasa grasaClase = new Grasa();
+  Cintura cinturaClase = new Cintura();
+  Cadera caderaClase = new Cadera();
+  Pecho pechoClase = new Pecho();
+  EdadMuscular edadMuscularClase = new EdadMuscular();
+  EdadCorporal edadCorporalClase = new EdadCorporal();
+  Musculo musculoClase = new Musculo();
+  MetabolismoBasal metabolismoBasalClase = new MetabolismoBasal();
+
+
 
   @override
   Widget build(BuildContext context) {
   
-
     
     final ExpedienteModel expeData = ModalRoute.of(context).settings.arguments;
     if (expeData != null){
@@ -265,30 +275,90 @@ List<DataRow> filas(){
 
   if (expediente.fecha == null){expediente.fecha = ['00-00-0000'];}else if (expediente.fecha.contains('00-00-0000')){}else{expediente.fecha.add('00-00-0000');}
  
-  if (expediente.estatura == null){expediente.estatura = [0.0];}else if(expediente.estatura.contains(0)){}else{expediente.estatura.add(0.0);}
+   
  
-  if (expediente.peso == null){expediente.peso = [0.0];}else if(expediente.peso.contains(0)){}else{expediente.peso.add(0.0);}
+
+  
+  if (expediente.estaturaLista == null){
+    expediente.estaturaLista = [estaturaClase];    
+  }else if(expediente.estaturaLista[0].estatura == 0.0){
+  } else {
+    expediente.estaturaLista.add(estaturaClase);
+  }
+
+  if (expediente.pesoLista == null){
+    expediente.pesoLista = [pesoClase];    
+  }else if(expediente.pesoLista[0].peso == 0.0){
+  } else {
+    expediente.pesoLista.add(pesoClase);
+  }
+
+  if (expediente.imcLista == null){
+    expediente.imcLista = [imcClase];    
+  }else if(expediente.imcLista[0].imc == 0.0){
+  } else {
+    expediente.imcLista.add(imcClase);
+  }
+
+  if (expediente.grasaLista == null){
+    expediente.grasaLista = [grasaClase];
+  }else if (expediente.grasaLista[0].grasa == 0.0){    
+  }else{
+    expediente.grasaLista.add(grasaClase);
+  }
+  
+  if (expediente.cinturaLista == null){
+    expediente.cinturaLista = [cinturaClase];
+  }else if (expediente.cinturaLista[0].cintura == 0.0){    
+  }else{
+    expediente.cinturaLista.add(cinturaClase);
+  }
+  
+  if (expediente.caderaLista == null){
+    expediente.caderaLista = [caderaClase];
+  }else if (expediente.caderaLista[0].cadera == 0.0){    
+  }else{
+    expediente.caderaLista.add(caderaClase);
+  }
+  
+  if (expediente.pechoLista == null){
+    expediente.pechoLista = [pechoClase];
+  }else if (expediente.pechoLista[0].pecho == 0.0){    
+  }else{
+    expediente.pechoLista.add(pechoClase);
+  }
+  
+  if (expediente.edadMuscularLista == null){
+    expediente.edadMuscularLista = [edadMuscularClase];
+  }else if (expediente.edadMuscularLista[0].edadMuscular == 0.0){    
+  }else{
+    expediente.edadMuscularLista.add(edadMuscularClase);
+  }
+  
+  if (expediente.musculoLista == null){
+    expediente.musculoLista = [musculoClase];
+  }else if (expediente.musculoLista[0].musculo == 0.0){    
+  }else{
+    expediente.musculoLista.add(musculoClase);
+  }
  
-  if (expediente.imc == null){expediente.imc = [0.0];}else if(expediente.imc.contains(0)){}else{expediente.imc.add(0.0);}
- 
-  if (expediente.grasa == null){expediente.grasa = [0.0];}else if(expediente.grasa.contains(0)){}else{expediente.grasa.add(0.0);}
- 
-  if (expediente.cintura == null){expediente.cintura = [0.0];}else if(expediente.cintura.contains(0)){}else{expediente.cintura.add(0.0);}
- 
-  if (expediente.cadera == null){expediente.cadera = [0.0];}else if(expediente.cadera.contains(0)){}else{expediente.cadera.add(0.0);}
- 
-  if (expediente.pecho == null){expediente.pecho = [0.0];}else if(expediente.pecho.contains(0)){}else{expediente.pecho.add(0.0);}
- 
-  if (expediente.edadMuscular == null){expediente.edadMuscular = [0.0];}else if(expediente.edadMuscular.contains(0)){}else{expediente.edadMuscular.add(0.0);}
- 
-  if (expediente.musculo == null){expediente.musculo = [0.0];}else if(expediente.musculo.contains(0)){}else{expediente.musculo.add(0.0);}
- 
-  if (expediente.edadCorporal == null){expediente.edadCorporal = [0.0];}else if(expediente.edadCorporal.contains(0)){}else{expediente.edadCorporal.add(0.0);}
- 
-  if (expediente.metabolismoBasal == null){expediente.metabolismoBasal = [0.0];}else if(expediente.metabolismoBasal.contains(0)){}else{expediente.metabolismoBasal.add(0.0);}
+  if (expediente.edadCorporalLista == null){
+    expediente.edadCorporalLista = [edadCorporalClase];
+  }else if (expediente.edadCorporalLista[0].edadCorporal == 0.0){    
+  }else{
+    expediente.edadCorporalLista.add(edadCorporalClase);
+  }
+  
+  if (expediente.metabolismoBasalLista == null){
+    expediente.metabolismoBasalLista = [metabolismoBasalClase];
+  }else if (expediente.metabolismoBasalLista[0].metabolismoBasal == 0.0){    
+  }else{
+    expediente.metabolismoBasalLista.add(metabolismoBasalClase);
+  }
+
   
   List<DataRow> lista = [];
-  for (var i = 0; i < expediente.peso.length; i++){
+  for (var i = 0; i < expediente.fecha.length; i++){
     lista.add(DataRow(cells: celdas(i),));
   }
   return lista;
@@ -301,31 +371,139 @@ List<DataCell> celdas(index){
   // if (expediente.peso == null){expediente.peso = [0.0];}
   // expediente.peso = [0.0];
 //  =>  element[index] = double.parse(value),
-List<dynamic> datosDeExpedientes = [expediente.fecha,
-                                    expediente.peso,
-                                    expediente.estatura,
-                                    expediente.grasa,
-                                    expediente.imc,
-                                    expediente.cintura,
-                                    expediente.cadera,
-                                    expediente.pecho,
-                                    expediente.edadMuscular,
-                                    expediente.musculo,
-                                    expediente.edadCorporal,
-                                    expediente.metabolismoBasal
-                                    ];
+// List<dynamic> datosDeExpedientes = [
+//                                     expediente.pesoLista[0].peso,
+//                                     // expediente.fecha,
+//                                      expediente.estatura[0],
+//                                     // expediente.grasa,
+//                                     // expediente.imc,
+//                                     // expediente.cintura,
+//                                     // expediente.cadera,
+//                                     // expediente.pecho,
+//                                     // expediente.edadMuscular,
+//                                     // expediente.musculo,
+//                                     // expediente.edadCorporal,
+//                                     // expediente.metabolismoBasal
+//                                     ];
   
-   List<DataCell> listaDeCeldas = [];
-   datosDeExpedientes.forEach((element) {listaDeCeldas.add(DataCell(
+   List<DataCell> listaDeCeldas = [
+    
+     DataCell(
      TextButton(
-      child: TextFormField(initialValue: element[index].toString(),
-          onSaved: (value){if(element[index] is double){return element[index] = double.parse(value);}else if(element[index] is String){return element[index] = value;}}
+      child: TextFormField(initialValue: expediente.fecha[index].toString(),
+           onSaved: (value) => expediente.fecha[index] = value
       ),
       onPressed: (){},    
-    )));});
+    )),
     
+    
+    
+     DataCell(
+     TextButton(
+      child: TextFormField(initialValue: expediente.pesoLista[index].peso.toString(),
+           onSaved: (value) => expediente.pesoLista[index].peso = double.parse(value)
+      ),
+      onPressed: (){},    
+    )),
+     DataCell(
+     TextButton(
+      child: TextFormField(initialValue: expediente.estaturaLista[index].estatura.toString(),
+           onSaved: (value) => expediente.estaturaLista[index].estatura = double.parse(value)
+      ),
+      onPressed: (){},    
+    )),
+     DataCell(
+     TextButton(
+      child: TextFormField(initialValue: expediente.imcLista[index].imc.toString(),
+           onSaved: (value) => expediente.imcLista[index].imc = double.parse(value)
+      ),
+      onPressed: (){},    
+    )),
+     DataCell(
+     TextButton(
+      child: TextFormField(initialValue: expediente.grasaLista[index].grasa.toString(),
+           onSaved: (value) =>  expediente.grasaLista[index].grasa = double.parse(value)
+      ),
+      onPressed: (){},    
+    )),
+     DataCell(
+     TextButton(
+      child: TextFormField(initialValue: expediente.cinturaLista[index].cintura.toString(),
+           onSaved: (value) =>  expediente.cinturaLista[index].cintura = double.parse(value)
+      ),
+      onPressed: (){},    
+    )),
+     DataCell(
+     TextButton(
+      child: TextFormField(initialValue: expediente.caderaLista[index].cadera.toString(),
+           onSaved: (value) =>  expediente.caderaLista[index].cadera = double.parse(value)
+      ),
+      onPressed: (){},    
+    )),
+     DataCell(
+     TextButton(
+      child: TextFormField(initialValue: expediente.pechoLista[index].pecho.toString(),
+           onSaved: (value) =>  expediente.pechoLista[index].pecho = double.parse(value)
+      ),
+      onPressed: (){},    
+    )),
+     DataCell(
+     TextButton(
+      child: TextFormField(initialValue: expediente.edadMuscularLista[index].edadMuscular.toString(),
+           onSaved: (value) =>  expediente.edadMuscularLista[index].edadMuscular = double.parse(value)
+      ),
+      onPressed: (){},    
+    )),
+     DataCell(
+     TextButton(
+      child: TextFormField(initialValue: expediente.musculoLista[index].musculo.toString(),
+           onSaved: (value) =>  expediente.musculoLista[index].musculo = double.parse(value)
+      ),
+      onPressed: (){},    
+    )),
+  
+     DataCell(
+     TextButton(
+      child: TextFormField(initialValue: expediente.edadCorporalLista[index].edadCorporal.toString(),
+           onSaved: (value) =>  expediente.edadCorporalLista[index].edadCorporal = double.parse(value)
+      ),
+      onPressed: (){},    
+    )),
+  
+     DataCell(
+     TextButton(
+      child: TextFormField(initialValue: expediente.metabolismoBasalLista[index].metabolismoBasal.toString(),
+           onSaved: (value) =>  expediente.metabolismoBasalLista[index].metabolismoBasal = double.parse(value)
+      ),
+      onPressed: (){},    
+    )),
+  
+  
+  ];
+
+
+
+   
+
+   
+
    return listaDeCeldas;
+  
 }
+  
+  
+  
+//    List<DataCell> listaDeCeldas = [];
+//    datosDeExpedientes.forEach((element) {listaDeCeldas.add(DataCell(
+//      TextButton(
+//       child: TextFormField(initialValue: element.toString(),
+//            onSaved: (value) => element = double.parse(value)
+//       ),
+//       onPressed: (){},    
+//     )));});
+    
+//    return listaDeCeldas;
+// }
 
 
 //##################################################################### Widgets de menu de opciones ###################  
@@ -391,3 +569,8 @@ submit(){
 
 // DataCell(TextButton(child: TextFormField(initialValue: expediente.peso.toString(),
 //                       // onSaved: (value) => expediente.peso.add(double.parse(value)) ), onPressed: (){}))
+
+
+
+
+// {if(element[index] is double){return element[index] = double.parse(value);}else if(element[index] is String){return element[index] = value;}}
