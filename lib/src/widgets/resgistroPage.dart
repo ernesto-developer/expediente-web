@@ -7,6 +7,7 @@ import 'package:aplicacion_web/src/source/expediente.model.dart';
 
 import 'CamposDelFormulario.dart';
 
+
 class RegistroPageDG extends StatefulWidget {
   
   _RegistroPageDGState createState() => _RegistroPageDGState();
@@ -28,7 +29,8 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
     if (expeData != null){
       expediente = expeData;
     }
-
+    
+   
     Size size = MediaQuery.of(context).size;
    
     return Stack(
