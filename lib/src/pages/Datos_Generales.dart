@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:aplicacion_web/src/widgets/botones.dart';
-import 'package:aplicacion_web/src/widgets/menuLateral.dart';
+
 import 'package:aplicacion_web/src/widgets/resgistroPage.dart';
 
 class DatosGeneralesPage extends StatelessWidget {
@@ -17,7 +17,7 @@ class DatosGeneralesPage extends StatelessWidget {
         actions: [botonDeHome(context),],
         title: Text('Datos Generales')
       ),
-      drawer: MenuLateral(),
+    
      body: RegistroPageDG(),
     );
   

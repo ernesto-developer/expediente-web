@@ -2,7 +2,7 @@ import 'package:aplicacion_web/src/source/expediente.model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:aplicacion_web/src/widgets/botones.dart';
-import 'package:aplicacion_web/src/widgets/menuLateral.dart';
+
 
 class HomePage extends StatefulWidget {
 
@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
         title: Text('Expediente Clinico'),
           
       ),
-      drawer: MenuLateral(),
+    
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[

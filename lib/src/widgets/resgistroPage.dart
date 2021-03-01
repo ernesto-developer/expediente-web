@@ -15,7 +15,10 @@ class RegistroPageDG extends StatefulWidget {
 
 class _RegistroPageDGState extends State<RegistroPageDG> {
  
-  List genero = ['Masculino', 'Femenino'];
+  List genero     = ['Masculino', 'Femenino'];
+  List ganaPor    = ['Dia', 'Semana', 'Quincena', 'Mes', 'Año                                                  '];
+  List cocinaCon  = ['Gas', 'Parrilla electrica', 'Leña                                                '];
+  List tomaAguaDe = ['Llave', 'Clorada', 'Embotellada', 'Noria', 'Lluvia                                              '];
    
   final expedienteProvider = new ExpedientesProvider();
   final keyForm            = new GlobalKey<FormState>();
@@ -28,6 +31,8 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
     final ExpedienteModel expeData = ModalRoute.of(context).settings.arguments;
     if (expeData != null){
       expediente = expeData;
+      print(expediente.fechaNacimiento);
+      print(expediente.birthday);
     }
     
    
@@ -104,11 +109,13 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
                                         
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [ 
-                                          Text('Nombre: ${expediente.nombre}',style: TextStyle(fontSize: size.longestSide * .010)  ,),
+                                          Text('Nombre: ${expediente.nombre}',style: TextStyle(fontSize: size.longestSide * .008)  ,),
                                           Divider(),
-                                          Text('Telefono: ${expediente.telefono}'.toString(),style: TextStyle(fontSize: size.longestSide * .010)  ,),
+                                          Text(decisionDefecha(),style: TextStyle(fontSize: size.longestSide * .008)  ,),
                                           Divider(),
-                                          Text('Correo: ${expediente.correo}',style: TextStyle(fontSize: size.longestSide * .010)  ,)
+                                          Text(decisionDxMed(),style: TextStyle(fontSize: size.longestSide * .008)  ,),
+                                          Divider(),
+                                          Text(decisionDxNut(),style: TextStyle(fontSize: size.longestSide * .008)  ,)
                                         ],
                                       ),
                                     ),
@@ -138,10 +145,9 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
                                           //########################## Containers de campos de seleccion  ###########
                camposDeSeleccion(context, 'Datos Generales','datosGeneralesPage'),
                camposDeSeleccion(context, 'Antropometrias','antropometriasPage'),
-               camposDeSeleccion(context, 'Laboratorios','datosGeneralesPage'),
-               camposDeSeleccion(context, 'Antecedentes Patologicos Generales','datosGeneralesPage'),
-               camposDeSeleccion(context, 'Antecedentes Patologicos Familiares','datosGeneralesPage'),
-               camposDeSeleccion(context, 'Antecedentes Personales no Patologicos','datosGeneralesPage'),
+               camposDeSeleccion(context, 'Laboratorios','laboratoriosPage'),
+               camposDeSeleccion(context, 'Antecedentes Patologicos Generales','antecedentesPersonalesPage'),
+               camposDeSeleccion(context, '''Antecedentes Patologicos Familiares y antecedentes Personales no Patologicos''','antecedentesFamiliaresYNoPatologicos'),
                camposDeSeleccion(context, 'Frecuencia alimentaria','datosGeneralesPage'),
                camposDeSeleccion(context,'Raciones Habituales','datosGeneralesPage'),
                camposDeSeleccion(context, 'Calculo de la ingesta habitual','datosGeneralesPage'),
@@ -170,24 +176,30 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
       
-                  CamposDelFormulario(ancho: .25, icono: Icon(Icons.person), campoformulario:  TextFormField(initialValue: expediente.nombre,decoration: InputDecoration(labelText: 'Nombre'),
+                  CamposDelFormulario(ancho: .25,alto: .041, icono: Icon(Icons.person), campoformulario:  TextFormField(initialValue: expediente.nombre,decoration: InputDecoration(labelText: 'Nombre'),
                    onSaved: (value) => expediente.nombre = value, /* validator: validacion,*/ )),
 
-                Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [CamposDelFormulario(ancho: .13, campoformulario: TextFormField(initialValue: expediente.edad.toString(),decoration: InputDecoration(labelText: 'Edad'),
-                   onSaved: (value) => expediente.edad = int.parse(value) ),), CamposDelFormulario(ancho: .13,campoformulario:  TextFormField(initialValue: expediente.fn.toString(),decoration: InputDecoration(labelText: 'Fn'),
-                   onSaved: (value) => expediente.fn = value ))],),
+                Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+                  CamposDelFormulario(ancho: .13,alto: .041, campoformulario: TextFormField(initialValue: expediente.edad.toString(),decoration: InputDecoration(labelText: 'Edad'),
+                   onSaved: (value) => expediente.edad = int.parse(value) ),), 
+                   
+                  CamposDelFormulario(ancho: .13,alto: .041,campoformulario:  TextFormField(initialValue: expediente.birthday,decoration: InputDecoration(labelText: 'Fecha de Na.'),
+                   onSaved: (value) => expediente.birthday = value ))],),
                                       
-                 Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [CamposDelFormulario(ancho: .13, campoformulario:  menuOpt(),), CamposDelFormulario(ancho: .13,campoformulario: Padding(padding: const EdgeInsets.only(bottom: 3.0), 
+                 Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [CamposDelFormulario(ancho: .13,alto: .041, campoformulario:  menuOptGenero(),), CamposDelFormulario(ancho: .13,alto: .041,campoformulario: Padding(padding: const EdgeInsets.only(bottom: 3.0), 
                    child: TextFormField(initialValue: expediente.telefono.toString(),style: TextStyle(fontSize:  size.longestSide * .01),decoration: InputDecoration(labelText: 'Telefono'),
                      onSaved: (value) => expediente.telefono= int.parse(value), /* validator: validacion,*/ )))]),
 
-                  CamposDelFormulario(ancho: .25, icono: Icon(Icons.alternate_email_sharp), campoformulario:  TextFormField(initialValue: expediente.correo,decoration: InputDecoration(labelText: 'Email'),
+                  CamposDelFormulario(ancho: .25,alto: .041, icono: Icon(Icons.local_hospital), campoformulario:  TextFormField(initialValue: expediente.dxMedCorto,decoration: InputDecoration(labelText: 'Dx medico'),
+                   onSaved: (value) => expediente.dxMedCorto = value, /* validator: validacion,*/ )),
+                 
+                  CamposDelFormulario(ancho: .25,alto: .041, icono: Icon(Icons.alternate_email_sharp), campoformulario:  TextFormField(initialValue: expediente.correo,decoration: InputDecoration(labelText: 'Email'),
                    onSaved: (value) => expediente.correo = value, /* validator: validacion,*/ )),
 
-                  CamposDelFormulario(ancho: .25, icono: Icon(Icons.school_sharp),campoformulario:  TextFormField(initialValue: expediente.escolaridad,decoration: InputDecoration(labelText: 'Escolaridad'),
+                  CamposDelFormulario(ancho: .25,alto: .041, icono: Icon(Icons.school_sharp),campoformulario:  TextFormField(initialValue: expediente.escolaridad,decoration: InputDecoration(labelText: 'Escolaridad'),
                    onSaved: (value) => expediente.escolaridad = value, /* validator: validacion,*/ )),
 
-                  CamposDelFormulario(ancho: .25, icono: Icon(Icons.work), campoformulario:  TextFormField(initialValue: expediente.ocupacion,decoration: InputDecoration(labelText: 'Ocupacion'),
+                  CamposDelFormulario(ancho: .25,alto: .041, icono: Icon(Icons.work), campoformulario:  TextFormField(initialValue: expediente.ocupacion,decoration: InputDecoration(labelText: 'Ocupacion'),
                    onSaved: (value) => expediente.ocupacion = value, /* validator: validacion,*/ )),             
               ],
             ),
@@ -197,29 +209,26 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
                Column(
                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                     CamposDelFormulario(ancho: .25, icono: Icon(Icons.api), campoformulario:  TextFormField(initialValue: expediente.personasQueComen.toString(),decoration: InputDecoration(labelText: 'No. de personas que comen en casa'),
+                     CamposDelFormulario(ancho: .25,alto: .041, icono: Icon(Icons.api), campoformulario:  TextFormField(initialValue: expediente.personasQueComen.toString(),decoration: InputDecoration(labelText: 'No. de personas que comen en casa'),
                    onSaved: (value) => expediente.personasQueComen = int.parse(value), /* validator: validacion,*/ )),
 
-                     CamposDelFormulario(ancho: .25, icono: Icon(Icons.api), campoformulario:  TextFormField(initialValue: expediente.menoresDeEdad.toString(),decoration: InputDecoration(labelText: 'Menores de edad en casa'),
+                     CamposDelFormulario(ancho: .25,alto: .041, icono: Icon(Icons.api), campoformulario:  TextFormField(initialValue: expediente.menoresDeEdad.toString(),decoration: InputDecoration(labelText: 'Menores de edad en casa'),
                    onSaved: (value) => expediente.menoresDeEdad = int.parse(value), /* validator: validacion,*/ )),
 
-                     CamposDelFormulario(ancho: .25, icono: Icon(Icons.api), campoformulario:  TextFormField(initialValue: expediente.mayoresDeEdad.toString(),decoration: InputDecoration(labelText: 'Mayores de edad en casa'),
+                     CamposDelFormulario(ancho: .25,alto: .041, icono: Icon(Icons.api), campoformulario:  TextFormField(initialValue: expediente.mayoresDeEdad.toString(),decoration: InputDecoration(labelText: 'Mayores de edad en casa'),
                    onSaved: (value) => expediente.mayoresDeEdad = int.parse(value), /* validator: validacion,*/ )),
 
-                     CamposDelFormulario(ancho: .25, icono: Icon(Icons.api), campoformulario:  TextFormField(initialValue: expediente.gastosDeComida.toString(),decoration: InputDecoration(labelText: 'Gastos de comida en \$'),
+                     CamposDelFormulario(ancho: .25,alto: .041, icono: Icon(Icons.api), campoformulario:  TextFormField(initialValue: expediente.gastosDeComida.toString(),decoration: InputDecoration(labelText: 'Gastos de comida semanal \$'),
                    onSaved: (value) => expediente.gastosDeComida = int.parse(value), /* validator: validacion,*/ )),
 
-                     CamposDelFormulario(ancho: .25, icono: Icon(Icons.api), campoformulario:  TextFormField(initialValue: expediente.ganaPor,decoration: InputDecoration(labelText: 'Gana por ....?'),
-                   onSaved: (value) => expediente.ganaPor = value, /* validator: validacion,*/ )),
+                     CamposDelFormulario(ancho: .25,alto: .041, icono: Icon(Icons.api), campoformulario: menuOptGanaPor() ),
 
-                     CamposDelFormulario(ancho: .25, icono: Icon(Icons.api), campoformulario:  TextFormField(initialValue: expediente.cantidad.toString(),decoration: InputDecoration(labelText: 'Sueldo en \$'),
+                     CamposDelFormulario(ancho: .25,alto: .041, icono: Icon(Icons.api), campoformulario:  TextFormField(initialValue: expediente.cantidad.toString(),decoration: InputDecoration(labelText: 'Sueldo en \$'),
                    onSaved: (value) => expediente.cantidad = int.parse(value), /* validator: validacion,*/ )),
 
-                     CamposDelFormulario(ancho: .25, icono: Icon(Icons.api), campoformulario:  TextFormField(initialValue: expediente.cocinaCon,decoration: InputDecoration(labelText: 'cocina con...?'),
-                   onSaved: (value) => expediente.cocinaCon = value, /* validator: validacion,*/ )),
+                     CamposDelFormulario(ancho: .25,alto: .041, icono: Icon(Icons.api), campoformulario: menuOptCocinaCon()),
                    
-                     CamposDelFormulario(ancho: .25, icono: Icon(Icons.api), campoformulario:  TextFormField(initialValue: expediente.tomaAguaDe,decoration: InputDecoration(labelText: 'Toma agua de ...?'),
-                   onSaved: (value) => expediente.tomaAguaDe = value, /* validator: validacion,*/ )),
+                     CamposDelFormulario(ancho: .25,alto: .041, icono: Icon(Icons.api), campoformulario: menuOptTomaAguaDe()),
                   ],
                 ),
               )
@@ -282,16 +291,76 @@ Widget hojaDeTrabajo(BuildContext context,contenido){
   );
 }
 
-//##################################################################### Widgets de menu de opciones ###################  
-menuOpt(){
+//##################################################################### Widgets de menu de opciones GENERO ###################  
+menuOptGenero(){
+  final size = MediaQuery.of(context).size;
+  return  DropdownButton(style: TextStyle( fontSize: size.longestSide * .01),value: expediente.genero,items: getOpcionesGenero(),onChanged: (opt) {setState(() {expediente.genero = opt;});},); 
+}
+ List<DropdownMenuItem<String>> getOpcionesGenero() {
+    List<DropdownMenuItem<String>> lista = [];
+    genero.forEach((tipo) {lista.add(DropdownMenuItem(child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('Género:',style: TextStyle(fontSize: 14,color: Colors.black54),),
+        Text(tipo),
+      ],
+    ),value: tipo,));});
+    return lista;
+  }
+   
+//##################################################################### Widgets de menu de opciones GanaPor ###################  
+menuOptGanaPor(){
   final size = MediaQuery.of(context).size;
   return  Padding(
     padding: const EdgeInsets.all(4.0),
-    child: DropdownButton(style: TextStyle( fontSize: size.longestSide * .01),value: expediente.genero,items: getOpcionesDropdown(),onChanged: (opt) {setState(() {expediente.genero = opt;});},),); 
+    child: DropdownButton(style: TextStyle( fontSize: size.longestSide * .01),value: expediente.ganaPor,items: getOpcionesGanaPor(),onChanged: (opt) {setState(() {expediente.ganaPor = opt;});},),); 
 }
- List<DropdownMenuItem<String>> getOpcionesDropdown() {
+ List<DropdownMenuItem<String>> getOpcionesGanaPor() {
     List<DropdownMenuItem<String>> lista = [];
-    genero.forEach((tipo) {lista.add(DropdownMenuItem(child: Text(tipo),value: tipo,));});
+      ganaPor.forEach((tipo) {lista.add(DropdownMenuItem(child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('Gana por:',style: TextStyle(fontSize: 14,color: Colors.black54),),
+        Text(tipo),
+      ],
+    ),value: tipo,));});
+    return lista;
+  }
+   
+//##################################################################### Widgets de menu de opciones CocinaCon ###################  
+menuOptCocinaCon(){
+  final size = MediaQuery.of(context).size;
+  return  Padding(
+    padding: const EdgeInsets.all(4.0),
+    child: DropdownButton(style: TextStyle( fontSize: size.longestSide * .01),value: expediente.cocinaCon,items: getOpcionesCocinaCon(),onChanged: (opt) {setState(() {expediente.cocinaCon = opt;});},),); 
+}
+ List<DropdownMenuItem<String>> getOpcionesCocinaCon() {
+    List<DropdownMenuItem<String>> lista = [];
+      cocinaCon.forEach((tipo) {lista.add(DropdownMenuItem(child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('Cocina con:',style: TextStyle(fontSize: 14,color: Colors.black54),),
+        Text(tipo),
+      ],
+    ),value: tipo,));});
+    return lista;
+  }
+//##################################################################### Widgets de menu de opciones TomaAguaDe ###################  
+menuOptTomaAguaDe(){
+  final size = MediaQuery.of(context).size;
+  return  Padding(
+    padding: const EdgeInsets.all(4.0),
+    child: DropdownButton(style: TextStyle( fontSize: size.longestSide * .01),value: expediente.tomaAguaDe,items: getOpcionesTomaAgua(),onChanged: (opt) {setState(() {expediente.tomaAguaDe = opt;});},),); 
+}
+ List<DropdownMenuItem<String>> getOpcionesTomaAgua() {
+    List<DropdownMenuItem<String>> lista = [];
+      tomaAguaDe.forEach((tipo) {lista.add(DropdownMenuItem(child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('Toma agua de:',style: TextStyle(fontSize: 14,color: Colors.black54),),
+        Text(tipo),
+      ],
+    ),value: tipo,));});
     return lista;
   }
    
@@ -321,6 +390,22 @@ submit(){
  
   // mostrarSnackbar('Expediente Guardado'); ########### esto para usar el snackbar
   
+ }
+
+ decisionDefecha(){
+   if(expediente.fecha == null){
+     return 'Primera Cita: 00/00/0000';
+   }else{return 'Primera Cita ${expediente.fecha[0]}';}
+ }
+ decisionDxMed(){
+   if(expediente.dxMedCorto == null){
+     return 'DxMe:';
+   }else{return 'DxMe: ${expediente.dxMedCorto}';}
+ }
+ decisionDxNut(){
+   if(expediente.dxNutCorto == null){
+     return 'DxNu:';
+   }else{return 'DxNu: ${expediente.dxNutCorto}';}
  }
 
 

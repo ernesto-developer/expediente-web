@@ -5,10 +5,11 @@ import 'package:flutter/material.dart';
 class CamposDelFormulario extends StatelessWidget{
   
   double ancho;
+  double alto;
   Icon icono;
   Widget campoformulario;
 
-  CamposDelFormulario({this.ancho,this.icono,this.campoformulario});
+  CamposDelFormulario({this.ancho,this.alto,this.icono,this.campoformulario});
    ExpedienteModel expediente = new ExpedienteModel();
 
    final expedienteProvider = new ExpedientesProvider();
@@ -20,7 +21,7 @@ class CamposDelFormulario extends StatelessWidget{
     final size = MediaQuery.of(context).size;
     return  Container(
             width: size.longestSide * ancho,
-             height: size.longestSide * .041,                  
+             height: size.longestSide * alto,                  
                decoration: BoxDecoration(color: Colors.blue[300], borderRadius: BorderRadius.only(topRight: Radius.circular(50),bottomRight: Radius.circular(50))),
                   child:  Padding(
                     padding:  EdgeInsets.fromLTRB(6, 4, 6, 6),

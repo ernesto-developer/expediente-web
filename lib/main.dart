@@ -1,4 +1,7 @@
+import 'package:aplicacion_web/src/pages/antecedentes_personales_page.dart';
+import 'package:aplicacion_web/src/pages/antecendentes_familiares_no_patologicos.dart';
 import 'package:aplicacion_web/src/pages/antropometrias_page.dart';
+import 'package:aplicacion_web/src/pages/laboratorios_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:aplicacion_web/src/bloc/provider.dart';
@@ -32,12 +35,15 @@ class MyApp extends StatelessWidget {
         initialRoute: 'loginPage',
         routes: {
 
-          'loginPage'         : (BuildContext context) => LoginPage(),
-          'registroPage'      : (BuildContext context) => RegistroPage(),
-          'homePage'          : (BuildContext context) => HomePage(),
-          'escritorioPage'    : (BuildContext context) => EscritorioPage(),
-          'datosGeneralesPage': (BuildContext context) => DatosGeneralesPage(),
-          'antropometriasPage': (BuildContext context) => AntropomatriasPage(),
+          'loginPage'                             : (BuildContext context) => LoginPage(),
+          'registroPage'                          : (BuildContext context) => RegistroPage(),
+          'homePage'                              : (BuildContext context) => HomePage(),
+          'escritorioPage'                        : (BuildContext context) => EscritorioPage(),
+          'datosGeneralesPage'                    : (BuildContext context) => DatosGeneralesPage(),
+          'antropometriasPage'                    : (BuildContext context) => AntropomatriasPage(),
+          'laboratoriosPage'                      : (BuildContext context) => Laboratoriospage(),
+          'antecedentesPersonalesPage'            : (BuildContext context) => AntecedentesPersonalesPage(),
+          'antecedentesFamiliaresYNoPatologicos'  : (BuildContext context) => AntecedentesFamiliaresYNoPatologicos(),
         },
         theme: ThemeData(primaryColor: Colors.deepPurple),
       ),
