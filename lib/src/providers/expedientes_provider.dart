@@ -1,15 +1,17 @@
 import 'dart:convert';
+import 'package:aplicacion_web/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:http/http.dart'as http;
 import 'package:aplicacion_web/src/source/expediente.model.dart';
 
 class ExpedientesProvider{
 
   final String _url = 'https://expediente-web-default-rtdb.firebaseio.com';
+  final _prefs = new PreferenciasUsuario();
 
 
 Future<bool> crearExpedinete(ExpedienteModel expediente) async{
 
-    final url = '$_url/expedientes.json';
+    final url = '$_url/expedientes.json?auth=${_prefs.token}';
     final resp = await http.post(url, body: expedienteModelToJson(expediente));
     final decodeData = json.decode(resp.body);
 
@@ -19,7 +21,7 @@ Future<bool> crearExpedinete(ExpedienteModel expediente) async{
 }
 Future<bool> editarExpedinete(ExpedienteModel expediente) async{
 
-    final url = '$_url/expedientes/${expediente.id}.json';
+    final url = '$_url/expedientes/${expediente.id}.json?auth=${_prefs.token}';
     final resp = await http.put(url, body: expedienteModelToJson(expediente));
     final decodeData = json.decode(resp.body);
 
@@ -30,7 +32,7 @@ Future<bool> editarExpedinete(ExpedienteModel expediente) async{
 
 Future<List<ExpedienteModel>> cargarExpedientes() async {
 
-  final url  = '$_url/expedientes.json';
+  final url  = '$_url/expedientes.json?auth=${_prefs.token}';
   final resp = await http.get(url);
 
   final Map<String, dynamic>decodeData = json.decode(resp.body);
@@ -53,7 +55,7 @@ Future<List<ExpedienteModel>> cargarExpedientes() async {
 }
 
 Future<int> borrarExpediente(String id) async {
-  final url = '$_url/expedientes/$id.json';
+  final url = '$_url/expedientes/$id.json?auth=${_prefs.token}';
   final resp = await http.delete(url);
   print(resp.body);
   return 1;
