@@ -1,6 +1,7 @@
 import 'package:aplicacion_web/src/pages/antecedentes_personales_page.dart';
 import 'package:aplicacion_web/src/pages/antecendentes_familiares_no_patologicos.dart';
 import 'package:aplicacion_web/src/pages/antropometrias_page.dart';
+import 'package:aplicacion_web/src/pages/frecuencia_alimentaria_page.dart';
 import 'package:aplicacion_web/src/pages/laboratorios_page.dart';
 import 'package:flutter/material.dart';
 
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
           'laboratoriosPage'                      : (BuildContext context) => Laboratoriospage(),
           'antecedentesPersonalesPage'            : (BuildContext context) => AntecedentesPersonalesPage(),
           'antecedentesFamiliaresYNoPatologicos'  : (BuildContext context) => AntecedentesFamiliaresYNoPatologicos(),
+          'frecuenciaAlimentariaPage'                 : (BuildContext context) => FrecuenciaAlimentariaPage(),
         },
         theme: ThemeData(primaryColor: Colors.deepPurple),
       ),

@@ -169,7 +169,7 @@ class _AntecedentesFamiliaresYNoPatologicosState extends State<AntecedentesFamil
                camposDeSeleccion(context, 'Laboratorios','laboratoriosPage'),
                camposDeSeleccion(context, 'Antecedentes Patologicos Generales','antecedentesPersonalesPage'),
                camposDeSeleccion(context, '''Antecedentes Patologicos Familiares y antecedentes Personales no Patologicos''','antecedentesFamiliaresYNoPatologicos'),
-               camposDeSeleccion(context, 'Frecuencia alimentaria','datosGeneralesPage'),
+               camposDeSeleccion(context, 'Frecuencia alimentaria','frecuenciaAlimentariaPage'),
                camposDeSeleccion(context,'Raciones Habituales','datosGeneralesPage'),
                camposDeSeleccion(context, 'Calculo de la ingesta habitual','datosGeneralesPage'),
                camposDeSeleccion(context, 'Plan nutricional','datosGeneralesPage'),

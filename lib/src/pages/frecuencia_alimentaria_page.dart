@@ -5,17 +5,33 @@ import 'package:aplicacion_web/src/source/expediente.model.dart';
 import 'package:aplicacion_web/src/widgets/botones.dart';
 
 
-class AntropomatriasPage extends StatefulWidget {
+class FrecuenciaAlimentariaPage extends StatefulWidget {
     // final scaffoldKey  = new GlobalKey<ScaffoldState>(); ########### esto para usar el snackbar
 
   @override
-  _AntropomatriasPageState createState() => _AntropomatriasPageState();
+  _FrecuenciaAlimentariaPageState createState() => _FrecuenciaAlimentariaPageState();
 }
 
-class _AntropomatriasPageState extends State<AntropomatriasPage> {
+class _FrecuenciaAlimentariaPageState extends State<FrecuenciaAlimentariaPage> {
       
 
-  List<String> elementos = ['fecha','peso','estatura','imc','grasa %','cintura','cadera','pecho','edadMuscular','musculo','edadCorporal','metabolismoBasal'];
+  List<String> elementosBebidas = ['tipos de bebidas','dias'];
+  List<String> bebidasNombres = [
+
+      'Agua Simple',          
+      'Agua de frutas',       
+      'Jugo de fruta',        
+      'Refresco',             
+      'Alcoholicas',          
+      'Leche',                
+      'Yogurt',               
+      'Te',                   
+      'cafe',                 
+      'Concentrado en polvo', 
+  
+  
+  ];
+  
   final expedienteProvider = new ExpedientesProvider();
   final keyForm            = new GlobalKey<FormState>();
   
@@ -23,23 +39,8 @@ class _AntropomatriasPageState extends State<AntropomatriasPage> {
 
   // ############################################################ instancias de las clases #####################
   ExpedienteModel expediente = new ExpedienteModel();
-  Estatura estaturaClase = new Estatura();
-  Peso pesoClase = new Peso();
-  Imc imcClase = new Imc();
-  Grasa grasaClase = new Grasa();
-  Cintura cinturaClase = new Cintura();
-  Cadera caderaClase = new Cadera();
-  Pecho pechoClase = new Pecho();
-  EdadMuscular edadMuscularClase = new EdadMuscular();
-  EdadCorporal edadCorporalClase = new EdadCorporal();
-  Musculo musculoClase = new Musculo();
-  MetabolismoBasal metabolismoBasalClase = new MetabolismoBasal();
-
+ 
   int indice;
-  double calculoimc = 7.0;
-  
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +54,7 @@ class _AntropomatriasPageState extends State<AntropomatriasPage> {
      
     
     Size size = MediaQuery.of(context).size;
+    
    
    
     return Scaffold(
@@ -60,7 +62,7 @@ class _AntropomatriasPageState extends State<AntropomatriasPage> {
       appBar: AppBar(
         centerTitle: true,
         actions: [botonDeHome(context),],
-        title: Text('Antropometrias')
+        title: Text('Frecuencia Alimentaria')
       ),
     
      body:  Stack(
@@ -166,9 +168,9 @@ class _AntropomatriasPageState extends State<AntropomatriasPage> {
                   ),
                 ),
                                           //########################## Containers de campos de seleccion  ###########
-              camposDeSeleccion(context, 'Datos Generales','datosGeneralesPage'),
+               camposDeSeleccion(context, 'Datos Generales','datosGeneralesPage'),
                camposDeSeleccion(context, 'Antropometrias','antropometriasPage'),
-               camposDeSeleccion(context, 'Laboratorios','laboratoriosPage'),
+               camposDeSeleccion(context, 'Laboratorios','FrecuenciaAlimentariaPage'),
                camposDeSeleccion(context, 'Antecedentes Patologicos Generales','antecedentesPersonalesPage'),
                camposDeSeleccion(context, '''Antecedentes Patologicos Familiares y antecedentes Personales no Patologicos''','antecedentesFamiliaresYNoPatologicos'),
                camposDeSeleccion(context, 'Frecuencia alimentaria','frecuenciaAlimentariaPage'),
@@ -184,12 +186,35 @@ class _AntropomatriasPageState extends State<AntropomatriasPage> {
         Form(
           key: keyForm,
           child:
-           hojaDeTrabajo(context,
-          DataTable( columnSpacing: 13,columns: datosColumna(),
-          rows: filas()
-          ), 
-          ),
+          Container(
+          
+          width: size.width * .75,
+          height: size.height,
+          color: Colors.transparent,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  hojaDeTrabajo(context, "Bebidas",DataTable(dataRowHeight: 20,columnSpacing: 100,columns: datosColumna(elementosBebidas),rows: dataRowBebidas(),)),
+                  hojaDeTrabajo(context, "Pan Y Tortilla",Text("hola mundo")),
+                  hojaDeTrabajo(context, "De origen animal",Text("hola mundo"))
+                 ]
+                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  hojaDeTrabajo(context, "Grasas",Text("hola mundo")),
+                  hojaDeTrabajo(context, "Azucar",Text("hola mundo")),
+                  hojaDeTrabajo(context, "Antojos",Text("hola mundo")),
+                 ]
+                ),
+            ],
+          )
+          )
         )
+        
       ],
     ),
       ]
@@ -197,14 +222,15 @@ class _AntropomatriasPageState extends State<AntropomatriasPage> {
     );
   }
   
+  
   //###################################################################### Widget de hojas de trabajo ######################
-Widget hojaDeTrabajo(BuildContext context,contenido){
+Widget hojaDeTrabajo(BuildContext context,titulo,contenido){
   final size = MediaQuery.of(context).size;
   return  SlideInDown(
     duration: Duration(seconds: 1),
       child: Container( 
-              width: size.longestSide  * .745,
-              height: size.longestSide * .45,
+              width: size.longestSide  * .24,
+              height: size.longestSide * .22,
               decoration: BoxDecoration(
                  boxShadow: [
                    BoxShadow(color: Colors.black45,blurRadius: 3.0,offset: Offset(0.0, 5.0),spreadRadius: 2.0)
@@ -221,7 +247,19 @@ Widget hojaDeTrabajo(BuildContext context,contenido){
                    bottomLeft: Radius.circular(15),
                  )
              ),
-               child: contenido
+               child: Padding(
+                 padding: const EdgeInsets.all(8.0),
+                 child: Column(
+                   
+                   children: [
+                     Text(titulo,style: TextStyle(fontSize: size.longestSide * 0.015),),
+                     Divider(),
+                     contenido
+              
+                  ],
+                   
+              ),
+               )
      ),
   );
 }
@@ -249,241 +287,29 @@ Widget hojaDeTrabajo(BuildContext context,contenido){
 
 //##################################################################### Widgets de menu de dataTable ###################  
 
-List<DataColumn> datosColumna(){
+List<DataColumn> datosColumna(alimento){
   List<DataColumn> lista = [];
-  elementos.forEach((element) {lista.add(DataColumn(label: Text(element)));});
+  alimento.forEach((element) {lista.add(DataColumn(label: Text(element)));});
   return lista;
 }
 
-List<DataRow> filas(){        
+dataRowBebidas(){
 
-  if (expediente.fecha == null){expediente.fecha = ['00-00-0000'];}else if (expediente.fecha.contains('00-00-0000')){}else{expediente.fecha.add('00-00-0000');}
-  
-  if (expediente.estaturaLista == null){
-    expediente.estaturaLista = [estaturaClase];    
-  }else if(expediente.estaturaLista[0].estatura == 0.0){
-  } else if ( expediente.estaturaLista.length < expediente.fecha.length ){
-    expediente.estaturaLista.add(estaturaClase);
-  }
+  List<DataRow> lista = [
 
-  if (expediente.pesoLista == null){
-    expediente.pesoLista = [pesoClase];    
-  }else if(expediente.pesoLista[0].peso == 0.0){
-  } else if ( expediente.pesoLista.length < expediente.fecha.length ){
-    expediente.pesoLista.add(pesoClase);
-  }
+    DataRow(cells: [  DataCell(TextButton(child: Text(bebidasNombres[0],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.aguaSimple,onSaved        : (value) => expediente.aguaSimple = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(bebidasNombres[1],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.aguaDeFrutas,onSaved      : (value) => expediente.aguaDeFrutas = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(bebidasNombres[2],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.jugoDeFrutas,onSaved      : (value) => expediente.jugoDeFrutas = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(bebidasNombres[3],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.refresco,onSaved          : (value) => expediente.refresco = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(bebidasNombres[4],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.alcoholicas,onSaved       : (value) => expediente.alcoholicas = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(bebidasNombres[5],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.leche,onSaved             : (value) => expediente.leche = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(bebidasNombres[6],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.yogurt,onSaved            : (value) => expediente.yogurt = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(bebidasNombres[7],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.te,onSaved                : (value) => expediente.te = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(bebidasNombres[8],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.cafe,onSaved              : (value) => expediente.cafe = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(bebidasNombres[9],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.concentradoEnPolvo,onSaved: (value) => expediente.concentradoEnPolvo = value)),]),
 
-  if (expediente.imcLista == null){
-    expediente.imcLista = [imcClase];    
-  }else if(expediente.imcLista[0].imc == 0.0){
-  } else if ( expediente.imcLista.length < expediente.fecha.length ){
-    expediente.imcLista.add(imcClase);
-  }
-
-  if (expediente.grasaLista == null){
-    expediente.grasaLista = [grasaClase];
-  }else if (expediente.grasaLista[0].grasa == 0.0){    
-  }else if ( expediente.grasaLista.length < expediente.fecha.length ){
-    expediente.grasaLista.add(grasaClase);
-  }
-  
-  if (expediente.cinturaLista == null){
-    expediente.cinturaLista = [cinturaClase];
-  }else if (expediente.cinturaLista[0].cintura == 0.0){    
-  }else if ( expediente.cinturaLista.length < expediente.fecha.length ){
-    expediente.cinturaLista.add(cinturaClase);
-  }
-  
-  if (expediente.caderaLista == null){
-    expediente.caderaLista = [caderaClase];
-  }else if (expediente.caderaLista[0].cadera == 0.0){    
-  }else if ( expediente.caderaLista.length < expediente.fecha.length ){
-    expediente.caderaLista.add(caderaClase);
-  }
-  
-  if (expediente.pechoLista == null){
-    expediente.pechoLista = [pechoClase];
-  }else if (expediente.pechoLista[0].pecho == 0.0){    
-  }else if ( expediente.pechoLista.length < expediente.fecha.length ){
-    expediente.pechoLista.add(pechoClase);
-  }
-  
-  if (expediente.edadMuscularLista == null){
-    expediente.edadMuscularLista = [edadMuscularClase];
-  }else if (expediente.edadMuscularLista[0].edadMuscular == 0.0){    
-  }else if ( expediente.edadMuscularLista.length < expediente.fecha.length ){
-    expediente.edadMuscularLista.add(edadMuscularClase);
-  }
-  
-  if (expediente.musculoLista == null){
-    expediente.musculoLista = [musculoClase];
-  }else if (expediente.musculoLista[0].musculo == 0.0){    
-  }else if ( expediente.musculoLista.length < expediente.fecha.length ){
-    expediente.musculoLista.add(musculoClase);
-  }
- 
-  if (expediente.edadCorporalLista == null){
-    expediente.edadCorporalLista = [edadCorporalClase];
-  }else if (expediente.edadCorporalLista[0].edadCorporal == 0.0){    
-  }else if ( expediente.edadCorporalLista.length < expediente.fecha.length ){
-    expediente.edadCorporalLista.add(edadCorporalClase);
-  }
-  
-  if (expediente.metabolismoBasalLista == null){
-    expediente.metabolismoBasalLista = [metabolismoBasalClase];
-  }else if (expediente.metabolismoBasalLista[0].metabolismoBasal == 0.0){    
-  }else if ( expediente.metabolismoBasalLista.length < expediente.fecha.length ){
-    expediente.metabolismoBasalLista.add(metabolismoBasalClase);
-  }
-
-  
-  List<DataRow> lista = [];
-  for (var i = 0; i < expediente.fecha.length; i++){
-    lista.add(DataRow(cells: celdas(i),));
-    indice = i;
-  }
-// print(indice);
-  return lista;
-}
-
-       
-
-
-List<DataCell> celdas(int index){
-  
-   List<DataCell> listaDeCeldas = [
-    
-     DataCell(
-     TextButton(
-      
-      child: TextFormField( decoration: InputDecoration(filled: true,fillColor: Colors.transparent), initialValue: expediente.fecha[index].toString(),
-           onSaved: (value) => expediente.fecha[index] = value
-      ),
-      onPressed: (){},    
-    )),
-    
-     DataCell(
-     TextButton(
-        onLongPress: () { menuDeColores(expediente.pesoLista);},
-      child: TextFormField( decoration: InputDecoration(filled: true,fillColor: decicionDeColor(expediente.pesoLista[index].color)), initialValue: expediente.pesoLista[index].peso.toString(),
-           onSaved: (value) => expediente.pesoLista[index].peso = double.parse(value),
-           onChanged: (value) {
-             expediente.pesoLista[index].peso = double.parse(value);
-            //  print(expediente.pesoLista[index].peso);
-           },
-      ),
-      onPressed: (){},    
-    )),
-     DataCell(
-     TextButton(
-         onLongPress: () { menuDeColores(expediente.estaturaLista);},
-      child: TextFormField( decoration: InputDecoration(filled: true,fillColor: decicionDeColor(expediente.estaturaLista[index].color)), initialValue: expediente.estaturaLista[index].estatura.toString(),
-           onSaved: (value) => expediente.estaturaLista[index].estatura = double.parse(value),
-           onChanged: (value) {
-             expediente.estaturaLista[index].estatura = double.parse(value);
-              double a = expediente.pesoLista[index].peso;
-             double b = expediente.estaturaLista[index].estatura * expediente.estaturaLista[index].estatura;
-             double calculo = a / b;   
-             expediente.imcLista[index].imc = calculo; 
-             calculoimc = calculo;            
-            
-           },
-      ),
-      onPressed: (){},    
-    )),
-     DataCell(
-     TextButton(
-       
-        onLongPress: () { menuDeColores(expediente.imcLista);},
-      child: TextFormField( decoration: InputDecoration(filled: true,fillColor:  decicionDeColor(expediente.imcLista[index].color)), 
-           onSaved: (value) => expediente.imcLista[index].imc = double.parse(value),
-           onTap: () {
-             
-             List imc = [Text("$calculoimc")];
-             
-       showMenu(context: context, position: RelativeRect.fill, items: imc.map((imc){
-        return PopupMenuItem(
-          child: imc,
-          value: imc,
-        );
-      }).toList());             
-           },
-           initialValue: expediente.imcLista[index].imc.toString(),
-          //  onChanged: (calculo){}
-      ),
-      onPressed: (){},  
-    )),
-     DataCell(
-     TextButton(
-        onLongPress: () { menuDeColores(expediente.grasaLista);}, 
-      child: TextFormField( decoration: InputDecoration(filled: true,fillColor:  decicionDeColor(expediente.grasaLista[index].color)), initialValue: expediente.grasaLista[index].grasa.toString(),
-           onSaved: (value) =>  expediente.grasaLista[index].grasa = double.parse(value)
-      ),
-      onPressed: (){},    
-    )),
-     DataCell(
-     TextButton(
-         onLongPress: () { menuDeColores(expediente.cinturaLista);},
-       child: TextFormField( decoration: InputDecoration(filled: true,fillColor:  decicionDeColor(expediente.cinturaLista[index].color)), initialValue: expediente.cinturaLista[index].cintura.toString(),
-           onSaved: (value) =>  expediente.cinturaLista[index].cintura = double.parse(value)
-      ),
-      onPressed: (){},    
-    )),
-     DataCell(
-     TextButton(
-       onLongPress: () { menuDeColores(expediente.caderaLista);},  
-     child: TextFormField( decoration: InputDecoration(filled: true,fillColor:  decicionDeColor(expediente.caderaLista[index].color)), initialValue: expediente.caderaLista[index].cadera.toString(),
-           onSaved: (value) =>  expediente.caderaLista[index].cadera = double.parse(value)
-      ),
-      onPressed: (){},    
-    )),
-     DataCell(
-     TextButton(
-         onLongPress: () { menuDeColores(expediente.pechoLista);},
-      child: TextFormField( decoration: InputDecoration(filled: true,fillColor:  decicionDeColor(expediente.pechoLista[index].color)), initialValue: expediente.pechoLista[index].pecho.toString(),
-           onSaved: (value) =>  expediente.pechoLista[index].pecho = double.parse(value)
-      ),
-      onPressed: (){},    
-    )),
-     DataCell(
-     TextButton(
-         onLongPress: () { menuDeColores(expediente.edadMuscularLista);},
-       child: TextFormField( decoration: InputDecoration(filled: true,fillColor:  decicionDeColor(expediente.edadMuscularLista[index].color)), initialValue: expediente.edadMuscularLista[index].edadMuscular.toString(),
-           onSaved: (value) =>  expediente.edadMuscularLista[index].edadMuscular = double.parse(value)
-      ),
-      onPressed: (){},    
-    )),
-     DataCell(
-     TextButton(
-        onLongPress: () { menuDeColores(expediente.musculoLista);},    
-      child: TextFormField( decoration: InputDecoration(filled: true,fillColor:  decicionDeColor(expediente.musculoLista[index].color)), initialValue: expediente.musculoLista[index].musculo.toString(),
-           onSaved: (value) =>  expediente.musculoLista[index].musculo = double.parse(value)
-      ),
-      onPressed: (){},    
-    )),
-  
-     DataCell(
-     TextButton(
-         onLongPress: () { menuDeColores(expediente.edadCorporalLista);}, 
-      child: TextFormField( decoration: InputDecoration(filled: true,fillColor:  decicionDeColor(expediente.edadCorporalLista[index].color)), initialValue: expediente.edadCorporalLista[index].edadCorporal.toString(),
-           onSaved: (value) =>  expediente.edadCorporalLista[index].edadCorporal = double.parse(value)
-      ),
-      onPressed: (){},    
-    )),
-  
-     DataCell(
-     TextButton(
-        onLongPress: () { menuDeColores(expediente.metabolismoBasalLista);}, 
-      child: TextFormField( decoration: InputDecoration(filled: true,fillColor:  decicionDeColor(expediente.metabolismoBasalLista[index].color)), initialValue: expediente.metabolismoBasalLista[index].metabolismoBasal.toString(),
-           onSaved: (value) =>  expediente.metabolismoBasalLista[index].metabolismoBasal = double.parse(value)
-      ),
-      onPressed: (){},    
-    )),
-  
-  
   ];
-   return listaDeCeldas;
-  
+  return lista;
 }
 
    //################################################################## Widgets del boton de guardar ################### 
@@ -558,7 +384,11 @@ submit(){
    }else{return 'DxNu: ${expediente.dxNutCorto}';}
  }
 
+
+  
 }
+
+
 
 
 

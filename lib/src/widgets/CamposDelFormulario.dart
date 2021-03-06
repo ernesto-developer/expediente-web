@@ -2,6 +2,7 @@ import 'package:aplicacion_web/src/providers/expedientes_provider.dart';
 import 'package:aplicacion_web/src/source/expediente.model.dart';
 import 'package:flutter/material.dart';
  
+// ignore: must_be_immutable
 class CamposDelFormulario extends StatelessWidget{
   
   double ancho;

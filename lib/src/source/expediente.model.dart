@@ -100,6 +100,55 @@ class ExpedienteModel {
         this.colComida = '',
         this.cena = '',
         this.colCena = '',
+
+        // ##########################################  Frecuencia alimentaria #############################
+
+        this.aguaSimple = '',
+        this.aguaDeFrutas = '',
+        this.jugoDeFrutas = '',
+        this.refresco = '',
+        this.alcoholicas = '',
+        this.leche = '',
+        this.yogurt = '',
+        this.concentradoEnPolvo = '',
+        this.te = '',
+        this.cafe = '',
+        this.panDulce = '',
+        this.panIntegral = '',
+        this.panBlanco = '',
+        this.deCebada = '',
+        this.deCenteno = '',
+        this.tortillasBlancas = '',
+        this.trotillasInrtegrales = '',
+        this.tortillasDeMaiz = '',
+        this.embutidos = '',
+        this.carneDeRes = '',
+        this.carneDePuerco = '',
+        this.pollo = '',
+        this.pescado = '',
+        this.atun = '',
+        this.queso = '',
+        this.huevo = '',
+        this.mayonesa = '',
+        this.margarina = '',
+        this.mantequilla = '',
+        this.manteca = '',
+        this.aceite = '',
+        this.aguacate = '',
+        this.semillas = '',
+        this.nieve = '',
+        this.nieveDeYogurt = '',
+        this.tejuino = '',
+        this.jericaya = '',
+        this.raspados = '',
+        this.miel = '',
+        this.chocolate = '',
+        this.tacos = '',
+        this.hotDog = '',
+        this.hamaburgesas = '',
+        this.pizza = '',
+        this.nachos = '',
+        this.menudo = '',
        
 
 
@@ -197,6 +246,56 @@ class ExpedienteModel {
     String colComida;
     String cena;
     String colCena;
+
+   //############################################ Frecua=encia alimentaria #############################
+
+    String aguaSimple;
+    String aguaDeFrutas;
+    String jugoDeFrutas;
+    String refresco;
+    String alcoholicas;
+    String leche;
+    String yogurt;
+    String concentradoEnPolvo;
+    String te;
+    String cafe;
+    String panDulce;
+    String panIntegral;
+    String panBlanco;
+    String deCebada;
+    String deCenteno;
+    String tortillasBlancas;
+    String trotillasInrtegrales;
+    String tortillasDeMaiz;
+    String embutidos;
+    String carneDeRes;
+    String carneDePuerco;
+    String pollo;
+    String pescado;
+    String atun;
+    String queso;
+    String huevo;
+    String mayonesa;
+    String margarina;
+    String mantequilla;
+    String manteca;
+    String aceite;
+    String aguacate;
+    String semillas;
+
+    String nieve;
+    String nieveDeYogurt;
+    String tejuino;
+    String jericaya;
+    String raspados;
+    String miel;
+    String chocolate;
+    String tacos;
+    String hotDog;
+    String hamaburgesas;
+    String pizza;
+    String nachos;
+    String menudo;
     
     
 
@@ -370,12 +469,62 @@ class ExpedienteModel {
         "colComida"             : instance.colComida,
         "cena"                  : instance.cena,
         "colCena"               : instance.colCena,
-              
-       
+
+        "aguaSimple"            : instance.aguaSimple,
+        "aguaDeFrutas"          : instance.aguaDeFrutas,
+        "jugoDeFrutas"          : instance.jugoDeFrutas,
+        "refresco"              : instance.refresco,
+        "alcoholicas"           : instance.alcoholicas,
+        "leche"                 : instance.leche,
+        "yogurt"                : instance.yogurt,
+        "concentradoEnPolvo"    : instance.concentradoEnPolvo,
+        "te"                    : instance.te,
+        "Cafe"                  : instance.cafe,
+        "panDulce"              : instance.panDulce,
+        "panIntegral"           : instance.panIntegral,
+        "panBlanco"             : instance.panBlanco,
+        "deCebada"              : instance.deCebada,
+        "deCenteno"             : instance.deCenteno,
+        "tortillasBlancas"      : instance.tortillasBlancas,
+        "trotillasInrtegrales"  : instance.trotillasInrtegrales,
+        "tortillasDeMaiz"       : instance.tortillasDeMaiz,
+        "embutidos"             : instance.embutidos,
+        "carneDeRes"            : instance.carneDeRes,
+        "carneDePuerco"         : instance.carneDePuerco,
+        "pollo"                 : instance.pollo,
+        "pescado"               : instance.pescado,
+        "atun"                  : instance.atun,
+        "queso"                 : instance.queso,
+        "huevo"                 : instance.huevo,
+        "mayonesa"              : instance.mayonesa,
+        "margarina"             : instance.margarina,
+        "mantequilla"           : instance.mantequilla,
+        "manteca"               : instance.manteca,
+        "aceite"                : instance.aceite,
+        "aguacate"              : instance.aguacate,
+        "semillas"              : instance.semillas,
+
+        "nieve"                 : instance.nieve,
+        "nieveDeYogurt"         : instance.nieveDeYogurt,
+        "tejuino"               : instance.tejuino,
+        "jericaya"              : instance.jericaya,
+        "raspados"              : instance.raspados,
+        "miel"                  : instance.miel,
+        "chocolate"             : instance.chocolate,
+        "tacos"                 : instance.tacos,
+        "hotDog"                : instance.hotDog,
+        "hamaburgesas"          : instance.hamaburgesas,
+        "pizza"                 : instance.pizza,
+        "nachos"                : instance.nachos,
+        "menudo"                : instance.menudo,
     };
-  }
+    }
 }
 
+              
+       
+    
+ 
  
 
 //################################################################################  FromJson  ##########################
@@ -572,6 +721,54 @@ class ExpedienteModel {
         colComida            : json["colComida"],
         cena                 : json["cena"],
         colCena              : json["colCena"],
+
+        aguaSimple           : json["aguaSimple"],
+        aguaDeFrutas         : json["aguaDeFrutas"],
+        jugoDeFrutas         : json["jugoDeFrutas"],
+        refresco             : json["refresco"],
+        alcoholicas          : json["alcoholicas"],
+        leche                : json["leche"],
+        yogurt               : json["yogurt"],
+        concentradoEnPolvo   : json["concentradoEnPolvo"],
+        te                   : json["te"],
+        cafe                 : json["Cafe"],
+        panDulce             : json["panDulce"],
+        panIntegral          : json["panIntegral"],
+        panBlanco            : json["panBlanco"],
+        deCebada             : json["deCebada"],
+        deCenteno            : json["deCenteno"],
+        tortillasBlancas     : json["tortillasBlancas"],
+        trotillasInrtegrales : json["trotillasInrtegrales"],
+        tortillasDeMaiz      : json["tortillasDeMaiz"],
+        embutidos            : json["embutidos"],
+        carneDeRes           : json["carneDeRes"],
+        carneDePuerco        : json["carneDePuerco"],
+        pollo                : json["pollo"],
+        pescado              : json["pescado"],
+        atun                 : json["atun"],
+        queso                : json["queso"],
+        huevo                : json["huevo"],
+        mayonesa             : json["mayonesa"],
+        margarina            : json["margarina"],
+        mantequilla          : json["mantequilla"],
+        manteca              : json["manteca"],
+        aceite               : json["aceite"],
+        aguacate             : json["aguacate"],
+        semillas             : json["semillas"],
+
+        nieve                : json["nieve"],
+        nieveDeYogurt        : json["nieveDeYogurt"],
+        tejuino              : json["tejuino"],
+        jericaya             : json["jericaya"],
+        raspados             : json["raspados"],
+        miel                 : json["miel"],
+        chocolate            : json["chocolate"],
+        tacos                : json["tacos"],
+        hotDog               : json["hotDog"],
+        hamaburgesas         : json["hamaburgesas"],
+        pizza                : json["pizza"],
+        nachos               : json["nachos"],
+        menudo               : json["menudo"],
 
    );
 
