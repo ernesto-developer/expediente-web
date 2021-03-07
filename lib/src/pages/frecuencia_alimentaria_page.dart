@@ -15,7 +15,7 @@ class FrecuenciaAlimentariaPage extends StatefulWidget {
 class _FrecuenciaAlimentariaPageState extends State<FrecuenciaAlimentariaPage> {
       
 
-  List<String> elementosBebidas = ['tipos de bebidas','dias'];
+  List<String> elementosBebidas = ['Tipos de bebidas','dias'];
   List<String> bebidasNombres = [
 
       'Agua Simple',          
@@ -28,9 +28,71 @@ class _FrecuenciaAlimentariaPageState extends State<FrecuenciaAlimentariaPage> {
       'Te',                   
       'cafe',                 
       'Concentrado en polvo', 
-  
+  ];
+  List<String>elementosPanes = ['Tipos de panes y tortillas' , 'dias'];
+  List<String>panesNombres = [
+
+    'Pan Dulce,Marinela Bimbo etc.',
+    'Pan integral',
+    'Pan Blanco',
+    'Pan de Cebada',
+    'Pan de Centeno',
+    'Tortillas Blancas',
+    'Tortillas Integrales',
+    'Tortillas de maiz',
+  ];
+  List<String> elementosDeAnimal = ['De origen animal', 'dias'];
+  List<String> deAnimalNombre = [
+
+    'Enbutidos',
+    'Carne de res',
+    'Carne de puerco',
+    'Pollo',
+    'Pescado',
+    'Atun',
+    'Queso',
+    'Huevo'
+
+  ];
+  List<String> elementosGrasas = ['Grasas', 'dias'];
+  List<String> grasasNombre = [
+
+    'Mayonesa',
+    'Margarina',
+    'Mantequilla',
+    'Manteca',
+    'Aceite',
+    'Aguacate',
+    'Semillas'
+
   
   ];
+
+  List<String> elementosAzucares = ['Azucar', 'dias'];
+  List<String> azucarNombres = [
+
+    'Nieve',
+    'Nieve de yogurt',
+    'Tejuino',
+    'jericaya',
+    'Raspados',
+    'Miel',
+    'Chocolate'
+
+  ];
+
+  List<String> elementosAntojos = ['Antojos', 'dias'];
+  List<String> antojosNombres =[
+
+    'Tacos',
+    'Hot- Dogs',
+    'Hamburgesas',
+    'Pizza',
+    'Nachos',
+    'Menudo'
+
+  ];
+
   
   final expedienteProvider = new ExpedientesProvider();
   final keyForm            = new GlobalKey<FormState>();
@@ -174,7 +236,7 @@ class _FrecuenciaAlimentariaPageState extends State<FrecuenciaAlimentariaPage> {
                camposDeSeleccion(context, 'Antecedentes Patologicos Generales','antecedentesPersonalesPage'),
                camposDeSeleccion(context, '''Antecedentes Patologicos Familiares y antecedentes Personales no Patologicos''','antecedentesFamiliaresYNoPatologicos'),
                camposDeSeleccion(context, 'Frecuencia alimentaria','frecuenciaAlimentariaPage'),
-               camposDeSeleccion(context,'Raciones Habituales','datosGeneralesPage'),
+               camposDeSeleccion(context,'Raciones Habituales','racionesHabitualesPage'),
                camposDeSeleccion(context, 'Calculo de la ingesta habitual','datosGeneralesPage'),
                camposDeSeleccion(context, 'Plan nutricional','datosGeneralesPage'),
                camposDeSeleccion(context, 'Nota de evolucion','datosGeneralesPage'),
@@ -198,16 +260,16 @@ class _FrecuenciaAlimentariaPageState extends State<FrecuenciaAlimentariaPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   hojaDeTrabajo(context, "Bebidas",DataTable(dataRowHeight: 20,columnSpacing: 100,columns: datosColumna(elementosBebidas),rows: dataRowBebidas(),)),
-                  hojaDeTrabajo(context, "Pan Y Tortilla",Text("hola mundo")),
-                  hojaDeTrabajo(context, "De origen animal",Text("hola mundo"))
+                  hojaDeTrabajo(context, "Pan Y Tortilla",DataTable(dataRowHeight: 20,columnSpacing: 100,columns: datosColumna(elementosPanes),rows: dataRowPanes(),)),
+                  hojaDeTrabajo(context, "De origen animal",DataTable(dataRowHeight: 20,columnSpacing: 100,columns: datosColumna(elementosDeAnimal),rows: dataRowDeAnimal(),)),
                  ]
                 ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  hojaDeTrabajo(context, "Grasas",Text("hola mundo")),
-                  hojaDeTrabajo(context, "Azucar",Text("hola mundo")),
-                  hojaDeTrabajo(context, "Antojos",Text("hola mundo")),
+                  hojaDeTrabajo(context, "Grasas",DataTable(dataRowHeight: 20,columnSpacing: 100,columns: datosColumna(elementosGrasas),rows: dataRowDeGrasas(),)),
+                  hojaDeTrabajo(context, "Azucar",DataTable(dataRowHeight: 20,columnSpacing: 100,columns: datosColumna(elementosAzucares),rows: dataRowDeAzucares(),)),
+                  hojaDeTrabajo(context, "Antojos",DataTable(dataRowHeight: 20,columnSpacing: 100,columns: datosColumna(elementosAntojos),rows: dataRowDeAntojos(),)),
                  ]
                 ),
             ],
@@ -311,6 +373,102 @@ dataRowBebidas(){
   ];
   return lista;
 }
+
+dataRowPanes(){
+
+  List<DataRow> lista = [
+
+    DataRow(cells: [  DataCell(TextButton(child: Text(panesNombres[0],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.panDulce,onSaved             : (value) => expediente.panDulce = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(panesNombres[1],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.panIntegral,onSaved          : (value) => expediente.panIntegral = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(panesNombres[2],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.panBlanco,onSaved            : (value) => expediente.panBlanco = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(panesNombres[3],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.deCebada,onSaved             : (value) => expediente.deCebada = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(panesNombres[4],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.deCenteno,onSaved            : (value) => expediente.deCenteno = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(panesNombres[5],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.tortillasBlancas,onSaved     : (value) => expediente.tortillasBlancas = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(panesNombres[6],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.trotillasInrtegrales,onSaved : (value) => expediente.trotillasInrtegrales = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(panesNombres[7],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.tortillasDeMaiz,onSaved      : (value) => expediente.tortillasDeMaiz = value)),]),
+  
+
+  ];
+  return lista;
+
+}
+dataRowDeAnimal(){
+
+  List<DataRow> lista = [
+
+    DataRow(cells: [  DataCell(TextButton(child: Text(deAnimalNombre[0],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.embutidos,onSaved      : (value) => expediente.embutidos = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(deAnimalNombre[1],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.carneDeRes,onSaved     : (value) => expediente.carneDeRes = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(deAnimalNombre[2],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.carneDePuerco,onSaved  : (value) => expediente.carneDePuerco = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(deAnimalNombre[3],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.pollo,onSaved          : (value) => expediente.pollo = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(deAnimalNombre[4],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.pescado,onSaved        : (value) => expediente.pescado = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(deAnimalNombre[5],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.atun,onSaved           : (value) => expediente.atun = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(deAnimalNombre[6],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.queso,onSaved          : (value) => expediente.queso = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(deAnimalNombre[7],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.huevo,onSaved          : (value) => expediente.huevo = value)),]),
+  
+
+  ];
+  return lista;
+
+}
+
+dataRowDeGrasas(){
+
+  List<DataRow> lista = [
+
+    DataRow(cells: [  DataCell(TextButton(child: Text(grasasNombre[0],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.mayonesa,onSaved     : (value) => expediente.mayonesa = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(grasasNombre[1],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.margarina,onSaved    : (value) => expediente.margarina = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(grasasNombre[2],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.mantequilla,onSaved  : (value) => expediente.mantequilla = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(grasasNombre[3],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.manteca,onSaved      : (value) => expediente.manteca = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(grasasNombre[4],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.aceite,onSaved       : (value) => expediente.aceite = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(grasasNombre[5],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.aguacate,onSaved     : (value) => expediente.aguacate = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(grasasNombre[6],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.semillas,onSaved     : (value) => expediente.semillas = value)),]),
+  
+
+  ];
+  return lista;
+
+}
+dataRowDeAzucares(){
+
+  List<DataRow> lista = [
+
+    DataRow(cells: [  DataCell(TextButton(child: Text(azucarNombres[0],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.nieve,onSaved         : (value) => expediente.nieve = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(azucarNombres[1],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.nieveDeYogurt,onSaved : (value) => expediente.nieveDeYogurt = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(azucarNombres[2],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.tejuino,onSaved       : (value) => expediente.tejuino = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(azucarNombres[3],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.jericaya,onSaved      : (value) => expediente.jericaya = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(azucarNombres[4],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.raspados,onSaved      : (value) => expediente.raspados = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(azucarNombres[5],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.miel,onSaved          : (value) => expediente.miel = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(azucarNombres[6],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.chocolate,onSaved     : (value) => expediente.chocolate = value)),]),
+  
+
+  ];
+  return lista;
+
+}
+dataRowDeAntojos(){
+
+  List<DataRow> lista = [
+
+    DataRow(cells: [  DataCell(TextButton(child: Text(antojosNombres[0],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.tacos,onSaved        : (value) => expediente.tacos = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(antojosNombres[1],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.hotDog,onSaved       : (value) => expediente.hotDog = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(antojosNombres[2],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.hamaburgesas,onSaved : (value) => expediente.hamaburgesas = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(antojosNombres[3],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.pizza,onSaved        : (value) => expediente.pizza = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(antojosNombres[4],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.nachos,onSaved       : (value) => expediente.nachos = value)),]),
+    DataRow(cells: [  DataCell(TextButton(child: Text(antojosNombres[5],textAlign: TextAlign.center,), onPressed: (){})), DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.menudo,onSaved       : (value) => expediente.menudo = value)),]),
+  
+
+  ];
+  return lista;
+
+}
+
+
+
+
+
+
+
+
 
    //################################################################## Widgets del boton de guardar ################### 
 _textoDelBoton(){

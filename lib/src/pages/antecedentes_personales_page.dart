@@ -174,7 +174,7 @@ class _AntecedentesPersonalesPageState extends State<AntecedentesPersonalesPage>
                camposDeSeleccion(context, 'Antecedentes Patologicos Generales','antecedentesPersonalesPage'),
                camposDeSeleccion(context, '''Antecedentes Patologicos Familiares y antecedentes Personales no Patologicos''','antecedentesFamiliaresYNoPatologicos'),
                camposDeSeleccion(context, 'Frecuencia alimentaria','frecuenciaAlimentariaPage'),
-               camposDeSeleccion(context,'Raciones Habituales','datosGeneralesPage'),
+               camposDeSeleccion(context,'Raciones Habituales','racionesHabitualesPage'),
                camposDeSeleccion(context, 'Calculo de la ingesta habitual','datosGeneralesPage'),
                camposDeSeleccion(context, 'Plan nutricional','datosGeneralesPage'),
                camposDeSeleccion(context, 'Nota de evolucion','datosGeneralesPage'),
@@ -427,13 +427,13 @@ menuOptTipoDeEvacuaciones(){
     children: [
      
     Container(height: size.longestSide * 0.030,width: size.longestSide * .07,
-      child: TextFormField(initialValue: expediente.evacuacionesDia.toString(),decoration: InputDecoration(labelText: 'Evacuaciones al dia'),
-                     onSaved: (value) => expediente.evacuacionesDia = int.parse(value), /* validator: validacion,*/ ),
+      child: TextFormField(initialValue: expediente.evacuacionesDia.toString(),decoration: InputDecoration(labelText: 'Evac. al dia'),
+                     onSaved: (value) => expediente.evacuacionesDia = value, /* validator: validacion,*/ ),
     ),
     
     Container(height: size.longestSide * 0.030,width: size.longestSide * .10,
-      child:  TextFormField(initialValue: expediente.evacuacionesSemana.toString(),decoration: InputDecoration(labelText: 'Evacuaciones por semana'),
-                   onSaved: (value) => expediente.evacuacionesSemana = int.parse(value), /* validator: validacion,*/ )),
+      child:  TextFormField(initialValue: expediente.evacuacionesSemana.toString(),decoration: InputDecoration(labelText: 'Evac. por semana'),
+                   onSaved: (value) => expediente.evacuacionesSemana = value, /* validator: validacion,*/ )),
 
       DropdownButton(style: TextStyle( fontSize: size.longestSide * .01),value: expediente.molestiaAlEvacuar,items: getOpcionesMolestiaAlEvacuar(),onChanged: (opt) {setState(() {expediente.molestiaAlEvacuar = opt;});},),
      

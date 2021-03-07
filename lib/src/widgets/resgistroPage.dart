@@ -18,7 +18,7 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
   List genero     = ['Masculino', 'Femenino'];
   List ganaPor    = ['Dia', 'Semana', 'Quincena', 'Mes', 'Año                                                  '];
   List cocinaCon  = ['Gas', 'Parrilla electrica', 'Leña                                                '];
-  List tomaAguaDe = ['Llave', 'Clorada', 'Embotellada', 'Noria', 'Lluvia                                              '];
+  List tomaAguaDe = ['Embotellada','Llave', 'Clorada', 'Noria', 'Lluvia                                              '];
    
   final expedienteProvider = new ExpedientesProvider();
   final keyForm            = new GlobalKey<FormState>();
@@ -149,7 +149,7 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
                camposDeSeleccion(context, 'Antecedentes Patologicos Generales','antecedentesPersonalesPage'),
                camposDeSeleccion(context, '''Antecedentes Patologicos Familiares y antecedentes Personales no Patologicos''','antecedentesFamiliaresYNoPatologicos'),
                camposDeSeleccion(context, 'Frecuencia alimentaria','frecuenciaAlimentariaPage'),
-               camposDeSeleccion(context,'Raciones Habituales','datosGeneralesPage'),
+               camposDeSeleccion(context,'Raciones Habituales','racionesHabitualesPage'),
                camposDeSeleccion(context, 'Calculo de la ingesta habitual','datosGeneralesPage'),
                camposDeSeleccion(context, 'Plan nutricional','datosGeneralesPage'),
                camposDeSeleccion(context, 'Nota de evolucion','datosGeneralesPage'),
@@ -181,14 +181,14 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
 
                 Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
                   CamposDelFormulario(ancho: .13,alto: .041, campoformulario: TextFormField(initialValue: expediente.edad.toString(),decoration: InputDecoration(labelText: 'Edad'),
-                   onSaved: (value) => expediente.edad = int.parse(value) ),), 
+                   onSaved: (value) => expediente.edad = value ),), 
                    
                   CamposDelFormulario(ancho: .13,alto: .041,campoformulario:  TextFormField(initialValue: expediente.birthday,decoration: InputDecoration(labelText: 'Fecha de Na.'),
                    onSaved: (value) => expediente.birthday = value ))],),
                                       
                  Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [CamposDelFormulario(ancho: .13,alto: .041, campoformulario:  menuOptGenero(),), CamposDelFormulario(ancho: .13,alto: .041,campoformulario: Padding(padding: const EdgeInsets.only(bottom: 3.0), 
                    child: TextFormField(initialValue: expediente.telefono.toString(),style: TextStyle(fontSize:  size.longestSide * .01),decoration: InputDecoration(labelText: 'Telefono'),
-                     onSaved: (value) => expediente.telefono= int.parse(value), /* validator: validacion,*/ )))]),
+                     onSaved: (value) => expediente.telefono= value, /* validator: validacion,*/ )))]),
 
                   CamposDelFormulario(ancho: .25,alto: .041, icono: Icon(Icons.local_hospital), campoformulario:  TextFormField(initialValue: expediente.dxMedCorto,decoration: InputDecoration(labelText: 'Dx medico'),
                    onSaved: (value) => expediente.dxMedCorto = value, /* validator: validacion,*/ )),
@@ -210,21 +210,21 @@ class _RegistroPageDGState extends State<RegistroPageDG> {
                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                      CamposDelFormulario(ancho: .25,alto: .041, icono: Icon(Icons.api), campoformulario:  TextFormField(initialValue: expediente.personasQueComen.toString(),decoration: InputDecoration(labelText: 'No. de personas que comen en casa'),
-                   onSaved: (value) => expediente.personasQueComen = int.parse(value), /* validator: validacion,*/ )),
+                   onSaved: (value) => expediente.personasQueComen = value, /* validator: validacion,*/ )),
 
                      CamposDelFormulario(ancho: .25,alto: .041, icono: Icon(Icons.api), campoformulario:  TextFormField(initialValue: expediente.menoresDeEdad.toString(),decoration: InputDecoration(labelText: 'Menores de edad en casa'),
-                   onSaved: (value) => expediente.menoresDeEdad = int.parse(value), /* validator: validacion,*/ )),
+                   onSaved: (value) => expediente.menoresDeEdad = value, /* validator: validacion,*/ )),
 
                      CamposDelFormulario(ancho: .25,alto: .041, icono: Icon(Icons.api), campoformulario:  TextFormField(initialValue: expediente.mayoresDeEdad.toString(),decoration: InputDecoration(labelText: 'Mayores de edad en casa'),
-                   onSaved: (value) => expediente.mayoresDeEdad = int.parse(value), /* validator: validacion,*/ )),
+                   onSaved: (value) => expediente.mayoresDeEdad = value, /* validator: validacion,*/ )),
 
                      CamposDelFormulario(ancho: .25,alto: .041, icono: Icon(Icons.api), campoformulario:  TextFormField(initialValue: expediente.gastosDeComida.toString(),decoration: InputDecoration(labelText: 'Gastos de comida semanal \$'),
-                   onSaved: (value) => expediente.gastosDeComida = int.parse(value), /* validator: validacion,*/ )),
+                   onSaved: (value) => expediente.gastosDeComida = value, /* validator: validacion,*/ )),
 
                      CamposDelFormulario(ancho: .25,alto: .041, icono: Icon(Icons.api), campoformulario: menuOptGanaPor() ),
 
                      CamposDelFormulario(ancho: .25,alto: .041, icono: Icon(Icons.api), campoformulario:  TextFormField(initialValue: expediente.cantidad.toString(),decoration: InputDecoration(labelText: 'Sueldo en \$'),
-                   onSaved: (value) => expediente.cantidad = int.parse(value), /* validator: validacion,*/ )),
+                   onSaved: (value) => expediente.cantidad = value, /* validator: validacion,*/ )),
 
                      CamposDelFormulario(ancho: .25,alto: .041, icono: Icon(Icons.api), campoformulario: menuOptCocinaCon()),
                    

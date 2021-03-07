@@ -15,20 +15,20 @@ class ExpedienteModel {
         this.id,
         this.nombre = '',
         this.correo = '',
-        this.telefono = 0,
-        this.edad = 0,
+        this.telefono = '',
+        this.edad = '',
         this.genero = 'Masculino',
         this.direccion = '',
         this.escolaridad = '',
         this.ocupacion = '',
-        this.personasQueComen = 0,
-        this.menoresDeEdad = 0,
-        this.mayoresDeEdad = 0,
-        this.gastosDeComida = 0,
+        this.personasQueComen = '',
+        this.menoresDeEdad = '',
+        this.mayoresDeEdad = '',
+        this.gastosDeComida = '',
         this.ganaPor = 'Dia',
-        this.cantidad = 0,
+        this.cantidad = '',
         this.cocinaCon = 'Gas',
-        this.tomaAguaDe = 'Llave',
+        this.tomaAguaDe = 'Embotellada',
         this.checkDatosGn = false,
         this.fechaNacimiento = '0000000',
         this.birthday = '',
@@ -67,8 +67,8 @@ class ExpedienteModel {
         this.enfermedades = '',
         this.tipoDeDentadura = 'Normal',
         this.molestiasactuales = '',
-        this.evacuacionesDia = 0,
-        this.evacuacionesSemana = 0,
+        this.evacuacionesDia = '',
+        this.evacuacionesSemana = '',
         this.molestiaAlEvacuar = 'no',
         this.consistencia = '',
         this.coloracion = '',
@@ -149,7 +149,45 @@ class ExpedienteModel {
         this.pizza = '',
         this.nachos = '',
         this.menudo = '',
-       
+
+        //############################################### Raciones Habituales ####################
+
+        this.carne1,
+        this.carne2,
+        this.carne3,
+        this.carne4,
+        this.leche1,
+        this.leche2,
+        this.leche3,
+        this.leche4,
+        this.leguminosa1,
+        this.leguminosa2,
+        this.leguminosa3,
+        this.leguminosa4,
+        this.cereal1,
+        this.cereal2,
+        this.cereal3,
+        this.cereal4,
+        this.verdura1,
+        this.verdura2,
+        this.verdura3,
+        this.verdura4,
+        this.fruta1,
+        this.fruta2,
+        this.fruta3,
+        this.fruta4,
+        this.azucar1,
+        this.azucar2,
+        this.azucar3,
+        this.azucar4,
+        this.grasa1,
+        this.grasa2,
+        this.grasa3,
+        this.grasa4,
+        this.fechaHab1 = '',
+        this.fechaHab2 = '',
+        this.fechaHab3 = '',
+        this.fechaHab4 = '',
 
 
 
@@ -159,18 +197,18 @@ class ExpedienteModel {
     String id;
     String nombre;
     String correo;
-    int telefono;
-    int edad;
+    String telefono;
+    String edad;
     String genero;
     String direccion;
     String escolaridad;
     String ocupacion;
-    int personasQueComen;
-    int menoresDeEdad;
-    int mayoresDeEdad;
-    int gastosDeComida;
+    String personasQueComen;
+    String menoresDeEdad;
+    String mayoresDeEdad;
+    String gastosDeComida;
     String ganaPor;
-    int cantidad;
+    String cantidad;
     String cocinaCon;
     String tomaAguaDe;
     bool checkDatosGn;
@@ -213,8 +251,8 @@ class ExpedienteModel {
     String enfermedades;
     String tipoDeDentadura;
     String molestiasactuales;
-    int    evacuacionesDia;
-    int    evacuacionesSemana;
+    String evacuacionesDia;
+    String evacuacionesSemana;
     String molestiaAlEvacuar;
     String consistencia;
     String coloracion;
@@ -282,7 +320,6 @@ class ExpedienteModel {
     String aceite;
     String aguacate;
     String semillas;
-
     String nieve;
     String nieveDeYogurt;
     String tejuino;
@@ -296,7 +333,52 @@ class ExpedienteModel {
     String pizza;
     String nachos;
     String menudo;
+    //############################################### Raciones Habituales ########################
+
+    List<Carne1> carne1;
+    List<Carne2> carne2;
+    List<Carne3> carne3;
+    List<Carne4> carne4;
+
+    List<Leche1> leche1;
+    List<Leche2> leche2;
+    List<Leche3> leche3;
+    List<Leche4> leche4;
+
+    List<Leguminosa1> leguminosa1;
+    List<Leguminosa2> leguminosa2;
+    List<Leguminosa3> leguminosa3;
+    List<Leguminosa4> leguminosa4;
+
+    List<Cereal1> cereal1;
+    List<Cereal2> cereal2;
+    List<Cereal3> cereal3;
+    List<Cereal4> cereal4;
+
+    List<Verdura1> verdura1;
+    List<Verdura2> verdura2;
+    List<Verdura3> verdura3;
+    List<Verdura4> verdura4;
     
+    List<Fruta1> fruta1;
+    List<Fruta2> fruta2;
+    List<Fruta3> fruta3;
+    List<Fruta4> fruta4;
+
+    List<Azucar1> azucar1;
+    List<Azucar2> azucar2;
+    List<Azucar3> azucar3;
+    List<Azucar4> azucar4;
+
+    List<Grasa1> grasa1;
+    List<Grasa2> grasa2;
+    List<Grasa3> grasa3;
+    List<Grasa4> grasa4;
+
+    String fechaHab1;
+    String fechaHab2;
+    String fechaHab3;
+    String fechaHab4;
     
 
     factory ExpedienteModel.fromJson(Map<String, dynamic> json) => _expedienteModelFromjson(json);
@@ -377,8 +459,113 @@ class ExpedienteModel {
        List<Map<String, dynamic>> acidoUricoLista = instance.acidoUricoLista != null
       ? instance.acidoUricoLista.map((i) => i.toJson()).toList()
       : null;
+       
+       
+       
+       List<Map<String, String>> carne1 = instance.carne1 != null
+      ? instance.carne1.map((i) => i.toJson()).toList()
+      : null;
+       List<Map<String, String>> carne2 = instance.carne2 != null
+      ? instance.carne2.map((i) => i.toJson()).toList()
+      : null;
+       List<Map<String, String>> carne3 = instance.carne3 != null
+      ? instance.carne3.map((i) => i.toJson()).toList()
+      : null;
+       List<Map<String, String>> carne4 = instance.carne4 != null
+      ? instance.carne4.map((i) => i.toJson()).toList()
+      : null;
+      
+       List<Map<String, String>> leche1 = instance.leche1 != null
+      ? instance.leche1.map((i) => i.toJson()).toList()
+      : null;
+       List<Map<String, String>> leche2 = instance.leche2 != null
+      ? instance.leche2.map((i) => i.toJson()).toList()
+      : null;
+       List<Map<String, String>> leche3 = instance.leche3 != null
+      ? instance.leche3.map((i) => i.toJson()).toList()
+      : null;
+       List<Map<String, String>> leche4 = instance.leche4 != null
+      ? instance.leche4.map((i) => i.toJson()).toList()
+      : null;
+      
+       List<Map<String, String>> leguminosa1 = instance.leguminosa1 != null
+      ? instance.leguminosa1.map((i) => i.toJson()).toList()
+      : null;
+       List<Map<String, String>> leguminosa2 = instance.leguminosa2 != null
+      ? instance.leguminosa2.map((i) => i.toJson()).toList()
+      : null;
+       List<Map<String, String>> leguminosa3 = instance.leguminosa3 != null
+      ? instance.leguminosa3.map((i) => i.toJson()).toList()
+      : null;
+       List<Map<String, String>> leguminosa4 = instance.leguminosa4 != null
+      ? instance.leguminosa4.map((i) => i.toJson()).toList()
+      : null;
+      
+       List<Map<String, String>> cereal1 = instance.cereal1 != null
+      ? instance.cereal1.map((i) => i.toJson()).toList()
+      : null;
+       List<Map<String, String>> cereal2 = instance.cereal2 != null
+      ? instance.cereal2.map((i) => i.toJson()).toList()
+      : null;
+       List<Map<String, String>> cereal3 = instance.cereal3 != null
+      ? instance.cereal3.map((i) => i.toJson()).toList()
+      : null;
+       List<Map<String, String>> cereal4 = instance.cereal4 != null
+      ? instance.cereal4.map((i) => i.toJson()).toList()
+      : null;
      
-     
+       List<Map<String, String>> verdura1 = instance.verdura1 != null
+      ? instance.verdura1.map((i) => i.toJson()).toList()
+      : null;
+       List<Map<String, String>> verdura2 = instance.verdura2 != null
+      ? instance.verdura2.map((i) => i.toJson()).toList()
+      : null;
+       List<Map<String, String>> verdura3 = instance.verdura3 != null
+      ? instance.verdura3.map((i) => i.toJson()).toList()
+      : null;
+       List<Map<String, String>> verdura4 = instance.verdura4 != null
+      ? instance.verdura4.map((i) => i.toJson()).toList()
+      : null;
+      
+       List<Map<String, String>> fruta1 = instance.fruta1 != null
+      ? instance.fruta1.map((i) => i.toJson()).toList()
+      : null;
+       List<Map<String, String>> fruta2 = instance.fruta2 != null
+      ? instance.fruta2.map((i) => i.toJson()).toList()
+      : null;
+       List<Map<String, String>> fruta3 = instance.fruta3 != null
+      ? instance.fruta3.map((i) => i.toJson()).toList()
+      : null;
+       List<Map<String, String>> fruta4 = instance.fruta4 != null
+      ? instance.fruta4.map((i) => i.toJson()).toList()
+      : null;
+       
+       List<Map<String, String>> azucar1 = instance.azucar1 != null
+      ? instance.azucar1.map((i) => i.toJson()).toList()
+      : null;
+       List<Map<String, String>> azucar2 = instance.azucar2 != null
+      ? instance.azucar2.map((i) => i.toJson()).toList()
+      : null;
+       List<Map<String, String>> azucar3 = instance.azucar1 != null
+      ? instance.azucar3.map((i) => i.toJson()).toList()
+      : null;
+       List<Map<String, String>> azucar4 = instance.azucar4 != null
+      ? instance.azucar4.map((i) => i.toJson()).toList()
+      : null;
+      
+       List<Map<String, String>> grasa1 = instance.grasa1 != null
+      ? instance.grasa1.map((i) => i.toJson()).toList()
+      : null;
+       List<Map<String, String>> grasa2 = instance.grasa2 != null
+      ? instance.grasa2.map((i) => i.toJson()).toList()
+      : null;
+       List<Map<String, String>> grasa3 = instance.grasa3 != null
+      ? instance.grasa3.map((i) => i.toJson()).toList()
+      : null;
+       List<Map<String, String>> grasa4 = instance.grasa4 != null
+      ? instance.grasa4.map((i) => i.toJson()).toList()
+      : null;
+      
 
 
 
@@ -517,6 +704,43 @@ class ExpedienteModel {
         "pizza"                 : instance.pizza,
         "nachos"                : instance.nachos,
         "menudo"                : instance.menudo,
+        "fechaHab1"             : instance.fechaHab1,
+        "fechaHab2"             : instance.fechaHab2,
+        "fechaHab3"             : instance.fechaHab3,
+        "fechaHab4"             : instance.fechaHab4,
+        "carne1"                : carne1,
+        "carne2"                : carne2,
+        "carne3"                : carne3,
+        "carne4"                : carne4,
+        "leche1"                : leche1,
+        "leche2"                : leche2,
+        "leche3"                : leche3,
+        "leche4"                : leche4,
+        "leguminosa1"           : leguminosa1,
+        "leguminosa2"           : leguminosa2,
+        "leguminosa3"           : leguminosa3,
+        "leguminosa4"           : leguminosa4,
+        "cereal1"               : cereal1,
+        "cereal2"               : cereal2,
+        "cereal3"               : cereal3,
+        "cereal4"               : cereal4,
+        "verdura1"              : verdura1,
+        "verdura2"              : verdura2,
+        "verdura3"              : verdura3,
+        "verdura4"              : verdura4,
+        "fruta1"                : fruta1,
+        "fruta2"                : fruta2,
+        "fruta3"                : fruta3,
+        "fruta4"                : fruta4,
+        "azucar1"               : azucar1,
+        "azucar2"               : azucar2,
+        "azucar3"               : azucar3,
+        "azucar4"               : azucar4,
+        "grasa1"                : grasa1,
+        "grasa2"                : grasa2,
+        "grasa3"                : grasa3,
+        "grasa4"                : grasa4,
+
     };
     }
 }
@@ -621,6 +845,108 @@ class ExpedienteModel {
      var acidoUricoListaJson = json['acidoUricoLista'] as List;
     List<AcidoUrico> acidoUricoLista = acidoUricoListaJson != null
         ? acidoUricoListaJson.map((i) => AcidoUrico.fromJson(i)).toList()
+        : null;
+    
+     var carne1Json = json['carne1'] as List;
+    List<Carne1> carne1 = carne1Json != null
+        ? carne1Json.map((i) => Carne1.fromJson(i)).toList()
+        : null;
+     var carne2Json = json['carne2'] as List;
+    List<Carne2> carne2 = carne2Json != null
+        ? carne2Json.map((i) => Carne2.fromJson(i)).toList()
+        : null;
+     var carne3Json = json['carne3'] as List;
+    List<Carne3> carne3 = carne3Json != null
+        ? carne3Json.map((i) => Carne3.fromJson(i)).toList()
+        : null;
+     var carne4Json = json['carne4'] as List;
+    List<Carne4> carne4 = carne4Json != null
+        ? carne4Json.map((i) => Carne4.fromJson(i)).toList()
+        : null;
+    
+     var leche1Json = json['leche1'] as List;
+    List<Leche1> leche1 = leche1Json != null
+        ? leche1Json.map((i) => Leche1.fromJson(i)).toList()
+        : null;
+     var leche2Json = json['leche2'] as List;
+    List<Leche2> leche2 = leche2Json != null
+        ? leche2Json.map((i) => Leche2.fromJson(i)).toList()
+        : null;
+     var leche3Json = json['leche3'] as List;
+    List<Leche3> leche3 = leche3Json != null
+        ? leche3Json.map((i) => Leche3.fromJson(i)).toList()
+        : null;
+     var leche4Json = json['leche4'] as List;
+    List<Leche4> leche4 = leche4Json != null
+        ? leche4Json.map((i) => Leche4.fromJson(i)).toList()
+        : null;
+    
+     var leguminosa1Json = json['leguminosa1'] as List;
+    List<Leguminosa1> leguminosa1 = leguminosa1Json != null
+        ? leguminosa1Json.map((i) => Leguminosa1.fromJson(i)).toList()
+        : null;
+     var leguminosa2Json = json['leguminosa2'] as List;
+    List<Leguminosa2> leguminosa2 = leguminosa2Json != null
+        ? leguminosa2Json.map((i) => Leguminosa2.fromJson(i)).toList()
+        : null;
+     var leguminosa3Json = json['leguminosa3'] as List;
+    List<Leguminosa3> leguminosa3 = leguminosa3Json != null
+        ? leguminosa3Json.map((i) => Leguminosa3.fromJson(i)).toList()
+        : null;
+     var leguminosa4Json = json['leguminosa4'] as List;
+    List<Leguminosa4> leguminosa4 = leguminosa4Json != null
+        ? leguminosa4Json.map((i) => Leguminosa4.fromJson(i)).toList()
+        : null;
+    
+     var cereal1Json = json['cereal1'] as List;
+    List<Cereal1> cereal1 = cereal1Json != null
+        ? cereal1Json.map((i) => Cereal1.fromJson(i)).toList()
+        : null;
+     var cereal2Json = json['cereal2'] as List;
+    List<Cereal2> cereal2 = cereal2Json != null
+        ? cereal2Json.map((i) => Cereal2.fromJson(i)).toList()
+        : null;
+     var cereal3Json = json['cereal3'] as List;
+    List<Cereal3> cereal3 = cereal3Json != null
+        ? cereal3Json.map((i) => Cereal3.fromJson(i)).toList()
+        : null;
+     var cereal4Json = json['cereal4'] as List;
+    List<Cereal4> cereal4 = cereal4Json != null
+        ? cereal4Json.map((i) => Cereal4.fromJson(i)).toList()
+        : null;
+    
+     var verdura1Json = json['verdura1'] as List;
+    List<Verdura1> verdura1 = verdura1Json != null
+        ? verdura1Json.map((i) => Verdura1.fromJson(i)).toList()
+        : null;
+     var verdura2Json = json['verdura2'] as List;
+    List<Verdura2> verdura2 = verdura2Json != null
+        ? verdura2Json.map((i) => Verdura2.fromJson(i)).toList()
+        : null;
+     var verdura3Json = json['verdura3'] as List;
+    List<Verdura3> verdura3 = verdura3Json != null
+        ? verdura3Json.map((i) => Verdura3.fromJson(i)).toList()
+        : null;
+     var verdura4Json = json['verdura4'] as List;
+    List<Verdura4> verdura4 = verdura4Json != null
+        ? verdura4Json.map((i) => Verdura4.fromJson(i)).toList()
+        : null;
+    
+     var fruta1Json = json['fruta1'] as List;
+    List<Fruta1> fruta1 = fruta1Json != null
+        ? fruta1Json.map((i) => Fruta1.fromJson(i)).toList()
+        : null;
+     var fruta2Json = json['fruta2'] as List;
+    List<Fruta2> fruta2 = fruta2Json != null
+        ? fruta2Json.map((i) => Fruta2.fromJson(i)).toList()
+        : null;
+     var fruta3Json = json['fruta3'] as List;
+    List<Fruta3> fruta3 = fruta3Json != null
+        ? fruta3Json.map((i) => Fruta3.fromJson(i)).toList()
+        : null;
+     var fruta4Json = json['fruta4'] as List;
+    List<Fruta4> fruta4 = fruta4Json != null
+        ? fruta4Json.map((i) => Fruta4.fromJson(i)).toList()
         : null;
     
   
@@ -769,6 +1095,43 @@ class ExpedienteModel {
         pizza                : json["pizza"],
         nachos               : json["nachos"],
         menudo               : json["menudo"],
+        fechaHab1            : json["fechaHab1"],
+        fechaHab2            : json["fechaHab2"],
+        fechaHab3            : json["fechaHab3"],
+        fechaHab4            : json["fechaHab4"],
+
+        carne1 : carne1,
+        carne2 : carne2,
+        carne3 : carne3,
+        carne4 : carne4,
+        leche1 : leche1,
+        leche2 : leche2,
+        leche3 : leche3,
+        leche4 : leche4,
+        leguminosa1 : leguminosa1,
+        leguminosa2 : leguminosa2,
+        leguminosa3 : leguminosa3,
+        leguminosa4 : leguminosa4,
+        cereal1 : cereal1,
+        cereal2 : cereal2,
+        cereal3 : cereal3,
+        cereal4 : cereal4,
+        verdura1 : verdura1,
+        verdura2 : verdura2,
+        verdura3 : verdura3,
+        verdura4 : verdura4,
+        fruta1 : fruta1,
+        fruta2 : fruta2,
+        fruta3 : fruta3,
+        fruta4 : fruta4,
+        // azucar1 : azucar1,
+        // azucar2 : azucar2,
+        // azucar3 : azucar3,
+        // azucar4 : azucar4,
+        // grasa1 : grasa1,
+        // grasa2 : grasa2,
+        // grasa3 : grasa3,
+        // grasa4 : grasa4,
 
    );
 
@@ -1156,4 +1519,1099 @@ class ExpedienteModel {
     'color': instance.color,
   };
  
+  
+  //########################################################################### Raciones habituales ##########################
+  
+  ////###########  Carne1  ##################
+ class Carne1 {
+    String desayunoHab;
+    String colDesayunoHab;
+    String comidaHab;
+    String colComidaHab;
+    String cenaHab;
+    String colCenaHab;
+    
  
+    Carne1({this.desayunoHab = '', this.colDesayunoHab='',this.comidaHab='',this.colComidaHab='',this.cenaHab='',this.colCenaHab});
+    factory Carne1.fromJson(Map<String, String> json) => _carne1FromJson(json);
+    
+     Map<String, String> toJson() => _carne1ToJson(this);
+  }
+ 
+  Carne1 _carne1FromJson(Map<String, String> json) => Carne1(
+    desayunoHab     : json['desayunoHab'],
+    colDesayunoHab  : json['colacDesayunoHab'],
+    comidaHab       : json['comidaHab'],
+    colComidaHab    : json['colacComidaHab'],
+    cenaHab         : json['cenaHab'],
+    colCenaHab      : json['colCenaHab'],
+  );
+
+   Map<String, dynamic> _carne1ToJson(Carne1 instance) => <String, String>{
+    
+    'desayunoHab'      : instance.desayunoHab,
+    'colacDesayunoHab' : instance.colDesayunoHab,
+    'comidaHab'        : instance.comidaHab,
+    'colacComidaHab'   : instance.colComidaHab,
+    'cenaHab'          : instance.cenaHab,
+    'colCenaHab'       : instance.colCenaHab,
+  };
+
+  ////###########  Carne2  ##################
+ class Carne2 {
+    String desayunoHab;
+    String colDesayunoHab;
+    String comidaHab;
+    String colComidaHab;
+    String cenaHab;
+    String colCenaHab;
+    
+ 
+    Carne2({this.desayunoHab = '', this.colDesayunoHab='',this.comidaHab='',this.colComidaHab='',this.cenaHab='',this.colCenaHab});
+    factory Carne2.fromJson(Map<String, String> json) => _carne2FromJson(json);
+    
+     Map<String, String> toJson() => _carne2ToJson(this);
+  }
+ 
+  Carne2 _carne2FromJson(Map<String, String> json) => Carne2(
+    desayunoHab     : json['desayunoHab'],
+    colDesayunoHab  : json['colacDesayunoHab'],
+    comidaHab       : json['comidaHab'],
+    colComidaHab    : json['colacComidaHab'],
+    cenaHab         : json['cenaHab'],
+    colCenaHab      : json['colCenaHab'],
+  );
+
+   Map<String, dynamic> _carne2ToJson(Carne2 instance) => <String, String>{
+    
+    'desayunoHab'      : instance.desayunoHab,
+    'colacDesayunoHab' : instance.colDesayunoHab,
+    'comidaHab'        : instance.comidaHab,
+    'colacComidaHab'   : instance.colComidaHab,
+    'cenaHab'          : instance.cenaHab,
+    'colCenaHab'       : instance.colCenaHab,
+  };
+  ////###########  Carne3  ##################
+ class Carne3 {
+    String desayunoHab;
+    String colDesayunoHab;
+    String comidaHab;
+    String colComidaHab;
+    String cenaHab;
+    String colCenaHab;
+    
+ 
+    Carne3({this.desayunoHab = '', this.colDesayunoHab='',this.comidaHab='',this.colComidaHab='',this.cenaHab='',this.colCenaHab});
+    factory Carne3.fromJson(Map<String, String> json) => _carne3FromJson(json);
+    
+     Map<String, String> toJson() => _carne3ToJson(this);
+  }
+ 
+  Carne3 _carne3FromJson(Map<String, String> json) => Carne3(
+    desayunoHab     : json['desayunoHab'],
+    colDesayunoHab  : json['colacDesayunoHab'],
+    comidaHab       : json['comidaHab'],
+    colComidaHab    : json['colacComidaHab'],
+    cenaHab         : json['cenaHab'],
+    colCenaHab      : json['colCenaHab'],
+  );
+
+   Map<String, dynamic> _carne3ToJson(Carne3 instance) => <String, String>{
+    
+    'desayunoHab'      : instance.desayunoHab,
+    'colacDesayunoHab' : instance.colDesayunoHab,
+    'comidaHab'        : instance.comidaHab,
+    'colacComidaHab'   : instance.colComidaHab,
+    'cenaHab'          : instance.cenaHab,
+    'colCenaHab'       : instance.colCenaHab,
+  };
+  ////###########  Carne4  ##################
+ class Carne4 {
+    String desayunoHab;
+    String colDesayunoHab;
+    String comidaHab;
+    String colComidaHab;
+    String cenaHab;
+    String colCenaHab;
+    
+ 
+    Carne4({this.desayunoHab = '', this.colDesayunoHab='',this.comidaHab='',this.colComidaHab='',this.cenaHab='',this.colCenaHab});
+    factory Carne4.fromJson(Map<String, String> json) => _carne4FromJson(json);
+    
+     Map<String, String> toJson() => _carne4ToJson(this);
+  }
+ 
+  Carne4 _carne4FromJson(Map<String, String> json) => Carne4(
+    desayunoHab     : json['desayunoHab'],
+    colDesayunoHab  : json['colacDesayunoHab'],
+    comidaHab       : json['comidaHab'],
+    colComidaHab    : json['colacComidaHab'],
+    cenaHab         : json['cenaHab'],
+    colCenaHab      : json['colCenaHab'],
+  );
+
+   Map<String, dynamic> _carne4ToJson(Carne4 instance) => <String, String>{
+    
+    'desayunoHab'      : instance.desayunoHab,
+    'colacDesayunoHab' : instance.colDesayunoHab,
+    'comidaHab'        : instance.comidaHab,
+    'colacComidaHab'   : instance.colComidaHab,
+    'cenaHab'          : instance.cenaHab,
+    'colCenaHab'       : instance.colCenaHab,
+  };
+ 
+
+ ////###########  Leche1  ##################
+ class Leche1 {
+    String desayunoHab;
+    String colDesayunoHab;
+    String comidaHab;
+    String colComidaHab;
+    String cenaHab;
+    String colCenaHab;
+    
+ 
+    Leche1({this.desayunoHab = '', this.colDesayunoHab='',this.comidaHab='',this.colComidaHab='',this.cenaHab='',this.colCenaHab});
+    factory Leche1.fromJson(Map<String, String> json) => _leche1FromJson(json);
+    
+     Map<String, String> toJson() => _leche1ToJson(this);
+  }
+ 
+  Leche1 _leche1FromJson(Map<String, String> json) => Leche1(
+    desayunoHab     : json['desayunoHab'],
+    colDesayunoHab  : json['colacDesayunoHab'],
+    comidaHab       : json['comidaHab'],
+    colComidaHab    : json['colacComidaHab'],
+    cenaHab         : json['cenaHab'],
+    colCenaHab      : json['colCenaHab'],
+  );
+
+   Map<String, dynamic> _leche1ToJson(Leche1 instance) => <String, String>{
+    
+    'desayunoHab'      : instance.desayunoHab,
+    'colacDesayunoHab' : instance.colDesayunoHab,
+    'comidaHab'        : instance.comidaHab,
+    'colacComidaHab'   : instance.colComidaHab,
+    'cenaHab'          : instance.cenaHab,
+    'colCenaHab'       : instance.colCenaHab,
+  };
+ ////###########  Leche2  ##################
+ class Leche2 {
+    String desayunoHab;
+    String colDesayunoHab;
+    String comidaHab;
+    String colComidaHab;
+    String cenaHab;
+    String colCenaHab;
+    
+ 
+    Leche2({this.desayunoHab = '', this.colDesayunoHab='',this.comidaHab='',this.colComidaHab='',this.cenaHab='',this.colCenaHab});
+    factory Leche2.fromJson(Map<String, String> json) => _leche2FromJson(json);
+    
+     Map<String, String> toJson() => _leche2ToJson(this);
+  }
+ 
+  Leche2 _leche2FromJson(Map<String, String> json) => Leche2(
+    desayunoHab     : json['desayunoHab'],
+    colDesayunoHab  : json['colacDesayunoHab'],
+    comidaHab       : json['comidaHab'],
+    colComidaHab    : json['colacComidaHab'],
+    cenaHab         : json['cenaHab'],
+    colCenaHab      : json['colCenaHab'],
+  );
+
+   Map<String, dynamic> _leche2ToJson(Leche2 instance) => <String, String>{
+    
+    'desayunoHab'      : instance.desayunoHab,
+    'colacDesayunoHab' : instance.colDesayunoHab,
+    'comidaHab'        : instance.comidaHab,
+    'colacComidaHab'   : instance.colComidaHab,
+    'cenaHab'          : instance.cenaHab,
+    'colCenaHab'       : instance.colCenaHab,
+  };
+ ////###########  Leche3  ##################
+ class Leche3 {
+    String desayunoHab;
+    String colDesayunoHab;
+    String comidaHab;
+    String colComidaHab;
+    String cenaHab;
+    String colCenaHab;
+    
+ 
+    Leche3({this.desayunoHab = '', this.colDesayunoHab='',this.comidaHab='',this.colComidaHab='',this.cenaHab='',this.colCenaHab});
+    factory Leche3.fromJson(Map<String, String> json) => _leche3FromJson(json);
+    
+     Map<String, String> toJson() => _leche3ToJson(this);
+  }
+ 
+  Leche3 _leche3FromJson(Map<String, String> json) => Leche3(
+    desayunoHab     : json['desayunoHab'],
+    colDesayunoHab  : json['colacDesayunoHab'],
+    comidaHab       : json['comidaHab'],
+    colComidaHab    : json['colacComidaHab'],
+    cenaHab         : json['cenaHab'],
+    colCenaHab      : json['colCenaHab'],
+  );
+
+   Map<String, dynamic> _leche3ToJson(Leche3 instance) => <String, String>{
+    
+    'desayunoHab'      : instance.desayunoHab,
+    'colacDesayunoHab' : instance.colDesayunoHab,
+    'comidaHab'        : instance.comidaHab,
+    'colacComidaHab'   : instance.colComidaHab,
+    'cenaHab'          : instance.cenaHab,
+    'colCenaHab'       : instance.colCenaHab,
+  };
+ ////###########  Leche4  ##################
+ class Leche4 {
+    String desayunoHab;
+    String colDesayunoHab;
+    String comidaHab;
+    String colComidaHab;
+    String cenaHab;
+    String colCenaHab;
+    
+ 
+    Leche4({this.desayunoHab = '', this.colDesayunoHab='',this.comidaHab='',this.colComidaHab='',this.cenaHab='',this.colCenaHab});
+    factory Leche4.fromJson(Map<String, String> json) => _leche4FromJson(json);
+    
+     Map<String, String> toJson() => _leche4ToJson(this);
+  }
+ 
+  Leche4 _leche4FromJson(Map<String, String> json) => Leche4(
+    desayunoHab     : json['desayunoHab'],
+    colDesayunoHab  : json['colacDesayunoHab'],
+    comidaHab       : json['comidaHab'],
+    colComidaHab    : json['colacComidaHab'],
+    cenaHab         : json['cenaHab'],
+    colCenaHab      : json['colCenaHab'],
+  );
+
+   Map<String, dynamic> _leche4ToJson(Leche4 instance) => <String, String>{
+    
+    'desayunoHab'      : instance.desayunoHab,
+    'colacDesayunoHab' : instance.colDesayunoHab,
+    'comidaHab'        : instance.comidaHab,
+    'colacComidaHab'   : instance.colComidaHab,
+    'cenaHab'          : instance.cenaHab,
+    'colCenaHab'       : instance.colCenaHab,
+  };
+
+////###########  Leguminosa1  ##################
+ class Leguminosa1 {
+    String desayunoHab;
+    String colDesayunoHab;
+    String comidaHab;
+    String colComidaHab;
+    String cenaHab;
+    String colCenaHab;
+    
+ 
+    Leguminosa1({this.desayunoHab = '', this.colDesayunoHab='',this.comidaHab='',this.colComidaHab='',this.cenaHab='',this.colCenaHab});
+    factory Leguminosa1.fromJson(Map<String, String> json) => _leguminosa1FromJson(json);
+    
+     Map<String, String> toJson() => _leguminosa1ToJson(this);
+  }
+ 
+  Leguminosa1 _leguminosa1FromJson(Map<String, String> json) => Leguminosa1(
+    desayunoHab     : json['desayunoHab'],
+    colDesayunoHab  : json['colacDesayunoHab'],
+    comidaHab       : json['comidaHab'],
+    colComidaHab    : json['colacComidaHab'],
+    cenaHab         : json['cenaHab'],
+    colCenaHab      : json['colCenaHab'],
+  );
+
+   Map<String, dynamic> _leguminosa1ToJson(Leguminosa1 instance) => <String, String>{
+    
+    'desayunoHab'      : instance.desayunoHab,
+    'colacDesayunoHab' : instance.colDesayunoHab,
+    'comidaHab'        : instance.comidaHab,
+    'colacComidaHab'   : instance.colComidaHab,
+    'cenaHab'          : instance.cenaHab,
+    'colCenaHab'       : instance.colCenaHab,
+  };
+////###########  Leguminosa2  ##################
+ class Leguminosa2 {
+    String desayunoHab;
+    String colDesayunoHab;
+    String comidaHab;
+    String colComidaHab;
+    String cenaHab;
+    String colCenaHab;
+    
+ 
+    Leguminosa2({this.desayunoHab = '', this.colDesayunoHab='',this.comidaHab='',this.colComidaHab='',this.cenaHab='',this.colCenaHab});
+    factory Leguminosa2.fromJson(Map<String, String> json) => _leguminosa2FromJson(json);
+    
+     Map<String, String> toJson() => _leguminosa2ToJson(this);
+  }
+ 
+  Leguminosa2 _leguminosa2FromJson(Map<String, String> json) => Leguminosa2(
+    desayunoHab     : json['desayunoHab'],
+    colDesayunoHab  : json['colacDesayunoHab'],
+    comidaHab       : json['comidaHab'],
+    colComidaHab    : json['colacComidaHab'],
+    cenaHab         : json['cenaHab'],
+    colCenaHab      : json['colCenaHab'],
+  );
+
+   Map<String, dynamic> _leguminosa2ToJson(Leguminosa2 instance) => <String, String>{
+    
+    'desayunoHab'      : instance.desayunoHab,
+    'colacDesayunoHab' : instance.colDesayunoHab,
+    'comidaHab'        : instance.comidaHab,
+    'colacComidaHab'   : instance.colComidaHab,
+    'cenaHab'          : instance.cenaHab,
+    'colCenaHab'       : instance.colCenaHab,
+  };
+////###########  Leguminosa3  ##################
+ class Leguminosa3 {
+    String desayunoHab;
+    String colDesayunoHab;
+    String comidaHab;
+    String colComidaHab;
+    String cenaHab;
+    String colCenaHab;
+    
+ 
+    Leguminosa3({this.desayunoHab = '', this.colDesayunoHab='',this.comidaHab='',this.colComidaHab='',this.cenaHab='',this.colCenaHab});
+    factory Leguminosa3.fromJson(Map<String, String> json) => _leguminosa3FromJson(json);
+    
+     Map<String, String> toJson() => _leguminosa3ToJson(this);
+  }
+ 
+  Leguminosa3 _leguminosa3FromJson(Map<String, String> json) => Leguminosa3(
+    desayunoHab     : json['desayunoHab'],
+    colDesayunoHab  : json['colacDesayunoHab'],
+    comidaHab       : json['comidaHab'],
+    colComidaHab    : json['colacComidaHab'],
+    cenaHab         : json['cenaHab'],
+    colCenaHab      : json['colCenaHab'],
+  );
+
+   Map<String, dynamic> _leguminosa3ToJson(Leguminosa3 instance) => <String, String>{
+    
+    'desayunoHab'      : instance.desayunoHab,
+    'colacDesayunoHab' : instance.colDesayunoHab,
+    'comidaHab'        : instance.comidaHab,
+    'colacComidaHab'   : instance.colComidaHab,
+    'cenaHab'          : instance.cenaHab,
+    'colCenaHab'       : instance.colCenaHab,
+  };
+////###########  Leguminosa4  ##################
+ class Leguminosa4 {
+    String desayunoHab;
+    String colDesayunoHab;
+    String comidaHab;
+    String colComidaHab;
+    String cenaHab;
+    String colCenaHab;
+    
+ 
+    Leguminosa4({this.desayunoHab = '', this.colDesayunoHab='',this.comidaHab='',this.colComidaHab='',this.cenaHab='',this.colCenaHab});
+    factory Leguminosa4.fromJson(Map<String, String> json) => _leguminosa4FromJson(json);
+    
+     Map<String, String> toJson() => _leguminosa4ToJson(this);
+  }
+ 
+  Leguminosa4 _leguminosa4FromJson(Map<String, String> json) => Leguminosa4(
+    desayunoHab     : json['desayunoHab'],
+    colDesayunoHab  : json['colacDesayunoHab'],
+    comidaHab       : json['comidaHab'],
+    colComidaHab    : json['colacComidaHab'],
+    cenaHab         : json['cenaHab'],
+    colCenaHab      : json['colCenaHab'],
+  );
+
+   Map<String, dynamic> _leguminosa4ToJson(Leguminosa4 instance) => <String, String>{
+    
+    'desayunoHab'      : instance.desayunoHab,
+    'colacDesayunoHab' : instance.colDesayunoHab,
+    'comidaHab'        : instance.comidaHab,
+    'colacComidaHab'   : instance.colComidaHab,
+    'cenaHab'          : instance.cenaHab,
+    'colCenaHab'       : instance.colCenaHab,
+  };
+
+  ///###########  Cereal1  ##################
+ class Cereal1 {
+    String desayunoHab;
+    String colDesayunoHab;
+    String comidaHab;
+    String colComidaHab;
+    String cenaHab;
+    String colCenaHab;
+    
+ 
+    Cereal1({this.desayunoHab = '', this.colDesayunoHab='',this.comidaHab='',this.colComidaHab='',this.cenaHab='',this.colCenaHab});
+    factory Cereal1.fromJson(Map<String, String> json) => _cereal1FromJson(json);
+    
+     Map<String, String> toJson() => _cereal1ToJson(this);
+  }
+ 
+  Cereal1 _cereal1FromJson(Map<String, String> json) => Cereal1(
+    desayunoHab     : json['desayunoHab'],
+    colDesayunoHab  : json['colacDesayunoHab'],
+    comidaHab       : json['comidaHab'],
+    colComidaHab    : json['colacComidaHab'],
+    cenaHab         : json['cenaHab'],
+    colCenaHab      : json['colCenaHab'],
+  );
+
+   Map<String, dynamic> _cereal1ToJson(Cereal1 instance) => <String, String>{
+    
+    'desayunoHab'      : instance.desayunoHab,
+    'colacDesayunoHab' : instance.colDesayunoHab,
+    'comidaHab'        : instance.comidaHab,
+    'colacComidaHab'   : instance.colComidaHab,
+    'cenaHab'          : instance.cenaHab,
+    'colCenaHab'       : instance.colCenaHab,
+  };
+  ///###########  Cereal2  ##################
+ class Cereal2 {
+    String desayunoHab;
+    String colDesayunoHab;
+    String comidaHab;
+    String colComidaHab;
+    String cenaHab;
+    String colCenaHab;
+    
+ 
+    Cereal2({this.desayunoHab = '', this.colDesayunoHab='',this.comidaHab='',this.colComidaHab='',this.cenaHab='',this.colCenaHab});
+    factory Cereal2.fromJson(Map<String, String> json) => _cereal2FromJson(json);
+    
+     Map<String, String> toJson() => _cereal2ToJson(this);
+  }
+ 
+  Cereal2 _cereal2FromJson(Map<String, String> json) => Cereal2(
+    desayunoHab     : json['desayunoHab'],
+    colDesayunoHab  : json['colacDesayunoHab'],
+    comidaHab       : json['comidaHab'],
+    colComidaHab    : json['colacComidaHab'],
+    cenaHab         : json['cenaHab'],
+    colCenaHab      : json['colCenaHab'],
+  );
+
+   Map<String, dynamic> _cereal2ToJson(Cereal2 instance) => <String, String>{
+    
+    'desayunoHab'      : instance.desayunoHab,
+    'colacDesayunoHab' : instance.colDesayunoHab,
+    'comidaHab'        : instance.comidaHab,
+    'colacComidaHab'   : instance.colComidaHab,
+    'cenaHab'          : instance.cenaHab,
+    'colCenaHab'       : instance.colCenaHab,
+  };
+  ///###########  Cereal3  ##################
+ class Cereal3 {
+    String desayunoHab;
+    String colDesayunoHab;
+    String comidaHab;
+    String colComidaHab;
+    String cenaHab;
+    String colCenaHab;
+    
+ 
+    Cereal3({this.desayunoHab = '', this.colDesayunoHab='',this.comidaHab='',this.colComidaHab='',this.cenaHab='',this.colCenaHab});
+    factory Cereal3.fromJson(Map<String, String> json) => _cereal3FromJson(json);
+    
+     Map<String, String> toJson() => _cereal3ToJson(this);
+  }
+ 
+  Cereal3 _cereal3FromJson(Map<String, String> json) => Cereal3(
+    desayunoHab     : json['desayunoHab'],
+    colDesayunoHab  : json['colacDesayunoHab'],
+    comidaHab       : json['comidaHab'],
+    colComidaHab    : json['colacComidaHab'],
+    cenaHab         : json['cenaHab'],
+    colCenaHab      : json['colCenaHab'],
+  );
+
+   Map<String, dynamic> _cereal3ToJson(Cereal3 instance) => <String, String>{
+    
+    'desayunoHab'      : instance.desayunoHab,
+    'colacDesayunoHab' : instance.colDesayunoHab,
+    'comidaHab'        : instance.comidaHab,
+    'colacComidaHab'   : instance.colComidaHab,
+    'cenaHab'          : instance.cenaHab,
+    'colCenaHab'       : instance.colCenaHab,
+  };
+  ///###########  Cereal4  ##################
+ class Cereal4 {
+    String desayunoHab;
+    String colDesayunoHab;
+    String comidaHab;
+    String colComidaHab;
+    String cenaHab;
+    String colCenaHab;
+    
+ 
+    Cereal4({this.desayunoHab = '', this.colDesayunoHab='',this.comidaHab='',this.colComidaHab='',this.cenaHab='',this.colCenaHab});
+    factory Cereal4.fromJson(Map<String, String> json) => _cereal4FromJson(json);
+    
+     Map<String, String> toJson() => _cereal4ToJson(this);
+  }
+ 
+  Cereal4 _cereal4FromJson(Map<String, String> json) => Cereal4(
+    desayunoHab     : json['desayunoHab'],
+    colDesayunoHab  : json['colacDesayunoHab'],
+    comidaHab       : json['comidaHab'],
+    colComidaHab    : json['colacComidaHab'],
+    cenaHab         : json['cenaHab'],
+    colCenaHab      : json['colCenaHab'],
+  );
+
+   Map<String, dynamic> _cereal4ToJson(Cereal4 instance) => <String, String>{
+    
+    'desayunoHab'      : instance.desayunoHab,
+    'colacDesayunoHab' : instance.colDesayunoHab,
+    'comidaHab'        : instance.comidaHab,
+    'colacComidaHab'   : instance.colComidaHab,
+    'cenaHab'          : instance.cenaHab,
+    'colCenaHab'       : instance.colCenaHab,
+  };
+  ///###########  Verdura1  ##################
+ class Verdura1 {
+    String desayunoHab;
+    String colDesayunoHab;
+    String comidaHab;
+    String colComidaHab;
+    String cenaHab;
+    String colCenaHab;
+    
+ 
+    Verdura1({this.desayunoHab = '', this.colDesayunoHab='',this.comidaHab='',this.colComidaHab='',this.cenaHab='',this.colCenaHab});
+    factory Verdura1.fromJson(Map<String, String> json) => _verdura1FromJson(json);
+    
+     Map<String, String> toJson() => _verdura1ToJson(this);
+  }
+ 
+  Verdura1 _verdura1FromJson(Map<String, String> json) => Verdura1(
+    desayunoHab     : json['desayunoHab'],
+    colDesayunoHab  : json['colacDesayunoHab'],
+    comidaHab       : json['comidaHab'],
+    colComidaHab    : json['colacComidaHab'],
+    cenaHab         : json['cenaHab'],
+    colCenaHab      : json['colCenaHab'],
+  );
+
+   Map<String, dynamic> _verdura1ToJson(Verdura1 instance) => <String, String>{
+    
+    'desayunoHab'      : instance.desayunoHab,
+    'colacDesayunoHab' : instance.colDesayunoHab,
+    'comidaHab'        : instance.comidaHab,
+    'colacComidaHab'   : instance.colComidaHab,
+    'cenaHab'          : instance.cenaHab,
+    'colCenaHab'       : instance.colCenaHab,
+  };
+  ///###########  Verdura2  ##################
+ class Verdura2 {
+    String desayunoHab;
+    String colDesayunoHab;
+    String comidaHab;
+    String colComidaHab;
+    String cenaHab;
+    String colCenaHab;
+    
+ 
+    Verdura2({this.desayunoHab = '', this.colDesayunoHab='',this.comidaHab='',this.colComidaHab='',this.cenaHab='',this.colCenaHab});
+    factory Verdura2.fromJson(Map<String, String> json) => _verdura2FromJson(json);
+    
+     Map<String, String> toJson() => _verdura2ToJson(this);
+  }
+ 
+  Verdura2 _verdura2FromJson(Map<String, String> json) => Verdura2(
+    desayunoHab     : json['desayunoHab'],
+    colDesayunoHab  : json['colacDesayunoHab'],
+    comidaHab       : json['comidaHab'],
+    colComidaHab    : json['colacComidaHab'],
+    cenaHab         : json['cenaHab'],
+    colCenaHab      : json['colCenaHab'],
+  );
+
+   Map<String, dynamic> _verdura2ToJson(Verdura2 instance) => <String, String>{
+    
+    'desayunoHab'      : instance.desayunoHab,
+    'colacDesayunoHab' : instance.colDesayunoHab,
+    'comidaHab'        : instance.comidaHab,
+    'colacComidaHab'   : instance.colComidaHab,
+    'cenaHab'          : instance.cenaHab,
+    'colCenaHab'       : instance.colCenaHab,
+  };
+  ///###########  Verdura3  ##################
+ class Verdura3 {
+    String desayunoHab;
+    String colDesayunoHab;
+    String comidaHab;
+    String colComidaHab;
+    String cenaHab;
+    String colCenaHab;
+    
+ 
+    Verdura3({this.desayunoHab = '', this.colDesayunoHab='',this.comidaHab='',this.colComidaHab='',this.cenaHab='',this.colCenaHab});
+    factory Verdura3.fromJson(Map<String, String> json) => _verdura3FromJson(json);
+    
+     Map<String, String> toJson() => _verdura3ToJson(this);
+  }
+ 
+  Verdura3 _verdura3FromJson(Map<String, String> json) => Verdura3(
+    desayunoHab     : json['desayunoHab'],
+    colDesayunoHab  : json['colacDesayunoHab'],
+    comidaHab       : json['comidaHab'],
+    colComidaHab    : json['colacComidaHab'],
+    cenaHab         : json['cenaHab'],
+    colCenaHab      : json['colCenaHab'],
+  );
+
+   Map<String, dynamic> _verdura3ToJson(Verdura3 instance) => <String, String>{
+    
+    'desayunoHab'      : instance.desayunoHab,
+    'colacDesayunoHab' : instance.colDesayunoHab,
+    'comidaHab'        : instance.comidaHab,
+    'colacComidaHab'   : instance.colComidaHab,
+    'cenaHab'          : instance.cenaHab,
+    'colCenaHab'       : instance.colCenaHab,
+  };
+  ///###########  Verdura4  ##################
+ class Verdura4 {
+    String desayunoHab;
+    String colDesayunoHab;
+    String comidaHab;
+    String colComidaHab;
+    String cenaHab;
+    String colCenaHab;
+    
+ 
+    Verdura4({this.desayunoHab = '', this.colDesayunoHab='',this.comidaHab='',this.colComidaHab='',this.cenaHab='',this.colCenaHab});
+    factory Verdura4.fromJson(Map<String, String> json) => _verdura4FromJson(json);
+    
+     Map<String, String> toJson() => _verdura4ToJson(this);
+  }
+ 
+  Verdura4 _verdura4FromJson(Map<String, String> json) => Verdura4(
+    desayunoHab     : json['desayunoHab'],
+    colDesayunoHab  : json['colacDesayunoHab'],
+    comidaHab       : json['comidaHab'],
+    colComidaHab    : json['colacComidaHab'],
+    cenaHab         : json['cenaHab'],
+    colCenaHab      : json['colCenaHab'],
+  );
+
+   Map<String, dynamic> _verdura4ToJson(Verdura4 instance) => <String, String>{
+    
+    'desayunoHab'      : instance.desayunoHab,
+    'colacDesayunoHab' : instance.colDesayunoHab,
+    'comidaHab'        : instance.comidaHab,
+    'colacComidaHab'   : instance.colComidaHab,
+    'cenaHab'          : instance.cenaHab,
+    'colCenaHab'       : instance.colCenaHab,
+  };
+  ///###########  Fruta1  ##################
+ class Fruta1 {
+    String desayunoHab;
+    String colDesayunoHab;
+    String comidaHab;
+    String colComidaHab;
+    String cenaHab;
+    String colCenaHab;
+    
+ 
+    Fruta1({this.desayunoHab = '', this.colDesayunoHab='',this.comidaHab='',this.colComidaHab='',this.cenaHab='',this.colCenaHab});
+    factory Fruta1.fromJson(Map<String, String> json) => _fruta1FromJson(json);
+    
+     Map<String, String> toJson() => _fruta1ToJson(this);
+  }
+ 
+  Fruta1 _fruta1FromJson(Map<String, String> json) => Fruta1(
+    desayunoHab     : json['desayunoHab'],
+    colDesayunoHab  : json['colacDesayunoHab'],
+    comidaHab       : json['comidaHab'],
+    colComidaHab    : json['colacComidaHab'],
+    cenaHab         : json['cenaHab'],
+    colCenaHab      : json['colCenaHab'],
+  );
+
+   Map<String, dynamic> _fruta1ToJson(Fruta1 instance) => <String, String>{
+    
+    'desayunoHab'      : instance.desayunoHab,
+    'colacDesayunoHab' : instance.colDesayunoHab,
+    'comidaHab'        : instance.comidaHab,
+    'colacComidaHab'   : instance.colComidaHab,
+    'cenaHab'          : instance.cenaHab,
+    'colCenaHab'       : instance.colCenaHab,
+  };
+  ///###########  Fruta2  ##################
+ class Fruta2 {
+    String desayunoHab;
+    String colDesayunoHab;
+    String comidaHab;
+    String colComidaHab;
+    String cenaHab;
+    String colCenaHab;
+    
+ 
+    Fruta2({this.desayunoHab = '', this.colDesayunoHab='',this.comidaHab='',this.colComidaHab='',this.cenaHab='',this.colCenaHab});
+    factory Fruta2.fromJson(Map<String, String> json) => _fruta2FromJson(json);
+    
+     Map<String, String> toJson() => _fruta2ToJson(this);
+  }
+ 
+  Fruta2 _fruta2FromJson(Map<String, String> json) => Fruta2(
+    desayunoHab     : json['desayunoHab'],
+    colDesayunoHab  : json['colacDesayunoHab'],
+    comidaHab       : json['comidaHab'],
+    colComidaHab    : json['colacComidaHab'],
+    cenaHab         : json['cenaHab'],
+    colCenaHab      : json['colCenaHab'],
+  );
+
+   Map<String, dynamic> _fruta2ToJson(Fruta2 instance) => <String, String>{
+    
+    'desayunoHab'      : instance.desayunoHab,
+    'colacDesayunoHab' : instance.colDesayunoHab,
+    'comidaHab'        : instance.comidaHab,
+    'colacComidaHab'   : instance.colComidaHab,
+    'cenaHab'          : instance.cenaHab,
+    'colCenaHab'       : instance.colCenaHab,
+  };
+  ///###########  Fruta3  ##################
+ class Fruta3 {
+    String desayunoHab;
+    String colDesayunoHab;
+    String comidaHab;
+    String colComidaHab;
+    String cenaHab;
+    String colCenaHab;
+    
+ 
+    Fruta3({this.desayunoHab = '', this.colDesayunoHab='',this.comidaHab='',this.colComidaHab='',this.cenaHab='',this.colCenaHab});
+    factory Fruta3.fromJson(Map<String, String> json) => _fruta3FromJson(json);
+    
+     Map<String, String> toJson() => _fruta3ToJson(this);
+  }
+ 
+  Fruta3 _fruta3FromJson(Map<String, String> json) => Fruta3(
+    desayunoHab     : json['desayunoHab'],
+    colDesayunoHab  : json['colacDesayunoHab'],
+    comidaHab       : json['comidaHab'],
+    colComidaHab    : json['colacComidaHab'],
+    cenaHab         : json['cenaHab'],
+    colCenaHab      : json['colCenaHab'],
+  );
+
+   Map<String, dynamic> _fruta3ToJson(Fruta3 instance) => <String, String>{
+    
+    'desayunoHab'      : instance.desayunoHab,
+    'colacDesayunoHab' : instance.colDesayunoHab,
+    'comidaHab'        : instance.comidaHab,
+    'colacComidaHab'   : instance.colComidaHab,
+    'cenaHab'          : instance.cenaHab,
+    'colCenaHab'       : instance.colCenaHab,
+  };
+  ///###########  Fruta4  ##################
+ class Fruta4 {
+    String desayunoHab;
+    String colDesayunoHab;
+    String comidaHab;
+    String colComidaHab;
+    String cenaHab;
+    String colCenaHab;
+    
+ 
+    Fruta4({this.desayunoHab = '', this.colDesayunoHab='',this.comidaHab='',this.colComidaHab='',this.cenaHab='',this.colCenaHab});
+    factory Fruta4.fromJson(Map<String, String> json) => _fruta4FromJson(json);
+    
+     Map<String, String> toJson() => _fruta4ToJson(this);
+  }
+ 
+  Fruta4 _fruta4FromJson(Map<String, String> json) => Fruta4(
+    desayunoHab     : json['desayunoHab'],
+    colDesayunoHab  : json['colacDesayunoHab'],
+    comidaHab       : json['comidaHab'],
+    colComidaHab    : json['colacComidaHab'],
+    cenaHab         : json['cenaHab'],
+    colCenaHab      : json['colCenaHab'],
+  );
+
+   Map<String, dynamic> _fruta4ToJson(Fruta4 instance) => <String, String>{
+    
+    'desayunoHab'      : instance.desayunoHab,
+    'colacDesayunoHab' : instance.colDesayunoHab,
+    'comidaHab'        : instance.comidaHab,
+    'colacComidaHab'   : instance.colComidaHab,
+    'cenaHab'          : instance.cenaHab,
+    'colCenaHab'       : instance.colCenaHab,
+  };
+  ///###########  Azucar1  ##################
+ class Azucar1 {
+    String desayunoHab;
+    String colDesayunoHab;
+    String comidaHab;
+    String colComidaHab;
+    String cenaHab;
+    String colCenaHab;
+    
+ 
+    Azucar1({this.desayunoHab = '', this.colDesayunoHab='',this.comidaHab='',this.colComidaHab='',this.cenaHab='',this.colCenaHab});
+    factory Azucar1.fromJson(Map<String, String> json) => _azucar1FromJson(json);
+    
+     Map<String, String> toJson() => _azucar1ToJson(this);
+  }
+ 
+  Azucar1 _azucar1FromJson(Map<String, String> json) => Azucar1(
+    desayunoHab     : json['desayunoHab'],
+    colDesayunoHab  : json['colacDesayunoHab'],
+    comidaHab       : json['comidaHab'],
+    colComidaHab    : json['colacComidaHab'],
+    cenaHab         : json['cenaHab'],
+    colCenaHab      : json['colCenaHab'],
+  );
+
+   Map<String, dynamic> _azucar1ToJson(Azucar1 instance) => <String, String>{
+    
+    'desayunoHab'      : instance.desayunoHab,
+    'colacDesayunoHab' : instance.colDesayunoHab,
+    'comidaHab'        : instance.comidaHab,
+    'colacComidaHab'   : instance.colComidaHab,
+    'cenaHab'          : instance.cenaHab,
+    'colCenaHab'       : instance.colCenaHab,
+  };
+  ///###########  Azucar2  ##################
+ class Azucar2 {
+    String desayunoHab;
+    String colDesayunoHab;
+    String comidaHab;
+    String colComidaHab;
+    String cenaHab;
+    String colCenaHab;
+    
+ 
+    Azucar2({this.desayunoHab = '', this.colDesayunoHab='',this.comidaHab='',this.colComidaHab='',this.cenaHab='',this.colCenaHab});
+    factory Azucar2.fromJson(Map<String, String> json) => _azucar2FromJson(json);
+    
+     Map<String, String> toJson() => _azucar2ToJson(this);
+  }
+ 
+  Azucar2 _azucar2FromJson(Map<String, String> json) => Azucar2(
+    desayunoHab     : json['desayunoHab'],
+    colDesayunoHab  : json['colacDesayunoHab'],
+    comidaHab       : json['comidaHab'],
+    colComidaHab    : json['colacComidaHab'],
+    cenaHab         : json['cenaHab'],
+    colCenaHab      : json['colCenaHab'],
+  );
+
+   Map<String, dynamic> _azucar2ToJson(Azucar2 instance) => <String, String>{
+    
+    'desayunoHab'      : instance.desayunoHab,
+    'colacDesayunoHab' : instance.colDesayunoHab,
+    'comidaHab'        : instance.comidaHab,
+    'colacComidaHab'   : instance.colComidaHab,
+    'cenaHab'          : instance.cenaHab,
+    'colCenaHab'       : instance.colCenaHab,
+  };
+  ///###########  Azucar3  ##################
+ class Azucar3 {
+    String desayunoHab;
+    String colDesayunoHab;
+    String comidaHab;
+    String colComidaHab;
+    String cenaHab;
+    String colCenaHab;
+    
+ 
+    Azucar3({this.desayunoHab = '', this.colDesayunoHab='',this.comidaHab='',this.colComidaHab='',this.cenaHab='',this.colCenaHab});
+    factory Azucar3.fromJson(Map<String, String> json) => _azucar3FromJson(json);
+    
+     Map<String, String> toJson() => _azucar3ToJson(this);
+  }
+ 
+  Azucar3 _azucar3FromJson(Map<String, String> json) => Azucar3(
+    desayunoHab     : json['desayunoHab'],
+    colDesayunoHab  : json['colacDesayunoHab'],
+    comidaHab       : json['comidaHab'],
+    colComidaHab    : json['colacComidaHab'],
+    cenaHab         : json['cenaHab'],
+    colCenaHab      : json['colCenaHab'],
+  );
+
+   Map<String, dynamic> _azucar3ToJson(Azucar3 instance) => <String, String>{
+    
+    'desayunoHab'      : instance.desayunoHab,
+    'colacDesayunoHab' : instance.colDesayunoHab,
+    'comidaHab'        : instance.comidaHab,
+    'colacComidaHab'   : instance.colComidaHab,
+    'cenaHab'          : instance.cenaHab,
+    'colCenaHab'       : instance.colCenaHab,
+  };
+  ///###########  Azucar4  ##################
+ class Azucar4 {
+    String desayunoHab;
+    String colDesayunoHab;
+    String comidaHab;
+    String colComidaHab;
+    String cenaHab;
+    String colCenaHab;
+    
+ 
+    Azucar4({this.desayunoHab = '', this.colDesayunoHab='',this.comidaHab='',this.colComidaHab='',this.cenaHab='',this.colCenaHab});
+    factory Azucar4.fromJson(Map<String, String> json) => _azucar4FromJson(json);
+    
+     Map<String, String> toJson() => _azucar4ToJson(this);
+  }
+ 
+  Azucar4 _azucar4FromJson(Map<String, String> json) => Azucar4(
+    desayunoHab     : json['desayunoHab'],
+    colDesayunoHab  : json['colacDesayunoHab'],
+    comidaHab       : json['comidaHab'],
+    colComidaHab    : json['colacComidaHab'],
+    cenaHab         : json['cenaHab'],
+    colCenaHab      : json['colCenaHab'],
+  );
+
+   Map<String, dynamic> _azucar4ToJson(Azucar4 instance) => <String, String>{
+    
+    'desayunoHab'      : instance.desayunoHab,
+    'colacDesayunoHab' : instance.colDesayunoHab,
+    'comidaHab'        : instance.comidaHab,
+    'colacComidaHab'   : instance.colComidaHab,
+    'cenaHab'          : instance.cenaHab,
+    'colCenaHab'       : instance.colCenaHab,
+  };
+  ///###########  Grasa1  ##################
+ class Grasa1 {
+    String desayunoHab;
+    String colDesayunoHab;
+    String comidaHab;
+    String colComidaHab;
+    String cenaHab;
+    String colCenaHab;
+    
+ 
+    Grasa1({this.desayunoHab = '', this.colDesayunoHab='',this.comidaHab='',this.colComidaHab='',this.cenaHab='',this.colCenaHab});
+    factory Grasa1.fromJson(Map<String, String> json) => _grasa1FromJson(json);
+    
+     Map<String, String> toJson() => _grasa1ToJson(this);
+  }
+ 
+  Grasa1 _grasa1FromJson(Map<String, String> json) => Grasa1(
+    desayunoHab     : json['desayunoHab'],
+    colDesayunoHab  : json['colacDesayunoHab'],
+    comidaHab       : json['comidaHab'],
+    colComidaHab    : json['colacComidaHab'],
+    cenaHab         : json['cenaHab'],
+    colCenaHab      : json['colCenaHab'],
+  );
+
+   Map<String, dynamic> _grasa1ToJson(Grasa1 instance) => <String, String>{
+    
+    'desayunoHab'      : instance.desayunoHab,
+    'colacDesayunoHab' : instance.colDesayunoHab,
+    'comidaHab'        : instance.comidaHab,
+    'colacComidaHab'   : instance.colComidaHab,
+    'cenaHab'          : instance.cenaHab,
+    'colCenaHab'       : instance.colCenaHab,
+  };
+  ///###########  Grasa2  ##################
+ class Grasa2 {
+    String desayunoHab;
+    String colDesayunoHab;
+    String comidaHab;
+    String colComidaHab;
+    String cenaHab;
+    String colCenaHab;
+    
+ 
+    Grasa2({this.desayunoHab = '', this.colDesayunoHab='',this.comidaHab='',this.colComidaHab='',this.cenaHab='',this.colCenaHab});
+    factory Grasa2.fromJson(Map<String, String> json) => _grasa2FromJson(json);
+    
+     Map<String, String> toJson() => _grasa2ToJson(this);
+  }
+ 
+  Grasa2 _grasa2FromJson(Map<String, String> json) => Grasa2(
+    desayunoHab     : json['desayunoHab'],
+    colDesayunoHab  : json['colacDesayunoHab'],
+    comidaHab       : json['comidaHab'],
+    colComidaHab    : json['colacComidaHab'],
+    cenaHab         : json['cenaHab'],
+    colCenaHab      : json['colCenaHab'],
+  );
+
+   Map<String, dynamic> _grasa2ToJson(Grasa2 instance) => <String, String>{
+    
+    'desayunoHab'      : instance.desayunoHab,
+    'colacDesayunoHab' : instance.colDesayunoHab,
+    'comidaHab'        : instance.comidaHab,
+    'colacComidaHab'   : instance.colComidaHab,
+    'cenaHab'          : instance.cenaHab,
+    'colCenaHab'       : instance.colCenaHab,
+  };
+  ///###########  Grasa3  ##################
+ class Grasa3 {
+    String desayunoHab;
+    String colDesayunoHab;
+    String comidaHab;
+    String colComidaHab;
+    String cenaHab;
+    String colCenaHab;
+    
+ 
+    Grasa3({this.desayunoHab = '', this.colDesayunoHab='',this.comidaHab='',this.colComidaHab='',this.cenaHab='',this.colCenaHab});
+    factory Grasa3.fromJson(Map<String, String> json) => _grasa3FromJson(json);
+    
+     Map<String, String> toJson() => _grasa3ToJson(this);
+  }
+ 
+  Grasa3 _grasa3FromJson(Map<String, String> json) => Grasa3(
+    desayunoHab     : json['desayunoHab'],
+    colDesayunoHab  : json['colacDesayunoHab'],
+    comidaHab       : json['comidaHab'],
+    colComidaHab    : json['colacComidaHab'],
+    cenaHab         : json['cenaHab'],
+    colCenaHab      : json['colCenaHab'],
+  );
+
+   Map<String, dynamic> _grasa3ToJson(Grasa3 instance) => <String, String>{
+    
+    'desayunoHab'      : instance.desayunoHab,
+    'colacDesayunoHab' : instance.colDesayunoHab,
+    'comidaHab'        : instance.comidaHab,
+    'colacComidaHab'   : instance.colComidaHab,
+    'cenaHab'          : instance.cenaHab,
+    'colCenaHab'       : instance.colCenaHab,
+  };
+  ///###########  Grasa4  ##################
+ class Grasa4 {
+    String desayunoHab;
+    String colDesayunoHab;
+    String comidaHab;
+    String colComidaHab;
+    String cenaHab;
+    String colCenaHab;
+    
+ 
+    Grasa4({this.desayunoHab = '', this.colDesayunoHab='',this.comidaHab='',this.colComidaHab='',this.cenaHab='',this.colCenaHab});
+    factory Grasa4.fromJson(Map<String, String> json) => _grasa4FromJson(json);
+    
+     Map<String, String> toJson() => _grasa4ToJson(this);
+  }
+ 
+  Grasa4 _grasa4FromJson(Map<String, String> json) => Grasa4(
+    desayunoHab     : json['desayunoHab'],
+    colDesayunoHab  : json['colacDesayunoHab'],
+    comidaHab       : json['comidaHab'],
+    colComidaHab    : json['colacComidaHab'],
+    cenaHab         : json['cenaHab'],
+    colCenaHab      : json['colCenaHab'],
+  );
+
+   Map<String, dynamic> _grasa4ToJson(Grasa4 instance) => <String, String>{
+    
+    'desayunoHab'      : instance.desayunoHab,
+    'colacDesayunoHab' : instance.colDesayunoHab,
+    'comidaHab'        : instance.comidaHab,
+    'colacComidaHab'   : instance.colComidaHab,
+    'cenaHab'          : instance.cenaHab,
+    'colCenaHab'       : instance.colCenaHab,
+  };
