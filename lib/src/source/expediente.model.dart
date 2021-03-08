@@ -184,10 +184,10 @@ class ExpedienteModel {
         this.grasa2,
         this.grasa3,
         this.grasa4,
-        this.fechaHab1 = '',
-        this.fechaHab2 = '',
-        this.fechaHab3 = '',
-        this.fechaHab4 = '',
+        // this.fechaHab1 = '',
+        // this.fechaHab2 = '',
+        // this.fechaHab3 = '',
+        // this.fechaHab4 = '',
 
 
 
@@ -375,10 +375,10 @@ class ExpedienteModel {
     List<Grasa3> grasa3;
     List<Grasa4> grasa4;
 
-    String fechaHab1;
-    String fechaHab2;
-    String fechaHab3;
-    String fechaHab4;
+    // String fechaHab1;
+    // String fechaHab2;
+    // String fechaHab3;
+    // String fechaHab4;
     
 
     factory ExpedienteModel.fromJson(Map<String, dynamic> json) => _expedienteModelFromjson(json);
@@ -546,7 +546,7 @@ class ExpedienteModel {
        List<Map<String, String>> azucar2 = instance.azucar2 != null
       ? instance.azucar2.map((i) => i.toJson()).toList()
       : null;
-       List<Map<String, String>> azucar3 = instance.azucar1 != null
+       List<Map<String, String>> azucar3 = instance.azucar3 != null
       ? instance.azucar3.map((i) => i.toJson()).toList()
       : null;
        List<Map<String, String>> azucar4 = instance.azucar4 != null
@@ -704,10 +704,10 @@ class ExpedienteModel {
         "pizza"                 : instance.pizza,
         "nachos"                : instance.nachos,
         "menudo"                : instance.menudo,
-        "fechaHab1"             : instance.fechaHab1,
-        "fechaHab2"             : instance.fechaHab2,
-        "fechaHab3"             : instance.fechaHab3,
-        "fechaHab4"             : instance.fechaHab4,
+        // "fechaHab1"             : instance.fechaHab1,
+        // "fechaHab2"             : instance.fechaHab2,
+        // "fechaHab3"             : instance.fechaHab3,
+        // "fechaHab4"             : instance.fechaHab4,
         "carne1"                : carne1,
         "carne2"                : carne2,
         "carne3"                : carne3,
@@ -949,6 +949,40 @@ class ExpedienteModel {
         ? fruta4Json.map((i) => Fruta4.fromJson(i)).toList()
         : null;
     
+     var azucar1Json = json['azucar1'] as List;
+    List<Azucar1> azucar1 = azucar1Json != null
+        ? azucar1Json.map((i) => Azucar1.fromJson(i)).toList()
+        : null;
+     var azucar2Json = json['azucar2'] as List;
+    List<Azucar2> azucar2 = azucar2Json != null
+        ? azucar2Json.map((i) => Azucar2.fromJson(i)).toList()
+        : null;
+     var azucar3Json = json['azucar3'] as List;
+    List<Azucar3> azucar3 = azucar3Json != null
+        ? azucar3Json.map((i) => Azucar3.fromJson(i)).toList()
+        : null;
+     var azucar4Json = json['azucar4'] as List;
+    List<Azucar4> azucar4 = azucar4Json != null
+        ? azucar4Json.map((i) => Azucar4.fromJson(i)).toList()
+        : null;
+     
+     var grasa1Json = json['grasa1'] as List;
+    List<Grasa1> grasa1 = grasa1Json != null
+        ? grasa1Json.map((i) => Grasa1.fromJson(i)).toList()
+        : null;
+     var grasa2Json = json['grasa2'] as List;
+    List<Grasa2> grasa2 = grasa2Json != null
+        ? grasa2Json.map((i) => Grasa2.fromJson(i)).toList()
+        : null;
+     var grasa3Json = json['grasa3'] as List;
+    List<Grasa3> grasa3 = grasa3Json != null
+        ? grasa3Json.map((i) => Grasa3.fromJson(i)).toList()
+        : null;
+     var grasa4Json = json['grasa4'] as List;
+    List<Grasa4> grasa4 = grasa4Json != null
+        ? grasa4Json.map((i) => Grasa4.fromJson(i)).toList()
+        : null;
+    
   
     
     
@@ -1095,10 +1129,10 @@ class ExpedienteModel {
         pizza                : json["pizza"],
         nachos               : json["nachos"],
         menudo               : json["menudo"],
-        fechaHab1            : json["fechaHab1"],
-        fechaHab2            : json["fechaHab2"],
-        fechaHab3            : json["fechaHab3"],
-        fechaHab4            : json["fechaHab4"],
+        // fechaHab1            : json["fechaHab1"],
+        // fechaHab2            : json["fechaHab2"],
+        // fechaHab3            : json["fechaHab3"],
+        // fechaHab4            : json["fechaHab4"],
 
         carne1 : carne1,
         carne2 : carne2,
@@ -1124,14 +1158,14 @@ class ExpedienteModel {
         fruta2 : fruta2,
         fruta3 : fruta3,
         fruta4 : fruta4,
-        // azucar1 : azucar1,
-        // azucar2 : azucar2,
-        // azucar3 : azucar3,
-        // azucar4 : azucar4,
-        // grasa1 : grasa1,
-        // grasa2 : grasa2,
-        // grasa3 : grasa3,
-        // grasa4 : grasa4,
+        azucar1 : azucar1,
+        azucar2 : azucar2,
+        azucar3 : azucar3,
+        azucar4 : azucar4,
+        grasa1 : grasa1,
+        grasa2 : grasa2,
+        grasa3 : grasa3,
+        grasa4 : grasa4,
 
    );
 
