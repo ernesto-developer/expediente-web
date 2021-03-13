@@ -195,6 +195,12 @@ class ExpedienteModel {
         this.caloriasList,
         this.calculoIngesta = '',
 
+         //###################################### Plan Nutricional #####################
+        this.planNut =  '',
+    //###################################### Nota de evolucion #####################
+        this.notaDeEvo = '',
+
+
     });
      // ################################################## Datos Generales ######################
 
@@ -391,6 +397,10 @@ class ExpedienteModel {
     
     String calculoIngesta;
 
+    //###################################### Plan Nutricional #####################
+    String planNut;
+    //###################################### Nota de evolucion #####################
+    String notaDeEvo;
 
     factory ExpedienteModel.fromJson(Map<String, dynamic> json) => _expedienteModelFromjson(json);
     Map<String, dynamic> toJson() => _expedienteModelToJson(this);
@@ -768,7 +778,9 @@ class ExpedienteModel {
 
         "gramosList"            : gramosList,
         "porcentajeList"        : porcentajeList,
-        "caloriasLis"           : caloriasList,
+        "caloriasList"          : caloriasList,
+        "planNut"               : instance.planNut,
+        "notaEvo"               : instance.notaDeEvo,
 
     };
     }
@@ -1215,6 +1227,10 @@ class ExpedienteModel {
         gramosList           : gramosList,  
         porcentajeList       : porcentajeList, 
         caloriasList         : caloriasList, 
+
+        planNut              : json["planNut"],
+        notaDeEvo            : json["notaEvo"] 
+         
    );
 
 
@@ -2716,7 +2732,7 @@ class ExpedienteModel {
   }
  
   Gramos _gramosFromJson(Map<String, String> json) => Gramos(
-    ch       : json[' ch'],
+    ch       : json['ch'],
     pts      : json['pts'],
     lib      : json['lib'],
     total    : json['total'],
@@ -2746,7 +2762,7 @@ class ExpedienteModel {
   }
  
   Porcentaje _porcentajeFromJson(Map<String, String> json) => Porcentaje(
-    ch    : json[' ch'],
+    ch    : json['ch'],
     pts   : json['pts'],
     lib   : json['lib'],
     total : json['total'],
@@ -2776,7 +2792,7 @@ class ExpedienteModel {
   }
  
   Calorias _caloriasFromJson(Map<String, String> json) => Calorias(
-    ch     : json[' ch'],
+    ch     : json['ch'],
     pts    : json['pts'],
     lib    : json['lib'],
     total  : json['total'],
