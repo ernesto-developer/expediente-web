@@ -189,7 +189,11 @@ class ExpedienteModel {
         // this.fechaHab3 = '',
         // this.fechaHab4 = '',
 
-
+        //###################################### CAlculo de la ingesta habitual #####################
+        this.gramosList,
+        this.porcentajeList,
+        this.caloriasList,
+        this.calculoIngesta = '',
 
     });
      // ################################################## Datos Generales ######################
@@ -379,7 +383,14 @@ class ExpedienteModel {
     // String fechaHab2;
     // String fechaHab3;
     // String fechaHab4;
+
+    //###################################### CAlculo de la ingesta habitual #####################
+    List<Gramos>gramosList;
+    List<Porcentaje>porcentajeList;
+    List<Calorias>caloriasList;
     
+    String calculoIngesta;
+
 
     factory ExpedienteModel.fromJson(Map<String, dynamic> json) => _expedienteModelFromjson(json);
     Map<String, dynamic> toJson() => _expedienteModelToJson(this);
@@ -566,6 +577,18 @@ class ExpedienteModel {
       ? instance.grasa4.map((i) => i.toJson()).toList()
       : null;
       
+       List<Map<String, String>> gramosList = instance.gramosList != null
+      ? instance.gramosList.map((i) => i.toJson()).toList()
+      : null;
+      
+       List<Map<String, String>> porcentajeList = instance.porcentajeList != null
+      ? instance.porcentajeList.map((i) => i.toJson()).toList()
+      : null;
+      
+       List<Map<String, String>> caloriasList = instance.caloriasList != null
+      ? instance.caloriasList.map((i) => i.toJson()).toList()
+      : null;
+      
 
 
 
@@ -740,6 +763,12 @@ class ExpedienteModel {
         "grasa2"                : grasa2,
         "grasa3"                : grasa3,
         "grasa4"                : grasa4,
+
+        "calculoIngesta"        : instance.calculoIngesta,
+
+        "gramosList"            : gramosList,
+        "porcentajeList"        : porcentajeList,
+        "caloriasLis"           : caloriasList,
 
     };
     }
@@ -983,6 +1012,21 @@ class ExpedienteModel {
         ? grasa4Json.map((i) => Grasa4.fromJson(i)).toList()
         : null;
     
+     var gramosListJson = json['gramosList'] as List;
+    List<Gramos> gramosList = gramosListJson != null
+        ? gramosListJson.map((i) => Gramos.fromJson(i)).toList()
+        : null;
+    
+     var porcentajeListJson = json['porcentajeList'] as List;
+    List<Porcentaje> porcentajeList = porcentajeListJson != null
+        ? porcentajeListJson.map((i) => Porcentaje.fromJson(i)).toList()
+        : null;
+    
+     var caloriasListJson = json['caloriasList'] as List;
+    List<Calorias> caloriasList = caloriasListJson != null
+        ? caloriasListJson.map((i) => Calorias.fromJson(i)).toList()
+        : null;
+    
   
     
     
@@ -1134,39 +1178,43 @@ class ExpedienteModel {
         // fechaHab3            : json["fechaHab3"],
         // fechaHab4            : json["fechaHab4"],
 
-        carne1 : carne1,
-        carne2 : carne2,
-        carne3 : carne3,
-        carne4 : carne4,
-        leche1 : leche1,
-        leche2 : leche2,
-        leche3 : leche3,
-        leche4 : leche4,
-        leguminosa1 : leguminosa1,
-        leguminosa2 : leguminosa2,
-        leguminosa3 : leguminosa3,
-        leguminosa4 : leguminosa4,
-        cereal1 : cereal1,
-        cereal2 : cereal2,
-        cereal3 : cereal3,
-        cereal4 : cereal4,
-        verdura1 : verdura1,
-        verdura2 : verdura2,
-        verdura3 : verdura3,
-        verdura4 : verdura4,
-        fruta1 : fruta1,
-        fruta2 : fruta2,
-        fruta3 : fruta3,
-        fruta4 : fruta4,
-        azucar1 : azucar1,
-        azucar2 : azucar2,
-        azucar3 : azucar3,
-        azucar4 : azucar4,
-        grasa1 : grasa1,
-        grasa2 : grasa2,
-        grasa3 : grasa3,
-        grasa4 : grasa4,
+        carne1               : carne1,
+        carne2               : carne2,
+        carne3               : carne3,
+        carne4               : carne4,
+        leche1               : leche1,
+        leche2               : leche2,
+        leche3               : leche3,
+        leche4               : leche4,
+        leguminosa1          : leguminosa1,
+        leguminosa2          : leguminosa2,
+        leguminosa3          : leguminosa3,
+        leguminosa4          : leguminosa4,
+        cereal1              : cereal1,
+        cereal2              : cereal2,
+        cereal3              : cereal3,
+        cereal4              : cereal4,
+        verdura1             : verdura1,
+        verdura2             : verdura2,
+        verdura3             : verdura3,
+        verdura4             : verdura4,
+        fruta1               : fruta1,
+        fruta2               : fruta2,
+        fruta3               : fruta3,
+        fruta4               : fruta4,
+        azucar1              : azucar1,
+        azucar2              : azucar2,
+        azucar3              : azucar3,
+        azucar4              : azucar4,
+        grasa1               : grasa1,
+        grasa2               : grasa2,
+        grasa3               : grasa3,
+        grasa4               : grasa4,
 
+        calculoIngesta       : json["calculoIngesta"],
+        gramosList           : gramosList,  
+        porcentajeList       : porcentajeList, 
+        caloriasList         : caloriasList, 
    );
 
 
@@ -2649,3 +2697,97 @@ class ExpedienteModel {
     'cenaHab'          : instance.cenaHab,
     'colCenaHab'       : instance.colCenaHab,
   };
+ 
+   //########################################################################### Calculo de la Ingesta Habitual ##########################
+  
+  ///###########  Gramos  ##################
+ class Gramos {
+    String ch;
+    String pts;
+    String lib;
+    String total;
+   
+    
+ 
+    Gramos({this.ch = '', this.pts='',this.lib='',this.total=''});
+    factory Gramos.fromJson(Map<String, String> json) => _gramosFromJson(json);
+    
+     Map<String, String> toJson() => _gramosToJson(this);
+  }
+ 
+  Gramos _gramosFromJson(Map<String, String> json) => Gramos(
+    ch       : json[' ch'],
+    pts      : json['pts'],
+    lib      : json['lib'],
+    total    : json['total'],
+    
+  );
+
+   Map<String, dynamic> _gramosToJson(Gramos instance) => <String, String>{
+    
+    'ch'      : instance.ch,
+    'pts' : instance.pts,
+    'lib'        : instance.lib,
+    'total'   : instance.total,
+  };
+  ///###########  Porcentaje  ##################
+ class Porcentaje {
+    String ch;
+    String pts;
+    String lib;
+    String total;
+   
+    
+ 
+    Porcentaje({this.ch = '', this.pts='',this.lib='',this.total=''});
+    factory Porcentaje.fromJson(Map<String, String> json) => _porcentajeFromJson(json);
+    
+     Map<String, String> toJson() => _porcentajeToJson(this);
+  }
+ 
+  Porcentaje _porcentajeFromJson(Map<String, String> json) => Porcentaje(
+    ch    : json[' ch'],
+    pts   : json['pts'],
+    lib   : json['lib'],
+    total : json['total'],
+    
+  );
+
+   Map<String, dynamic> _porcentajeToJson(Porcentaje instance) => <String, String>{
+    
+    'ch'    : instance.ch,
+    'pts'   : instance.pts,
+    'lib'   : instance.lib,
+    'total' : instance.total,
+  };
+  ///###########  Calorias  ##################
+ class Calorias {
+    String ch;
+    String pts;
+    String lib;
+    String total;
+   
+    
+ 
+    Calorias({this.ch = '', this.pts='',this.lib='',this.total=''});
+    factory Calorias.fromJson(Map<String, String> json) => _caloriasFromJson(json);
+    
+     Map<String, String> toJson() => _caloriasToJson(this);
+  }
+ 
+  Calorias _caloriasFromJson(Map<String, String> json) => Calorias(
+    ch     : json[' ch'],
+    pts    : json['pts'],
+    lib    : json['lib'],
+    total  : json['total'],
+    
+  );
+
+   Map<String, dynamic> _caloriasToJson(Calorias instance) => <String, String>{
+    
+    'ch'    : instance.ch,
+    'pts'   : instance.pts,
+    'lib'   : instance.lib,
+    'total' : instance.total,
+  };
+

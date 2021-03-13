@@ -173,7 +173,7 @@ class _AntropomatriasPageState extends State<AntropomatriasPage> {
                camposDeSeleccion(context, '''Antecedentes Patologicos Familiares y antecedentes Personales no Patologicos''','antecedentesFamiliaresYNoPatologicos'),
                camposDeSeleccion(context, 'Frecuencia alimentaria','frecuenciaAlimentariaPage'),
                camposDeSeleccion(context,'Raciones Habituales','racionesHabitualesPage'),
-               camposDeSeleccion(context, 'Calculo de la ingesta habitual','datosGeneralesPage'),
+               camposDeSeleccion(context, 'Calculo de la ingesta habitual','calculoDeLaIngestaPage'),
                camposDeSeleccion(context, 'Plan nutricional','datosGeneralesPage'),
                camposDeSeleccion(context, 'Nota de evolucion','datosGeneralesPage'),
               ],

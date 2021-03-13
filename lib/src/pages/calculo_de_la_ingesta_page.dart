@@ -5,33 +5,37 @@ import 'package:aplicacion_web/src/source/expediente.model.dart';
 import 'package:aplicacion_web/src/widgets/botones.dart';
 
 
-class Laboratoriospage extends StatefulWidget {
+class CalculoDeLaIngestaPage extends StatefulWidget {
     // final scaffoldKey  = new GlobalKey<ScaffoldState>(); ########### esto para usar el snackbar
 
   @override
-  _LaboratoriospageState createState() => _LaboratoriospageState();
+  _CalculoDeLaIngestaPageState createState() => _CalculoDeLaIngestaPageState();
 }
 
-class _LaboratoriospageState extends State<Laboratoriospage> {
+class _CalculoDeLaIngestaPageState extends State<CalculoDeLaIngestaPage> {
       
 
-  List<String> elementos = ['Hb g/dl','Htc %','Plaquetas','Glucosa','TGL','Colesterol','Ac.Urico',];
+       List<String> elementos = ['Macronutrientes','                   Gramos','                     Porcentaje','                     Calorias'];
+        List<String> macronutrientes = [
+    'CH',
+    'PTS',
+    'LIP',
+    'TOTAL',
+  ];
+
+  Gramos gramosClase = new Gramos();
+  Porcentaje porcentajeClase = new Porcentaje();
+  Calorias caloriasClase = new Calorias();
+
   final expedienteProvider = new ExpedientesProvider();
   final keyForm            = new GlobalKey<FormState>();
   
-  Color colorPeso = Colors.transparent;
+  
 
   // ############################################################ instancias de las clases #####################
   ExpedienteModel expediente = new ExpedienteModel();
- Hb  hbClase = new Hb();
- Htc htcClase =new Htc();
- Plaquetas plaquetasClase = new Plaquetas();
- Glucosa glucosaClase = new Glucosa();
- Tgl tglClase = new Tgl();
- Colesterol colesterolClase = new Colesterol();
- AcidoUrico acidoUricoClase = new AcidoUrico();
-
-  int indice;
+ 
+  
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +57,7 @@ class _LaboratoriospageState extends State<Laboratoriospage> {
       appBar: AppBar(
         centerTitle: true,
         actions: [botonDeHome(context),],
-        title: Text('Laboratorios')
+        title: Text('Calculo de la ingesta habitual')
       ),
     
      body:  Stack(
@@ -161,7 +165,7 @@ class _LaboratoriospageState extends State<Laboratoriospage> {
                                           //########################## Containers de campos de seleccion  ###########
                camposDeSeleccion(context, 'Datos Generales','datosGeneralesPage'),
                camposDeSeleccion(context, 'Antropometrias','antropometriasPage'),
-               camposDeSeleccion(context, 'Laboratorios','laboratoriosPage'),
+               camposDeSeleccion(context, 'Laboratorios','CalculoDeLaIngestaPage'),
                camposDeSeleccion(context, 'Antecedentes Patologicos Generales','antecedentesPersonalesPage'),
                camposDeSeleccion(context, '''Antecedentes Patologicos Familiares y antecedentes Personales no Patologicos''','antecedentesFamiliaresYNoPatologicos'),
                camposDeSeleccion(context, 'Frecuencia alimentaria','frecuenciaAlimentariaPage'),
@@ -177,11 +181,41 @@ class _LaboratoriospageState extends State<Laboratoriospage> {
         Form(
           key: keyForm,
           child:
-           hojaDeTrabajo(context,
-          DataTable( columnSpacing: 13,columns: datosColumna(),
-          rows: filas()
-          ), 
+           Column(
+             mainAxisAlignment: MainAxisAlignment.spaceAround,
+             children: [
+               hojaDeTrabajo(context, Padding(
+                 padding: const EdgeInsets.all(8.0),
+                 child: TextFormField(
+                   style: TextStyle(fontSize: 25),
+                    decoration: InputDecoration(
+                   
+                      labelText: "Calculo de la ingesta Habitual",
+                     
+                      filled: true,fillColor: Colors.transparent
+                    ), 
+                    maxLines: 25,
+                    initialValue: expediente.calculoIngesta.toString(),
+                 onSaved: (value) => expediente.calculoIngesta = value
           ),
+               ), 
+          size.longestSide  * .70,
+          size.longestSide * .25,
+         ),
+
+           hojaDeTrabajo(context, Padding(
+             padding: const EdgeInsets.all(8.0),
+             child: DataTable( dataTextStyle: TextStyle(fontSize: 5),dataRowHeight: 21,headingRowHeight: 25,columns: datosColumna(elementos), rows: dataRowComidas1()),
+           ),size.longestSide * .70 , size.longestSide * .10),
+
+            hojaDeTrabajo(context, Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(maxLines: 1,initialValue: expediente.dxNutCorto.toString(),style: TextStyle(fontSize:  size.longestSide * .01),decoration: InputDecoration(labelText: 'Dx Nutricional'),
+                       onSaved: (value) => expediente.dxNutCorto = value, ),
+            ), size.longestSide *.30, size.longestSide * .05)
+             ],
+           ),
+
         )
       ],
     ),
@@ -192,31 +226,39 @@ class _LaboratoriospageState extends State<Laboratoriospage> {
   
   
   //###################################################################### Widget de hojas de trabajo ######################
-Widget hojaDeTrabajo(BuildContext context,contenido){
-  final size = MediaQuery.of(context).size;
+Widget hojaDeTrabajo(BuildContext context,contenido,ancho,alto){
+  
   return  SlideInDown(
     duration: Duration(seconds: 1),
-      child: Container( 
-              width: size.longestSide  * .745,
-              height: size.longestSide * .45,
-              decoration: BoxDecoration(
-                 boxShadow: [
-                   BoxShadow(color: Colors.black45,blurRadius: 3.0,offset: Offset(0.0, 5.0),spreadRadius: 2.0)
-                ],
-                 color: Colors.white,
-                 border: Border.all(
-                   color: Colors.blue[300],
-                   width: 4
-                ),
-                  borderRadius: BorderRadius.only(
-                   topRight: Radius.circular(15),
-                   bottomRight: Radius.circular(15),
-                   topLeft: Radius.circular(15),
-                   bottomLeft: Radius.circular(15),
-                 )
-             ),
-               child: contenido
+      child: 
+      
+      Scrollbar(
+        radius: Radius.circular(20),
+        thickness: 10.0,
+        controller: ScrollController(initialScrollOffset: 20,keepScrollOffset: true),
+        isAlwaysShown: true,
+              child: Container( 
+                width: ancho,
+                height: alto,
+                decoration: BoxDecoration(
+                   boxShadow: [
+                     BoxShadow(color: Colors.black45,blurRadius: 3.0,offset: Offset(0.0, 5.0),spreadRadius: 2.0)
+                  ],
+                   color: Colors.white,
+                   border: Border.all(
+                     color: Colors.blue[300],
+                     width: 4
+                  ),
+                    borderRadius: BorderRadius.only(
+                     topRight: Radius.circular(15),
+                     bottomRight: Radius.circular(15),
+                     topLeft: Radius.circular(15),
+                     bottomLeft: Radius.circular(15),
+                   )
+               ),
+                 child: contenido
      ),
+      ),
   );
 }
   //######################################################################### Widget de Campos de seleccion   ##############
@@ -243,152 +285,53 @@ Widget hojaDeTrabajo(BuildContext context,contenido){
 
 //##################################################################### Widgets de menu de dataTable ###################  
 
-List<DataColumn> datosColumna(){
+List<DataColumn> datosColumna(valores){
   List<DataColumn> lista = [];
-  elementos.forEach((element) {lista.add(DataColumn(label: Text(element)));});
+  valores.forEach((element) {lista.add(DataColumn(label: Text(element,textAlign: TextAlign.center,)));});
   return lista;
 }
 
-List<DataRow> filas(){        
+dataRowComidas1(){
 
-  
-  if (expediente.hbLista == null){
-    expediente.hbLista = [hbClase];
-  }else if (expediente.hbLista[0].hb == 0.0){    
-  }
-  else if ( expediente.hbLista.length < expediente.fecha.length ){
-    expediente.hbLista.add(hbClase);
-  }
-  
-  if (expediente.htcLista == null){
-    expediente.htcLista = [htcClase];
-  }else if (expediente.htcLista[0].htc == 0.0){    
-  }
-  else if ( expediente.htcLista.length < expediente.fecha.length ){
-    expediente.htcLista.add(htcClase);
-  }
-  
-  if (expediente.plaquetasLista == null){
-    expediente.plaquetasLista = [plaquetasClase];
-  }else if (expediente.plaquetasLista[0].plaquetas == 0.0){    
-  }
-  else if ( expediente.plaquetasLista.length < expediente.fecha.length ){
-    expediente.plaquetasLista.add(plaquetasClase);
-  }
-  
-  if (expediente.glucosaLista == null){
-    expediente.glucosaLista = [glucosaClase];
-  }else if (expediente.glucosaLista[0].glucosa == 0.0){    
-  }
-  else if ( expediente.glucosaLista.length < expediente.fecha.length ){
-    expediente.glucosaLista.add(glucosaClase);
-  }
-  
-  if (expediente.tglLista == null){
-    expediente.tglLista = [tglClase];
-  }else if (expediente.tglLista[0].tgl == 0.0){    
-  }
-  else if ( expediente.tglLista.length < expediente.fecha.length ){
-    expediente.tglLista.add(tglClase);
-  }
+  if (expediente.gramosList == null)    {expediente.gramosList     = [gramosClase];}/*else if (expediente.gramosList[0]. == '' ){}*/
+  if (expediente.porcentajeList == null){expediente.porcentajeList = [porcentajeClase];}/*else if (expediente.carne2[0].desayunoHab == '' ){}*/
+  if (expediente.caloriasList == null)  {expediente.caloriasList   = [caloriasClase];}/*else if (expediente.carne3[0].desayunoHab == '' ){}*/
  
-  if (expediente.colesterolLista == null){
-    expediente.colesterolLista = [colesterolClase];
-  }else if (expediente.colesterolLista[0].colesterol == 0.0){    
-  }
-  else if ( expediente.colesterolLista.length < expediente.fecha.length ){
-    expediente.colesterolLista.add(colesterolClase);
-  }
   
-  if (expediente.acidoUricoLista == null){
-    expediente.acidoUricoLista = [acidoUricoClase];
-  }else if (expediente.acidoUricoLista[0].acidoUrico == 0.0){    
-  }
-  else if ( expediente.acidoUricoLista.length < expediente.fecha.length ){
-    expediente.acidoUricoLista.add(acidoUricoClase);
-  }
 
-  
-  List<DataRow> lista = [];
-  for (var i = 0; i < expediente.hbLista.length; i++){
-    lista.add(DataRow(cells: celdas(i),));
-    indice = i;
-  }
-// print(indice);
-  return lista;
-}
+  List<DataRow> lista = [
 
+    DataRow(cells: [ 
+       DataCell(TextButton(child: Text(macronutrientes[0],textAlign: TextAlign.left,), onPressed: (){})), 
+       DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.gramosList    [0] .ch, onSaved: (value) => expediente.gramosList    [0].ch = value)),
+       DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.porcentajeList[0] .ch, onSaved: (value) => expediente.porcentajeList[0].ch = value)),
+       DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.caloriasList  [0] .ch, onSaved: (value) => expediente.caloriasList  [0].ch = value)),
+      
+    ]),
+    DataRow(cells: [ 
+       DataCell(TextButton(child: Text(macronutrientes[1],textAlign: TextAlign.center,), onPressed: (){})), 
+       DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.gramosList    [0] .pts, onSaved: (value) => expediente.gramosList    [0].pts = value)),
+       DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.porcentajeList[0] .pts, onSaved: (value) => expediente.porcentajeList[0].pts = value)),
+       DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.caloriasList  [0] .pts, onSaved: (value) => expediente.caloriasList  [0].pts = value)),
        
+    ]),
+    DataRow(cells: [ 
+       DataCell(TextButton(child: Text(macronutrientes[2],textAlign: TextAlign.center,), onPressed: (){})), 
+       DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.gramosList    [0] .lib, onSaved: (value) => expediente.gramosList    [0].lib = value)),
+       DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.porcentajeList[0] .lib, onSaved: (value) => expediente.porcentajeList[0].lib = value)),
+       DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.caloriasList  [0] .lib, onSaved: (value) => expediente.caloriasList  [0].lib = value)),
+    ]),
+    DataRow(cells: [ 
+       DataCell(TextButton(child: Text(macronutrientes[3],textAlign: TextAlign.center,), onPressed: (){})), 
+       DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.gramosList    [0] .total, onSaved: (value) => expediente.gramosList    [0].total = value)),
+       DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.porcentajeList[0] .total, onSaved: (value) => expediente.porcentajeList[0].total = value)),
+       DataCell(TextFormField(textAlign: TextAlign.center,textAlignVertical: TextAlignVertical.center,initialValue: expediente.caloriasList  [0] .total, onSaved: (value) => expediente.caloriasList  [0].total = value)),
+       
+    ]),
+   
 
-
-List<DataCell> celdas(int index){
-  
-   List<DataCell> listaDeCeldas = [
-    
-    
-     DataCell(
-     TextButton(
-         onLongPress: () { menuDeColores(expediente.hbLista);},
-       child: TextFormField( decoration: InputDecoration(filled: true,fillColor:  decicionDeColor(expediente.hbLista[index].color)), initialValue: expediente.hbLista[index].hb.toString(),
-           onSaved: (value) =>  expediente.hbLista[index].hb = double.parse(value)
-      ),
-      onPressed: (){},    
-    )),
-     DataCell(
-     TextButton(
-       onLongPress: () { menuDeColores(expediente.htcLista);},  
-     child: TextFormField( decoration: InputDecoration(filled: true,fillColor:  decicionDeColor(expediente.htcLista[index].color)), initialValue: expediente.htcLista[index].htc.toString(),
-           onSaved: (value) =>  expediente.htcLista[index].htc = double.parse(value)
-      ),
-      onPressed: (){},    
-    )),
-     DataCell(
-     TextButton(
-         onLongPress: () { menuDeColores(expediente.plaquetasLista);},
-      child: TextFormField( decoration: InputDecoration(filled: true,fillColor:  decicionDeColor(expediente.plaquetasLista[index].color)), initialValue: expediente.plaquetasLista[index].plaquetas.toString(),
-           onSaved: (value) =>  expediente.plaquetasLista[index].plaquetas = double.parse(value)
-      ),
-      onPressed: (){},    
-    )),
-     DataCell(
-     TextButton(
-         onLongPress: () { menuDeColores(expediente.glucosaLista);},
-       child: TextFormField( decoration: InputDecoration(filled: true,fillColor:  decicionDeColor(expediente.glucosaLista[index].color)), initialValue: expediente.glucosaLista[index].glucosa.toString(),
-           onSaved: (value) =>  expediente.glucosaLista[index].glucosa = double.parse(value)
-      ),
-      onPressed: (){},    
-    )),
-     DataCell(
-     TextButton(
-        onLongPress: () { menuDeColores(expediente.tglLista);},    
-      child: TextFormField( decoration: InputDecoration(filled: true,fillColor:  decicionDeColor(expediente.tglLista[index].color)), initialValue: expediente.tglLista[index].tgl.toString(),
-           onSaved: (value) =>  expediente.tglLista[index].tgl = double.parse(value)
-      ),
-      onPressed: (){},    
-    )),
-  
-     DataCell(
-     TextButton(
-         onLongPress: () { menuDeColores(expediente.colesterolLista);}, 
-      child: TextFormField( decoration: InputDecoration(filled: true,fillColor:  decicionDeColor(expediente.colesterolLista[index].color)), initialValue: expediente.colesterolLista[index].colesterol.toString(),
-           onSaved: (value) =>  expediente.colesterolLista[index].colesterol = double.parse(value)
-      ),
-      onPressed: (){},    
-    )),
-  
-     DataCell(
-     TextButton(
-        onLongPress: () { menuDeColores(expediente.acidoUricoLista);}, 
-      child: TextFormField( decoration: InputDecoration(filled: true,fillColor:  decicionDeColor(expediente.acidoUricoLista[index].color)), initialValue: expediente.acidoUricoLista[index].acidoUrico.toString(),
-           onSaved: (value) =>  expediente.acidoUricoLista[index].acidoUrico = double.parse(value)
-      ),
-      onPressed: (){},    
-    )),
-  
-  
   ];
-   return listaDeCeldas;
-  
+  return lista;
 }
 
    //################################################################## Widgets del boton de guardar ################### 
@@ -413,40 +356,7 @@ submit(){
  }
 
 
-  menuDeColores(antropo){
-    final List listaDeColores = [
 
-      RaisedButton(color: Colors.white, onPressed      : (){setState((){antropo[indice].color = 0;});},),
-      RaisedButton(color: Colors.green[300], onPressed : (){setState((){antropo[indice].color = 1;});},),
-      RaisedButton(color: Colors.yellow[300], onPressed: (){setState((){antropo[indice].color = 2;});},child: Icon(Icons.arrow_downward)),
-      RaisedButton(color: Colors.yellow, onPressed     : (){setState((){antropo[indice].color = 3;});},child: Icon(Icons.arrow_upward)),
-      RaisedButton(color: Colors.red[300], onPressed   : (){setState((){antropo[indice].color = 4;});},child: Icon(Icons.arrow_downward)),
-      RaisedButton(color: Colors.red, onPressed        : (){setState((){antropo[indice].color = 5;});},child: Icon(Icons.arrow_upward)),
-
-    ];
-    return showMenu(
-      // initialValue:  decicionDeColor(expediente.estaturaLista[index].color),
-      context: context,
-      position: RelativeRect.fill,
-      items: listaDeColores.map((listaDeColores){
-        return PopupMenuItem(
-          child: listaDeColores,
-          value: listaDeColores,
-        );
-      }).toList()
-    );
-  }
-
-  decicionDeColor(antropo){
-
-    if      (antropo == 0){return Colors.transparent;}
-    else if (antropo == 1){return Colors.green[300];}
-    else if (antropo == 2){return Colors.yellow[300];}
-    else if (antropo == 3){return Colors.yellow;}
-    else if (antropo == 4){return Colors.red[300];}
-    else if (antropo == 5){return Colors.red;}
-     
-  }
    decisionDefecha(){
    if(expediente.fecha == null){
      return 'Primera Cita: 00/00/0000';
