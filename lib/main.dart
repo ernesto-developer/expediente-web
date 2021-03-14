@@ -4,6 +4,8 @@ import 'package:aplicacion_web/src/pages/antropometrias_page.dart';
 import 'package:aplicacion_web/src/pages/calculo_de_la_ingesta_page.dart';
 import 'package:aplicacion_web/src/pages/frecuencia_alimentaria_page.dart';
 import 'package:aplicacion_web/src/pages/laboratorios_page.dart';
+import 'package:aplicacion_web/src/pages/nota_de_evolucion_page.dart';
+import 'package:aplicacion_web/src/pages/plan_nutricional_page.dart';
 import 'package:aplicacion_web/src/pages/raciones_habituales_page.dart';
 import 'package:flutter/material.dart';
 
@@ -50,6 +52,8 @@ class MyApp extends StatelessWidget {
           'frecuenciaAlimentariaPage'             : (BuildContext context) => FrecuenciaAlimentariaPage(),
           'racionesHabitualesPage'                : (BuildContext context) => RacionesHabitualesPage(),
           'calculoDeLaIngestaPage'                : (BuildContext context) => CalculoDeLaIngestaPage(),
+          'planNutricionalpage'                   : (BuildContext context) => PlanNutricionalPage(),
+          'notaDeEvolucion'                       : (BuildContext context) => NotaDeEvolucionPage(),
         },
         theme: ThemeData(primaryColor: Colors.deepPurple),
       ),

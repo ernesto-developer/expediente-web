@@ -197,6 +197,7 @@ class ExpedienteModel {
 
          //###################################### Plan Nutricional #####################
         this.planNut =  '',
+        this.espacioBlanco = '',
     //###################################### Nota de evolucion #####################
         this.notaDeEvo = '',
 
@@ -399,6 +400,7 @@ class ExpedienteModel {
 
     //###################################### Plan Nutricional #####################
     String planNut;
+    String espacioBlanco;
     //###################################### Nota de evolucion #####################
     String notaDeEvo;
 
@@ -780,6 +782,7 @@ class ExpedienteModel {
         "porcentajeList"        : porcentajeList,
         "caloriasList"          : caloriasList,
         "planNut"               : instance.planNut,
+        "espacioBlanco"         : instance.espacioBlanco,
         "notaEvo"               : instance.notaDeEvo,
 
     };
@@ -1229,6 +1232,7 @@ class ExpedienteModel {
         caloriasList         : caloriasList, 
 
         planNut              : json["planNut"],
+        espacioBlanco        : json["espacioBlanco"],
         notaDeEvo            : json["notaEvo"] 
          
    );
